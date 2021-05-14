@@ -29,7 +29,7 @@ export default function MutationPage() {
     contents: "",
   });
 
-  const [createBoardMutation] = useMutation(CREATE_BOARD);
+  const [createBoardMutation] = useMutation(CREATE_BOARD);git b
   // const [writer, setWriter] = useState("");
   // const [password, setPassword] = useState("");
   // const [title, setTitle] = useState("");
