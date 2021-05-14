@@ -1,7 +1,9 @@
 import { useMutation, gql } from "@apollo/client";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function MutationPage() {
+  const router = useRouter();
   const CREATE_BOARD = gql`
     mutation variableType(
       $writer: String
@@ -49,6 +51,10 @@ export default function MutationPage() {
     setData(userData);
     console.log(userData);
   };
+
+  function onClickRouting() {
+    router.back();
+  }
 
   // const onChangeWriter = (event) => {
   //   let temp = event.target.value;
@@ -102,6 +108,8 @@ export default function MutationPage() {
       ></input>
       <br></br>
       <button onClick={onClickPost}>게시물 등록하기</button>
+      <br />
+      <button onClick={onClickRouting}>이전 페이지로 이동</button>
     </>
   );
 }
