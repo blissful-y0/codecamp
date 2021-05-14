@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useMutation, gql } from "@apollo/client";
 import {
@@ -21,8 +22,9 @@ import {
 } from "../../styles/board.write";
 
 export default function boardWritePage() {
+  const router = useRouter();
   const CREATED_BOARD = gql`
-    mutation muyaho(
+    mutation createBoard(
       $writer: String
       $password: String
       $title: String!
@@ -36,6 +38,7 @@ export default function boardWritePage() {
           contents: $contents
         }
       ) {
+        _id
         writer
         title
         contents
@@ -57,8 +60,9 @@ export default function boardWritePage() {
       const result = await createBoardMutation({
         variables: { ...data },
       });
-      console.log(result);
       alert("게시물이 등록되었습니다.");
+      const value = result.data.createBoard._id;
+      router.push(`list/${value}`);
     } catch (error) {
       alert(error.message);
     }
