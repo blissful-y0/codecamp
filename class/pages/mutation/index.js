@@ -29,7 +29,7 @@ export default function MutationPage() {
     contents: "",
   });
 
-  const [createBoardMutation] = useMutation(CREATE_BOARD);git b
+  const [createBoardMutation] = useMutation(CREATE_BOARD);
   // const [writer, setWriter] = useState("");
   // const [password, setPassword] = useState("");
   // const [title, setTitle] = useState("");
@@ -49,7 +49,7 @@ export default function MutationPage() {
   const onChangeInput = (event) => {
     const userData = { ...data, [event.target.name]: event.target.value };
     setData(userData);
-    console.log(userData);
+    console.log(userData.data);
   };
 
   function onClickRouting() {

@@ -1,24 +1,25 @@
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
+import QueryDetailPage from "../../../src/components/query/View.container";
 
-export default function QueryDetailPage() {
-  const router = useRouter();
-  const QUERY_PROFILE = gql`
-    query fetchProfile($QUERY_PROFILE: String) {
-      fetchProfile(name: $QUERY_PROFILE) {
-        number
-        name
-        age
-        school
-      }
-    }
-  `;
+export default function QueryView() {
+  // const router = useRouter();
+  // const QUERY_PROFILE = gql`
+  //   query fetchProfile($QUERY_PROFILE: String) {
+  //     fetchProfile(name: $QUERY_PROFILE) {
+  //       number
+  //       name
+  //       age
+  //       school
+  //     }
+  //   }
+  // `;
 
-  const { data } = useQuery(QUERY_PROFILE, {
-    variables: {
-      QUERY_PROFILE: router.query.name,
-    },
-  });
+  // const { data } = useQuery(QUERY_PROFILE, {
+  //   variables: {
+  //     QUERY_PROFILE: router.query.name,
+  //   },
+  // });
 
   // console.log(data.fetchProfile);
 
@@ -59,10 +60,11 @@ export default function QueryDetailPage() {
   // console.log(data);
 
   return (
-    <div>
-      <div>이름: {data && data.fetchProfile.name} </div>
-      <div>나이: {data && data.fetchProfile.age}</div>
-      <div>학교: {data && data.fetchProfile.school}</div>
-    </div>
+    // <div>
+    //   <div>이름: {data?.fetchProfile.name} </div>
+    //   <div>나이: {data?.fetchProfile.age}</div>
+    //   <div>학교: {data?.fetchProfile.school}</div>
+    // </div>
+    <QueryDetailPage />
   );
 }
