@@ -88,7 +88,8 @@ export const PhotoAttach = styled.button`
 export const UploadButton = styled.button`
   width: 179px;
   height: 52px;
-  background-color: #ffd600;
+  background-color: ${({ disabled }) =>
+    disabled === false ? "#ffd600" : "grey"};
   color: black;
   border: solid white;
 `;
