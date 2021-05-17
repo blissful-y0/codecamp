@@ -26,8 +26,9 @@ export const NavigationBar = styled.div`
 export const WriterName = styled.div`
   font-size: 24px;
   /* width: 18vw;
-  height: 5vh;
-  border: 1px solid black; */
+  height: 5vh; */
+  /* border: 1px solid black; */
+  color: black;
 `;
 
 export const WriterDateInfoWrapper = styled.div`
