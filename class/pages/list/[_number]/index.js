@@ -10,6 +10,7 @@ export default function RenderViewPage() {
   });
 
   console.log(data);
+  console.log(data.title);
 
   return (
     <>
