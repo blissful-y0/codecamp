@@ -1,4 +1,6 @@
 export default function ViewUI({ data }) {
+  console.dir(props);
+
   return (
     <div>
       <div>이름: {data?.fetchProfile.name} </div>

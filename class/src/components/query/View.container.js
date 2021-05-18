@@ -21,11 +21,6 @@ export default function QueryDetailPage() {
     },
   });
 
-  const { data2 } = {
-    key1: 1,
-    key2: 2,
-  };
-
   return (
     <>
       <ViewUI data={data} />
