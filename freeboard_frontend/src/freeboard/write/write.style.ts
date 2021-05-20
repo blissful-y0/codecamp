@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
-  width: 1200px;
+  width: 1100px;
   border: 1px solid black;
   margin: 20px auto;
   padding: 20px;
@@ -88,8 +88,8 @@ export const PhotoAttach = styled.button`
 export const UploadButton = styled.button`
   width: 179px;
   height: 52px;
-  background-color: ${({ disabled }) =>
-    disabled === false ? "#ffd600" : "grey"};
+  background-color: ${({disabled}) =>
+    disabled === false ? '#ffd600' : 'grey'};
   color: black;
   border: solid white;
 `;

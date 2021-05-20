@@ -20,9 +20,11 @@ import {
   Label,
   GreyButton,
   GreyButtonWrapper,
-} from "../read/read.style";
+} from './read.style';
+import {getDate} from '../commons/libraries/utils'
+import ReplyUI from '../reply/reply.container'
 
-export default function BoardReadUI({ data, fullDate }) {
+export default function BoardReadUI({data}) {
   return (
     <>
       <Wrapper>
@@ -31,12 +33,12 @@ export default function BoardReadUI({ data, fullDate }) {
             <ProfilePhoto></ProfilePhoto>
             <WriterDateInfoWrapper2>
               <WriterName>{data?.fetchBoard.writer}</WriterName>
-              <CreatedAt>{data && fullDate}</CreatedAt>
+              <CreatedAt>{getDate(data?.fetchBoard.createdAt)}</CreatedAt>
             </WriterDateInfoWrapper2>
           </WriterDateInfoWrapper>
           <IconWrapper>
-            <Link style={{ backgroundImage: `url(/link.png)` }}></Link>
-            <Icons style={{ backgroundImage: `url(/location.png)` }}></Icons>
+            <Link style={{backgroundImage: `url(/link.png)`}}></Link>
+            <Icons style={{backgroundImage: `url(/location.png)`}}></Icons>
           </IconWrapper>
         </NavigationBar>
         <Title>{data?.fetchBoard.title}</Title>
@@ -47,19 +49,19 @@ export default function BoardReadUI({ data, fullDate }) {
         <LikeDislikeWrapper>
           <ButtonWrapper>
             <LikeButton src="/like.png"></LikeButton>
-            <Label style={{ color: "#FFD600" }}>1920</Label>
+            <Label style={{color: '#FFD600'}}>1920</Label>
           </ButtonWrapper>
           <ButtonWrapper>
             <DislikeButton src="/dislike.png"></DislikeButton>
-            <Label style={{ color: "#828282" }}>1920</Label>
+            <Label style={{color: '#828282'}}>1920</Label>
           </ButtonWrapper>
         </LikeDislikeWrapper>
       </Wrapper>
-      <GreyButtonWrapper>
-        {" "}
+     <GreyButtonWrapper>
         <GreyButton>목록으로</GreyButton>
         <GreyButton>수정하기</GreyButton>
       </GreyButtonWrapper>
+      <ReplyUI />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -7,8 +7,8 @@ export const Wrapper = styled.div`
   align-items: center;
   margin: 50px;
   padding: 40px;
-  width: 80vw auto;
-  height: 100% auto;
+  width: auto;
+  height: auto;
   box-shadow: 2px 3px 3px #bdbdbd, -0.1em 0 0.4em #bdbdbd;
 `;
 
@@ -60,7 +60,7 @@ export const Title = styled.h2`
 export const ProfilePhoto = styled.div`
   width: 47px;
   height: 47px;
-  background-image: url("/Profile.png");
+  background-image: url('/Profile.png');
   margin: 15px;
 `;
 

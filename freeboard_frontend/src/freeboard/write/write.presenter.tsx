@@ -16,9 +16,9 @@ import {
   PasswordContainer,
   PhotoWrapper,
   LabelForMainSetting,
-} from "../write/write.style";
+} from './write.style';
 
-export default function WriteUI({ onChangeInput, onClickPost, flag }) {
+export default function WriteUI({onChangeInput, onClickPost, flag}) {
   return (
     <Wrapper>
       <Title>게시물 등록</Title>
@@ -39,7 +39,7 @@ export default function WriteUI({ onChangeInput, onClickPost, flag }) {
               type="text"
               name="password"
               onChange={onChangeInput}
-              laceholder="비밀번호를 입력해주세요."
+              placeholder="비밀번호를 입력해주세요."
             ></InputWriterInfo>
           </PasswordContainer>
         </WriterInfoWrapper>
