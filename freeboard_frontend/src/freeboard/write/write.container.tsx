@@ -3,7 +3,10 @@ import {useState} from 'react';
 import {CREATED_BOARD} from './write.mutation';
 import WriteUI from './write.presenter';
 import {useMutation} from '@apollo/client';
-import { IMutation, IMutationCreateBoardArgs } from '../../commons/types/generated/types';
+import {
+  IMutation,
+  IMutationCreateBoardArgs,
+} from '../../commons/types/generated/types';
 
 export default function MutationFreeboard() {
   const router = useRouter();
@@ -15,15 +18,16 @@ export default function MutationFreeboard() {
   });
   const [flag, setFlag] = useState(true);
 
-  const [createBoardMutation] = useMutation<IMutation, IMutationCreateBoardArgs>(CREATED_BOARD);
+  const [createBoardMutation] =
+    useMutation<IMutation, IMutationCreateBoardArgs>(CREATED_BOARD);
 
   async function onClickPost() {
     try {
       const result = await createBoardMutation({
         variables: {
           createBoardInput: {
-            ...data
-          }
+            ...data,
+          },
         },
       });
       alert('게시물이 등록되었습니다.');

@@ -1,45 +1,68 @@
 import {useRouter} from 'next/router';
-import {useQuery} from '@apollo/client';
-import {FETCH_REPLY} from '../reply/reply.query';
+import {useMutation, useQuery} from '@apollo/client';
+import {FETCH_REPLY, CREATE_COMMENT} from '../reply/reply.query';
 import {
+  IMutation,
+  IMutationCreateBoardCommentArgs,
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from '../../commons/types/generated/types';
-import {
-  Password,
-  Writer,
-  Wrapper,
-  Contents,
-  WriterWrapper,
-  TotalWrapper,
-  CommentIcon,
-  Comment,
-  CommentWrapper,
-  ContentsWrapper,
-  UploadButton,
-  StringLengthCount,
-  Star,
-  ReadCommentWrapper,
-  ProfilePhoto,
-  CommentContentsWrapper,
-  CommentWriter,
-  CommentContents,
-  CommnetCreatedAt,
-  UpdateIcon,
-  DeleteIcon,
-} from './reply.style';
-import {getDate} from '../commons/libraries/utils';
+import {useEffect, useState} from 'react';
+import ReplyUI from '../reply/reply.prsenter';
 
 export default function ReplyComponent() {
   const router = useRouter();
-  const {data, loading, error} = useQuery<IQuery, IQueryFetchBoardCommentsArgs>(
-    FETCH_REPLY,
-    {
-      variables: {
-        boardId: String(router.query._id),
-      },
+  const [commentData, setcommentData] = useState({
+    writer: '',
+    password: '',
+    contents: '',
+    rating: 5,
+  });
+
+  const [commentFlag, setCommentFlag] = useState(true);
+  const [commentLength, setCommentLength] = useState(0);
+
+  const {data, loading, error, refetch} = useQuery<
+    IQuery,
+    IQueryFetchBoardCommentsArgs
+  >(FETCH_REPLY, {
+    variables: {
+      boardId: String(router.query._id),
+    },
+  });
+
+  const [createBoardComment] =
+    useMutation<IMutation, IMutationCreateBoardCommentArgs>(CREATE_COMMENT);
+
+  const onChangeCommentInput = (event) => {
+    const inputData = {
+      ...commentData,
+      [event.target.name]: event.target.value,
+    };
+    setcommentData(inputData);
+    if (inputData.writer && inputData.password && inputData.contents) {
+      setCommentFlag(false);
+    } else {
+      setCommentFlag(true);
     }
-  );
+
+    setCommentLength(inputData.contents.length);
+  };
+
+  const onClickCommentButton = async () => {
+    try {
+      await createBoardComment({
+        variables: {
+          createBoardCommentInput: {...commentData},
+          boardId: String(router.query._id),
+        },
+      });
+      console.log('성공')!;
+      refetch();
+    } catch (error) {
+      alert('에러가 발생했습니다!');
+    }
+  };
 
   if (loading) {
     return <></>;
@@ -50,40 +73,12 @@ export default function ReplyComponent() {
   }
 
   return (
-    <>
-      <CommentWrapper>
-        <CommentIcon src="/comment.png"></CommentIcon>
-        <Comment>댓글</Comment>
-      </CommentWrapper>
-      <TotalWrapper>
-        <Wrapper>
-          <WriterWrapper>
-            <Writer placeholder="작성자" />
-            <Password placeholder="비밀번호" />
-          </WriterWrapper>
-          <Contents placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></Contents>
-          <ContentsWrapper>
-            <StringLengthCount>100/100</StringLengthCount>
-            <UploadButton>등록하기</UploadButton>
-          </ContentsWrapper>
-        </Wrapper>
-      </TotalWrapper>
-      {data?.fetchBoardComments
-        ?.map((data) => (
-          <div>
-            <ReadCommentWrapper>
-              <ProfilePhoto src="/profile.png"></ProfilePhoto>
-              <CommentContentsWrapper>
-                <CommentWriter>{data.writer}</CommentWriter>
-                <CommentContents>{data.contents}</CommentContents>
-                <CommnetCreatedAt>{getDate(data.createdAt)}</CommnetCreatedAt>
-              </CommentContentsWrapper>
-              <UpdateIcon src="/update.png" />
-              <DeleteIcon src="/delete.png" />
-            </ReadCommentWrapper>
-          </div>
-        ))
-        .reverse()}
-    </>
+    <ReplyUI
+      data={data}
+      onClickCommentButton={onClickCommentButton}
+      onChangeCommentInput={onChangeCommentInput}
+      commentLength={commentLength}
+      commentFlag={commentFlag}
+    />
   );
 }

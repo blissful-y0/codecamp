@@ -9,6 +9,13 @@ export const Wrapper = styled.div`
   justify-content: center; */
 `;
 
+export const UIWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  margin: auto;
+`;
+
 export const TotalWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -27,8 +34,8 @@ export const WriterWrapper = styled.div`
 
 export const CommentWrapper = styled.div`
   display: flex;
-  width: 90%;
-  justify-content: flex-start;
+  width: 99%;
+  /* justify-content: flex-start; */
   align-items: center;
   margin: auto;
   margin-top: 20px;
@@ -84,9 +91,10 @@ export const ContentsWrapper = styled.div`
 export const UploadButton = styled.button`
   width: 10%;
   height: 52px;
-  background-color: black;
+  background-color: ${({disabled}) =>
+    disabled === false ? 'black' : '#bdbdbd'};
   text-align: center;
-  color: white;
+  color: ${({disabled}) => (disabled === false ? 'white' : 'black')};
   border: 0px;
 `;
 
@@ -103,7 +111,7 @@ export const StringLengthCount = styled.div`
 export const ReadCommentWrapper = styled.div`
   display: flex;
   margin: auto;
-  width: 90%;
+  /* width: 0%; */
   padding: 15px;
   /* align-items: center; */
   border-bottom: 1px solid #bdbdbd;

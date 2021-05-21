@@ -1,5 +1,12 @@
 import styled from '@emotion/styled';
 
+export const TotalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -72,7 +79,7 @@ export const CreatedAt = styled.div`
 export const IconWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 10%;
   /* border: 1px solid black; */

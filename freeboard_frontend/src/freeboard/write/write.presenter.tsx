@@ -36,7 +36,7 @@ export default function WriteUI({onChangeInput, onClickPost, flag}) {
           <PasswordContainer>
             <Label>비밀번호</Label>
             <InputWriterInfo
-              type="text"
+              type="password"
               name="password"
               onChange={onChangeInput}
               placeholder="비밀번호를 입력해주세요."
@@ -53,7 +53,6 @@ export default function WriteUI({onChangeInput, onClickPost, flag}) {
         <Label>내용</Label>
         <Paragraph
           name="contents"
-          type="text"
           onChange={onChangeInput}
           placeholder="내용을 작성해주세요."
         ></Paragraph>

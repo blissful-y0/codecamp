@@ -2,9 +2,10 @@ import {useRouter} from 'next/router';
 import {useQuery} from '@apollo/client';
 import {FETCH_BOARD} from './read.query';
 import BoardReadUI from './read.presenter';
-import { IQuery, IQueryFetchBoardArgs } from '../../commons/types/generated/types';
-
-
+import {
+  IQuery,
+  IQueryFetchBoardArgs,
+} from '../../commons/types/generated/types';
 
 export default function QueryReadPage() {
   const router = useRouter();
@@ -15,12 +16,13 @@ export default function QueryReadPage() {
     },
   });
 
-  // const createdAt = new Date((data && data.fetchBoard.createdAt));
-  // const fullDate = `${createdAt.getFullYear()}-${
-  //   createdAt.getMonth() + 1
-  // }-${createdAt.getDate()}`;
+  const onClickListButton = (event) => {
+    router.push('../');
+  };
 
-  return <>
-  <BoardReadUI data={data} />
-  </>
+  return (
+    <>
+      <BoardReadUI data={data} onClickListButton={onClickListButton} />
+    </>
+  );
 }
