@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   align-items: center;
   margin-top: 30px;
   /* padding: 30px; */
-`;
+`
 
 export const SelectButton = styled.button`
   background-color: #ed0086;
@@ -19,13 +19,13 @@ export const SelectButton = styled.button`
   font-weight: bold;
   font-size: 19px;
   color: white;
-`;
+`
 
 export const ButtonWrapper = styled.div`
   display: flex;
   width: 85vw;
   justify-content: flex-start;
-`;
+`
 
 export const NavigationBar = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ export const NavigationBar = styled.div`
   height: 80px auto;
   text-align: center;
   background-color: rgba(202, 202, 202, 0.3);
-`;
+`
 
 export const ListWrapper = styled.div`
   display: flex;
@@ -47,16 +47,16 @@ export const ListWrapper = styled.div`
   justify-content: space-between;
   align-content: center;
   width: 80vw;
-`;
+`
 
 export const ListTitle = styled.div`
   width: 60%;
-`;
+`
 
 export const ListNumber = styled.div`
   width: 5%;
   text-align: left;
-`;
+`
 
 export const Checkbox = styled.input`
   width: 15px;
@@ -64,9 +64,9 @@ export const Checkbox = styled.input`
   :checked {
     background-color: #ed0086;
   }
-`;
+`
 
 export const Writer = styled.div`
   width: 10%;
   text-align: right;
-`;
+`

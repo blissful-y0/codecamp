@@ -1,5 +1,4 @@
-export default function ViewUI({ data }) {
-
+export default function ViewUI({data}) {
   return (
     <div>
       <div>이름: {data?.fetchProfile.name} </div>

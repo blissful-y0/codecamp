@@ -86,6 +86,13 @@ export const IconWrapper = styled.div`
   margin-right: 20px;
 `;
 
+export const Input = styled.input`
+  width: 200px;
+  height: 30px;
+  border: 0px;
+  border-bottom: 1px solid black;
+`;
+
 export const Icons = styled.div`
   width: 27px;
   height: 30px;

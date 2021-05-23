@@ -1,9 +1,9 @@
-import { useMutation, gql } from "@apollo/client";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import Query from "../../src/components/query/Query.container";
+import { useMutation, gql } from '@apollo/client'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import Query from '../../src/components/query/Query.container'
 
-export default function ProfilePage() {
+export default function ProfilePage () {
   // const CREATE_PROFILE = gql`
   //   mutation VariableType($name: String, $age: Int, $school: String) {
   //     createProfile(name: $name, age: $age, school: $school) {
@@ -67,5 +67,5 @@ export default function ProfilePage() {
       </div> */}
       <Query />
     </>
-  );
+  )
 }

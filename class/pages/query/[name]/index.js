@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
-import { useQuery, gql } from "@apollo/client";
-import QueryDetailPage from "../../../src/components/query/View.container";
+import { useRouter } from 'next/router'
+import { useQuery, gql } from '@apollo/client'
+import QueryDetailPage from '../../../src/components/query/View.container'
 
-export default function QueryView() {
+export default function QueryView () {
   // const router = useRouter();
   // const QUERY_PROFILE = gql`
   //   query fetchProfile($QUERY_PROFILE: String) {
@@ -66,5 +66,5 @@ export default function QueryView() {
     //   <div>학교: {data?.fetchProfile.school}</div>
     // </div>
     <QueryDetailPage />
-  );
+  )
 }

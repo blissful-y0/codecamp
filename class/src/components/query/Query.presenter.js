@@ -1,6 +1,6 @@
-import { RegisterButton } from "./Query.style";
+import { RegisterButton } from './Query.style'
 
-export default function QueryUI({ onChnageInput, onClickButton }) {
+export default function QueryUI ({ onChnageInput, onClickButton }) {
   return (
     <>
       <div>
@@ -18,5 +18,5 @@ export default function QueryUI({ onChnageInput, onClickButton }) {
         </RegisterButton>
       </div>
     </>
-  );
+  )
 }

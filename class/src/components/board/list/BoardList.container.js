@@ -1,6 +1,6 @@
-import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
-import { FETCH_BOARDS } from "../list/BoardList.quries";
+import { useRouter } from 'next/router'
+import { useQuery } from '@apollo/client'
+import { FETCH_BOARDS } from '../list/BoardList.quries'
 import {
   Checkbox,
   Writer,
@@ -10,23 +10,23 @@ import {
   Wrapper,
   NavigationBar,
   SelectButton,
-  ButtonWrapper,
-} from "../list/BoardList.styles";
+  ButtonWrapper
+} from '../list/BoardList.styles'
 
-export default function BoardPage() {
-  const router = useRouter();
+export default function BoardPage () {
+  const router = useRouter()
 
-  const { data, loading, error } = useQuery(FETCH_BOARDS);
+  const { data, loading, error } = useQuery(FETCH_BOARDS)
   if (loading) {
-    return "로딩 중입니다!";
+    return '로딩 중입니다!'
   }
   if (error) {
-    return "에러가 발생했습니다!";
+    return '에러가 발생했습니다!'
   }
 
   const onClickTitle = (_number) => (event) => {
-    router.push(`/list/${_number}`);
-  };
+    router.push(`/list/${_number}`)
+  }
 
   return (
     <>
@@ -58,5 +58,5 @@ export default function BoardPage() {
         </ButtonWrapper>
       </Wrapper>
     </>
-  );
+  )
 }

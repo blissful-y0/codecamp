@@ -57,7 +57,6 @@ export default function ReplyComponent() {
           boardId: String(router.query._id),
         },
       });
-      console.log('성공')!;
       refetch();
     } catch (error) {
       alert('에러가 발생했습니다!');

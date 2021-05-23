@@ -1,5 +1,5 @@
-export default function ViewUI({ data }) {
-  console.dir(props);
+export default function ViewUI ({ data }) {
+  console.dir(props)
 
   return (
     <div>
@@ -7,5 +7,5 @@ export default function ViewUI({ data }) {
       <div>나이: {data?.fetchProfile.age}</div>
       <div>학교: {data?.fetchProfile.school}</div>
     </div>
-  );
+  )
 }

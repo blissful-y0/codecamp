@@ -1,28 +1,28 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-function TimerPage() {
-  const [time, setTime] = useState("3:00");
-  const [AuthButtonBoolean, setAuthButtonBoolean] = useState(false);
-  const [sendButtonBoolean, setSendButtonBoolean] = useState(false);
+function TimerPage () {
+  const [time, setTime] = useState('3:00')
+  const [AuthButtonBoolean, setAuthButtonBoolean] = useState(false)
+  const [sendButtonBoolean, setSendButtonBoolean] = useState(false)
 
   const handleClickSendAuth = () => {
-    let time = 180;
+    let time = 180
 
     const timer = setInterval(() => {
-      time--;
-      setSendButtonBoolean(true);
-      const minute = Math.floor(time / 60);
-      const second = Math.floor(time % 60);
+      time--
+      setSendButtonBoolean(true)
+      const minute = Math.floor(time / 60)
+      const second = Math.floor(time % 60)
 
-      setTime(`${minute}:${second}`);
+      setTime(`${minute}:${second}`)
 
       if (time <= 0) {
-        setAuthButtonBoolean(true);
-        setSendButtonBoolean(false);
-        clearInterval(timer);
+        setAuthButtonBoolean(true)
+        setSendButtonBoolean(false)
+        clearInterval(timer)
       }
-    }, 1000);
-  };
+    }, 1000)
+  }
 
   return (
     <>
@@ -39,7 +39,7 @@ function TimerPage() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default TimerPage;
+export default TimerPage

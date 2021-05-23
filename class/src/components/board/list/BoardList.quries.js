@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const FETCH_BOARDS = gql`
   query {
@@ -10,4 +10,4 @@ export const FETCH_BOARDS = gql`
       like
     }
   }
-`;
+`

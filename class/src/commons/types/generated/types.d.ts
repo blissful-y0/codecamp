@@ -1,7 +1,9 @@
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends {[key: string]: unknown}> = {[K in keyof T]: T[K]};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  {[SubKey in K]?: Maybe<T[SubKey]>};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  {[SubKey in K]: Maybe<T[SubKey]>};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -13,7 +15,6 @@ export type Scalars = {
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 };
-
 
 export type IBoardReturn = {
   __typename?: 'BoardReturn';
@@ -27,9 +28,8 @@ export type IBoardReturn = {
 
 export enum ICacheControlScope {
   Public = 'PUBLIC',
-  Private = 'PRIVATE'
+  Private = 'PRIVATE',
 }
-
 
 export type IMutation = {
   __typename?: 'Mutation';
@@ -41,14 +41,12 @@ export type IMutation = {
   deleteProfile?: Maybe<IReturn>;
 };
 
-
 export type IMutationCreateBoardArgs = {
   writer?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   contents?: Maybe<Scalars['String']>;
 };
-
 
 export type IMutationUpdateBoardArgs = {
   number?: Maybe<Scalars['Int']>;
@@ -58,11 +56,9 @@ export type IMutationUpdateBoardArgs = {
   contents?: Maybe<Scalars['String']>;
 };
 
-
 export type IMutationDeleteBoardArgs = {
   number?: Maybe<Scalars['Int']>;
 };
-
 
 export type IMutationCreateProfileArgs = {
   name?: Maybe<Scalars['String']>;
@@ -70,13 +66,11 @@ export type IMutationCreateProfileArgs = {
   school?: Maybe<Scalars['String']>;
 };
 
-
 export type IMutationUpdateProfileArgs = {
   name?: Maybe<Scalars['String']>;
   age?: Maybe<Scalars['Int']>;
   school?: Maybe<Scalars['String']>;
 };
-
 
 export type IMutationDeleteProfileArgs = {
   name?: Maybe<Scalars['String']>;
@@ -98,11 +92,9 @@ export type IQuery = {
   fetchProfiles?: Maybe<Array<IProfileReturn>>;
 };
 
-
 export type IQueryFetchBoardArgs = {
   number?: Maybe<Scalars['Int']>;
 };
-
 
 export type IQueryFetchProfileArgs = {
   name?: Maybe<Scalars['String']>;
@@ -112,4 +104,3 @@ export type IReturn = {
   __typename?: 'Return';
   message?: Maybe<Scalars['String']>;
 };
-

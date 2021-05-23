@@ -24,10 +24,10 @@ import {
   Location,
   Home,
   IconLabel,
-  IconLabelBar,
-} from "../../styles/board.FAQ";
+  IconLabelBar
+} from '../../styles/board.FAQ'
 
-export default function renderFAQ() {
+export default function renderFAQ () {
   return (
     <Wrapper>
       <StatusBar>12:30</StatusBar>
@@ -101,5 +101,5 @@ export default function renderFAQ() {
         </IconLabelBar>
       </IconBar>
     </Wrapper>
-  );
+  )
 }

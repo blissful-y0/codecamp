@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-function CounterPage() {
+function CounterPage () {
   // Javscript 공간
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
-  function counter() {
+  function counter () {
     setCount(() => {
-      return "babo hehe";
-    });
+      return 'babo hehe'
+    })
   }
 
   return (
@@ -16,7 +16,7 @@ function CounterPage() {
       <div>{count}</div>
       <button onClick={counter}>카운터 증가증가(state)</button>
     </>
-  );
+  )
 }
 
-export default CounterPage;
+export default CounterPage

@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-function SendAuthPage() {
-  const [token, setToken] = useState("000000");
+function SendAuthPage () {
+  const [token, setToken] = useState('000000')
 
-  function sendAuth() {
+  function sendAuth () {
     setToken(() => {
-      let randomNumber = String(Math.floor(Math.random() * 1000000)).padStart(
+      const randomNumber = String(Math.floor(Math.random() * 1000000)).padStart(
         6,
-        "0"
-      );
-      return randomNumber;
-    });
+        '0'
+      )
+      return randomNumber
+    })
   }
 
   return (
@@ -18,10 +18,10 @@ function SendAuthPage() {
       <span>{token}</span>
       <button onClick={sendAuth}>인증번호 전송</button>
     </div>
-  );
+  )
 }
 
-export default SendAuthPage;
+export default SendAuthPage
 
 // import { useState } from "react";
 

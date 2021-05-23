@@ -1,8 +1,11 @@
-import QueryUI from "./Query.presenter";
-import { useMutation, gql } from "@apollo/client";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { IMutation, IMutationCreateProfileArgs } from "../../commons/types/generated/types";
+import QueryUI from './Query.presenter';
+import {useMutation, gql} from '@apollo/client';
+import {useState} from 'react';
+import {useRouter} from 'next/router';
+import {
+  IMutation,
+  IMutationCreateProfileArgs,
+} from '../../commons/types/generated/types';
 
 export default function Query() {
   const CREATE_PROFILE = gql`
@@ -16,19 +19,20 @@ export default function Query() {
   const router = useRouter();
 
   const [data, setData] = useState<{[key: string]: number | string}>({
-    name: "",
+    name: '',
     age: 0,
-    school: "",
+    school: '',
   });
 
   // const [age, setAge] = useState("");
 
-  const [createProfileMutation] = useMutation<IMutation, IMutationCreateProfileArgs>(CREATE_PROFILE);
+  const [createProfileMutation] =
+    useMutation<IMutation, IMutationCreateProfileArgs>(CREATE_PROFILE);
 
   const onClickButton = async () => {
     try {
       const result = await createProfileMutation({
-        variables: { ...data, age: Number(data.age) },
+        variables: {...data, age: Number(data.age)},
       });
       alert(result.data.createProfile.message);
       router.push(`query/${data.name}`);

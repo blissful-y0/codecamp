@@ -1,16 +1,20 @@
-import { useRouter } from "next/router";
-import { useQuery, gql } from "@apollo/client";
-import ViewUI from "./View.presenter";
-import { IQuery, IQueryFetchProfileArgs } from "../../commons/types/generated/types";
+import {useRouter} from 'next/router';
+import {useQuery, gql} from '@apollo/client';
+import ViewUI from './View.presenter';
+import {
+  IQuery,
+  IQueryFetchProfileArgs,
+} from '../../commons/types/generated/types';
 
 interface IQueryProfile {
   data: {
     fetchProfile: {
-      number: number
-      name: string
-      age: number
-      school: string}
-  }
+      number: number;
+      name: string;
+      age: number;
+      school: string;
+    };
+  };
 }
 
 export default function QueryDetailPage() {
@@ -26,12 +30,11 @@ export default function QueryDetailPage() {
     }
   `;
 
-  const { data } = useQuery<IQuery, IQueryFetchProfileArgs>(QUERY_PROFILE, {
+  const {data} = useQuery<IQuery, IQueryFetchProfileArgs>(QUERY_PROFILE, {
     variables: {
-      name: String(router.query.name)}
-    })
-
-
+      name: String(router.query.name),
+    },
+  });
 
   return (
     <>
