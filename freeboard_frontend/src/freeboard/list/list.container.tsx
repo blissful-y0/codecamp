@@ -9,7 +9,8 @@ import {
 
 export default function RenderListPage() {
   const router = useRouter();
-  const {data, loading, error} = useQuery<IQuery>(FETCH_LIST);
+  const {data, loading, error} =
+    useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_LIST);
 
   if (loading) {
     return <></>;
@@ -18,7 +19,7 @@ export default function RenderListPage() {
     return <></>;
   }
 
-  const onClickTitle = (_id) => (event) => {
+  const onClickTitle = (_id: string) => () => {
     router.push(`board/list/${_id}`);
   };
 

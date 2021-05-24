@@ -11,7 +11,7 @@ import {
   ContentsWrapper,
   UploadButton,
   StringLengthCount,
-  Star,
+  // Star,
   ReadCommentWrapper,
   ProfilePhoto,
   CommentContentsWrapper,
@@ -20,17 +20,17 @@ import {
   CommnetCreatedAt,
   UpdateIcon,
   DeleteIcon,
-  UIWrapper,
-} from './reply.style';
-import {getDate} from '../commons/libraries/utils';
+  UIWrapper
+} from './reply.style'
+import { getDate } from '../commons/libraries/utils'
 
-export default function RenderCommentUI({
+export default function RenderCommentUI ({
   data,
   onChangeCommentInput,
   onClickCommentButton,
   commentLength,
   commentFlag,
-  commentData,
+  commentData
 }) {
   return (
     <UIWrapper>
@@ -87,5 +87,5 @@ export default function RenderCommentUI({
         </div>
       ))}
     </UIWrapper>
-  );
+  )
 }

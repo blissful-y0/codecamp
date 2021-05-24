@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client';
+import { gql } from '@apollo/client'
 
 // export const CREATED_BOARD = gql`
 //   mutation createBoard(
@@ -32,4 +32,4 @@ export const CREATED_BOARD = gql`
       contents
     }
   }
-`;
+`

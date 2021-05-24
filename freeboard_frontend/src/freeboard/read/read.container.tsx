@@ -8,7 +8,7 @@ import {
   IQuery,
   IQueryFetchBoardArgs,
 } from '../../commons/types/generated/types';
-import {useState} from 'react';
+import {ChangeEvent, useState} from 'react';
 
 export default function QueryReadPage() {
   const router = useRouter();
@@ -22,7 +22,7 @@ export default function QueryReadPage() {
   const [updateBoardMutation] =
     useMutation<IMutation, IMutationUpdateBoardArgs>(UPDATE_BOARD);
 
-  const onClickListButton = (event) => {
+  const onClickListButton = () => {
     router.push('../');
   };
 
@@ -54,9 +54,7 @@ export default function QueryReadPage() {
     }
   };
 
-  console.log(String(router.query._id));
-
-  const onChnagePasswordInput = (event) => {
+  const onChnagePasswordInput = (event: ChangeEvent<HTMLInputElement>) => {
     setSubmittedPassword(event.target.value);
   };
 

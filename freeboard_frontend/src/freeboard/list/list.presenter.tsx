@@ -1,5 +1,4 @@
-import { ChangeEvent } from "react";
-import { getDate } from "../commons/libraries/utils";
+import { getDate } from '../commons/libraries/utils'
 import {
   Writer,
   ListNumber,
@@ -7,8 +6,8 @@ import {
   Wrapper,
   NavigationBar,
   CreatedAt,
-  ListBar,
-} from "./list.style";
+  ListBar
+} from './list.style'
 
 interface IProps {
   data: any;
@@ -42,4 +41,4 @@ export default function RenderUI ({ data, onClickTitle }: IProps) {
       </Wrapper>
     </>
   )
-};
+}

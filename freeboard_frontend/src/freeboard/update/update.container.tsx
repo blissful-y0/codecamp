@@ -1,1 +1,1 @@
-export default function UpdateWriteComponent() {}
+export default function UpdateWriteComponent () {}

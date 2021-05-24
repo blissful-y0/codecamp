@@ -1,5 +1,5 @@
-import BoardReadUI from '../../../../src/freeboard/read/read.container';
+import BoardReadUI from '../../../../src/freeboard/read/read.container'
 
-export default function BoardReadPage() {
-  return <BoardReadUI />;
+export default function BoardReadPage () {
+  return <BoardReadUI />
 }

@@ -1,5 +1,5 @@
-import MutationFreeboard from '../../src/freeboard/write/write.container';
+import MutationFreeboard from '../../src/freeboard/write/write.container'
 
-export default function boardWritePage() {
-  return <MutationFreeboard />;
+export default function boardWritePage () {
+  return <MutationFreeboard />
 }

@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client';
+import { gql } from '@apollo/client'
 
 export const FETCH_REPLY = gql`
   query fetchBoardComments($boardId: ID!) {
@@ -12,7 +12,7 @@ export const FETCH_REPLY = gql`
       deletedAt
     }
   }
-`;
+`
 
 export const CREATE_COMMENT = gql`
   mutation createBoardComment(
@@ -30,4 +30,4 @@ export const CREATE_COMMENT = gql`
       rating
     }
   }
-`;
+`

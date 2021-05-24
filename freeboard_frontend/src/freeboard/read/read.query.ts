@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client';
+import { gql } from '@apollo/client'
 
 export const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {
@@ -11,7 +11,7 @@ export const FETCH_BOARD = gql`
       dislikeCount
     }
   }
-`;
+`
 
 export const UPDATE_BOARD = gql`
   mutation updateBoard($password: String, $boardId: ID!) {
@@ -28,4 +28,4 @@ export const UPDATE_BOARD = gql`
       youtubeUrl
     }
   }
-`;
+`

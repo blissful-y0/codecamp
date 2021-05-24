@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client';
+import { gql } from '@apollo/client'
 
 export const FETCH_LIST = gql`
   query {
@@ -14,4 +14,4 @@ export const FETCH_LIST = gql`
       deletedAt
     }
   }
-`;
+`

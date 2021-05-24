@@ -55,8 +55,8 @@ export default function BoardReadUI({
               </WriterDateInfoWrapper2>
             </WriterDateInfoWrapper>
             <IconWrapper>
-              <Link style={{backgroundImage: `url(/link.png)`}}></Link>
-              <Icons style={{backgroundImage: `url(/location.png)`}}></Icons>
+              <Link style={{backgroundImage: 'url(/link.png)'}}></Link>
+              <Icons style={{backgroundImage: 'url(/location.png)'}}></Icons>
             </IconWrapper>
           </NavigationBar>
           <Title>{data?.fetchBoard.title}</Title>
