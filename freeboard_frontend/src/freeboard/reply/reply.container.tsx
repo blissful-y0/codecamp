@@ -40,6 +40,7 @@ export default function ReplyComponent() {
       [event.target.name]: event.target.value,
     };
     setcommentData(inputData);
+    console.log(inputData);
     if (inputData.writer && inputData.password && inputData.contents) {
       setCommentFlag(false);
     } else {
@@ -56,6 +57,12 @@ export default function ReplyComponent() {
           createBoardCommentInput: {...commentData},
           boardId: String(router.query._id),
         },
+      });
+      setcommentData({
+        writer: '',
+        password: '',
+        contents: '',
+        rating: 5,
       });
       refetch();
     } catch (error) {
@@ -74,6 +81,7 @@ export default function ReplyComponent() {
   return (
     <ReplyUI
       data={data}
+      commentData={commentData}
       onClickCommentButton={onClickCommentButton}
       onChangeCommentInput={onChangeCommentInput}
       commentLength={commentLength}

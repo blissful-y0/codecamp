@@ -73,11 +73,11 @@ export const Star = styled.img`
 
 export const Contents = styled.textarea`
   width: 100%;
-  max-width: 100%;
   height: 161px;
-  max-height: 161px;
   padding: 10px;
   border: 1px solid #bdbdbd;
+  outline: none;
+  resize: none;
 `;
 
 export const ContentsWrapper = styled.div`
@@ -96,6 +96,7 @@ export const UploadButton = styled.button`
   text-align: center;
   color: ${({disabled}) => (disabled === false ? 'white' : 'black')};
   border: 0px;
+  cursor: pointer;
 `;
 
 export const StringLengthCount = styled.div`

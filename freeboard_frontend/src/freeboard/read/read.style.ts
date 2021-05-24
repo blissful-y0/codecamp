@@ -152,6 +152,7 @@ export const GreyButton = styled.button`
   border: 1px solid #bdbdbd;
   background-color: white;
   margin: 8px;
+  cursor: pointer;
 `;
 
 export const GreyButtonWrapper = styled.div`

@@ -47,6 +47,7 @@ export default function QueryReadPage() {
           boardId: String(router.query._id),
         },
       });
+      console.log('에베베');
       setOpen(false);
     } catch (error) {
       alert('다시 입력하세요');

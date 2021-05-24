@@ -62,6 +62,7 @@ export const Paragraph = styled.textarea`
   height: 480px;
   text-align: top;
   padding: 10px;
+  resize: none;
 `;
 
 export const AddressAndLink = styled.input`
