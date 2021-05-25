@@ -15,10 +15,10 @@ import {
   IDContainer,
   PasswordContainer,
   PhotoWrapper,
-  LabelForMainSetting
-} from './write.style'
+  LabelForMainSetting,
+} from './write.style';
 
-export default function WriteUI ({ onChangeInput, onClickPost, flag }) {
+export default function WriteUI({onChangeInput, onClickPost, flag}) {
   return (
     <Wrapper>
       <Title>게시물 등록</Title>
@@ -83,5 +83,5 @@ export default function WriteUI ({ onChangeInput, onClickPost, flag }) {
         등록하기
       </UploadButton>
     </Wrapper>
-  )
+  );
 }
