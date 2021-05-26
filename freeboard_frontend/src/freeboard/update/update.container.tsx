@@ -1,46 +1,69 @@
 import {useRouter} from 'next/router';
-import {useState} from 'react';
-import {UPDATE_BOARD} from './update.query';
+import {ChangeEvent, useState} from 'react';
+import {UPDATE_BOARD, FETCH_BOARD} from './update.query';
 import UpdateUI from './update.presenter';
-import {useMutation} from '@apollo/client';
+import {useMutation, useQuery} from '@apollo/client';
 import {
   IMutation,
   IMutationUpdateBoardArgs,
+  IQueryFetchBoardArgs,
+  IQuery,
 } from '../../commons/types/generated/types';
 
 export default function UpdateWriteComponent() {
   const router = useRouter();
-  const [data, setData] = useState({
+  const [incomingData, setIncomingData] = useState({
     title: '',
     contents: '',
     youtubeUrl: '',
   });
   const [flag, setFlag] = useState(false);
   const [password, setPassword] = useState('');
-
   const [updateBoardMutation] =
     useMutation<IMutation, IMutationUpdateBoardArgs>(UPDATE_BOARD);
+  const {data, loading, error} = useQuery<IQuery, IQueryFetchBoardArgs>(
+    FETCH_BOARD,
+    {
+      variables: {
+        boardId: String(router.query._id),
+      },
+    }
+  );
+  if (loading) {
+    return <></>;
+  }
+  if (error) {
+    return <></>;
+  }
+
+  const {
+    writer: fetchedWriter,
+    title: fetchedTitle,
+    contents: fetchedContents,
+    youtubeUrl: fetchedYoutubeUrl,
+  } = data.fetchBoard;
 
   const onClickPost = async () => {
     try {
       const result = await updateBoardMutation({
         variables: {
           updateBoardInput: {
-            ...data,
+            ...incomingData,
           },
           password: password,
-          boardId: String('60a86b0cc9f6ad002a465b3d'),
+          boardId: String(router.query._id),
         },
       });
+      router.push(`../${router.query._id}`);
       console.log(result);
     } catch (error) {
       console.log('nono');
     }
   };
 
-  const onChangeInput = (event) => {
-    const userData = {...data, [event.target.name]: event.target.value};
-    setData(userData);
+  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+    const userData = {...incomingData, [event.target.name]: event.target.value};
+    setIncomingData(userData);
     if (userData.title && userData.contents) {
       setFlag(false);
     } else {
@@ -48,7 +71,7 @@ export default function UpdateWriteComponent() {
     }
   };
 
-  const onChangePassword = (event) => {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
@@ -59,6 +82,10 @@ export default function UpdateWriteComponent() {
         onChangePassword={onChangePassword}
         flag={flag}
         onClickPost={onClickPost}
+        fetchedWriter={fetchedWriter}
+        fetchedTitle={fetchedTitle}
+        fetchedContents={fetchedContents}
+        fetchedYoutubeUrl={fetchedYoutubeUrl}
       />
     </>
   );

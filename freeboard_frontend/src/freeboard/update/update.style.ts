@@ -57,6 +57,15 @@ export const InputWriterInfo = styled.input`
   box-sizing: border-box;
 `
 
+export const WriterInfo = styled.div`
+  width: 486px;
+  height: 52px;
+  padding: 10px;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+`
+
 export const Paragraph = styled.textarea`
   width: 996px;
   height: 480px;

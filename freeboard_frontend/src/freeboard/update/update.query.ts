@@ -1,10 +1,10 @@
 import {gql} from '@apollo/client';
 
-type UpdateBoardInput = {
-  title?: String;
-  contents?: String;
-  youtubeUrl?: String;
-};
+// type UpdateBoardInput = {
+//   title?: String;
+//   contents?: String;
+//   youtubeUrl?: String;
+// };
 
 export const UPDATE_BOARD = gql`
   mutation updateBoard(
@@ -26,6 +26,19 @@ export const UPDATE_BOARD = gql`
       createdAt
       updatedAt
       youtubeUrl
+    }
+  }
+`;
+
+export const FETCH_BOARD = gql`
+  query fetchBoard($boardId: ID!) {
+    fetchBoard(boardId: $boardId) {
+      writer
+      title
+      contents
+      createdAt
+      likeCount
+      dislikeCount
     }
   }
 `;

@@ -16,6 +16,7 @@ import {
   PasswordContainer,
   PhotoWrapper,
   LabelForMainSetting,
+  WriterInfo,
 } from './update.style';
 
 export default function WriteUI({
@@ -23,6 +24,10 @@ export default function WriteUI({
   onClickPost,
   flag,
   onChangePassword,
+  fetchedYoutubeUrl,
+  fetchedTitle,
+  fetchedWriter,
+  fetchedContents,
 }) {
   return (
     <Wrapper>
@@ -31,12 +36,7 @@ export default function WriteUI({
         <WriterInfoWrapper>
           <IDContainer>
             <Label>작성자</Label>
-            <InputWriterInfo
-              type="text"
-              name="writer"
-              onChange={onChangeInput}
-              placeholder="이름을 적어주세요."
-            ></InputWriterInfo>
+            <WriterInfo>{fetchedWriter}</WriterInfo>
           </IDContainer>
           <PasswordContainer>
             <Label>비밀번호</Label>
@@ -53,13 +53,13 @@ export default function WriteUI({
           name="title"
           type="text"
           onChange={onChangeInput}
-          placeholder="제목을 작성해주세요"
+          defaultValue={fetchedTitle}
         ></AddressAndLink>
         <Label>내용</Label>
         <Paragraph
           name="contents"
           onChange={onChangeInput}
-          placeholder="내용을 작성해주세요."
+          defaultValue={fetchedContents}
         ></Paragraph>
         <Label>주소</Label>
         <div>
@@ -72,7 +72,7 @@ export default function WriteUI({
         <AddressAndLink
           name="youtubeUrl"
           onChange={onChangeInput}
-          placeholder="링크를 복사해주세요."
+          defaultValue={fetchedYoutubeUrl}
         ></AddressAndLink>
         <Label>사진 첨부</Label>
         <PhotoWrapper>

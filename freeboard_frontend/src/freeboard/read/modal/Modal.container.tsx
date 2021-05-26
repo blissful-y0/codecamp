@@ -6,24 +6,13 @@ import {UPDATE_BOARD} from '../modal/Modal.quries';
 import {useMutation} from '@apollo/client';
 import { IMutation, IMutationUpdateBoardArgs } from '../../../commons/types/generated/types';
 
-export default function FormDialog() {
+export default function FormDialog({handleClose}) {
   const router = useRouter();
   const [updateBoardMutation] =
   useMutation<IMutation, IMutationUpdateBoardArgs>(UPDATE_BOARD);
 
-
-  const [open, setOpen] = useState(false);
-
   const [submittedPassword, setSubmittedPassword] =
     useState('비밀번호를 입력하세요.');
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const onChangePasswordInput = (event: ChangeEvent<HTMLInputElement>) => {
     setSubmittedPassword(event.target.value);
@@ -38,7 +27,7 @@ export default function FormDialog() {
           boardId: String(router.query._id),
         },
       });
-      console.log('에베베');
+      router.push(`${router.query._id}/update`)
     } catch (error) {
       alert('다시 입력하세요');
     }
@@ -46,7 +35,7 @@ export default function FormDialog() {
 
   return (
     <>
-      <ModalUI handleClickOpen={handleClickOpen} open={open} handleClose={handleClose} onChangePasswordInput={onChangePasswordInput} submittedPassword={submittedPassword} handleSendPassword={handleSendPassword} />
+      <ModalUI handleClose={handleClose} onChangePasswordInput={onChangePasswordInput} submittedPassword={submittedPassword} handleSendPassword={handleSendPassword} />
     </>
   );
 }

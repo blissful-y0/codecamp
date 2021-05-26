@@ -1,16 +1,29 @@
 import {useRouter} from 'next/router';
-import {useQuery} from '@apollo/client';
-import {FETCH_BOARD} from './read.query';
+import {useMutation, useQuery} from '@apollo/client';
+import {FETCH_BOARD, LIKE_BOARD, DISLIKE_BOARD} from './read.query';
 import BoardReadUI from './read.presenter';
 import {
+  IMutation,
+  IMutationLikeBoardArgs,
   IQuery,
   IQueryFetchBoardArgs,
 } from '../../commons/types/generated/types';
+import {useState} from 'react';
 
 export default function QueryReadPage() {
   const router = useRouter();
 
-  const {data} = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const {data, refetch} = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
     variables: {
       boardId: String(router.query._id),
     },
@@ -24,6 +37,40 @@ export default function QueryReadPage() {
     router.push('./update');
   };
 
+  const [handleLike] =
+    useMutation<IMutation, IMutationLikeBoardArgs>(LIKE_BOARD);
+
+  const [handleDislike] =
+    useMutation<IMutation, IMutationLikeBoardArgs>(DISLIKE_BOARD);
+
+  const onClickLike = async () => {
+    try {
+      const likeCount = await handleLike({
+        variables: {
+          boardId: String(router.query._id),
+        },
+      });
+      refetch();
+      console.log(likeCount);
+    } catch (error) {
+      console.log('yes');
+    }
+  };
+
+  const onClickDislike = async () => {
+    try {
+      const dislikeCount = await handleDislike({
+        variables: {
+          boardId: String(router.query._id),
+        },
+      });
+      refetch();
+      console.log(dislikeCount);
+    } catch (error) {
+      console.log('yes');
+    }
+  };
+
   // const onChnagePasswordInput = (event: ChangeEvent<HTMLInputElement>) => {
   //   setSubmittedPassword(event.target.value);
   // };
@@ -34,6 +81,11 @@ export default function QueryReadPage() {
         onClickUpdateButton={onClickUpdateButton}
         data={data}
         onClickListButton={onClickListButton}
+        open={open}
+        handleClose={handleClose}
+        handleClickOpen={handleClickOpen}
+        onClickLike={onClickLike}
+        onClickDislike={onClickDislike}
       />
     </>
   );

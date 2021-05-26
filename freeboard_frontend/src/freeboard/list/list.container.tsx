@@ -23,5 +23,15 @@ export default function RenderListPage() {
     router.push(`board/list/${_id}`);
   };
 
-  return <RenderUI data={data} onClickTitle={onClickTitle} />;
+  const onClickWriteButton = () => {
+    router.push(`board/write`);
+  };
+
+  return (
+    <RenderUI
+      data={data}
+      onClickTitle={onClickTitle}
+      onClickWriteButton={onClickWriteButton}
+    />
+  );
 }

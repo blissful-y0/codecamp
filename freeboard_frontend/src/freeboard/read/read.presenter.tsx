@@ -6,16 +6,12 @@ import {
   CreatedAt,
   WriterDateInfoWrapper,
   WriterDateInfoWrapper2,
-  Icons,
-  Link,
   IconWrapper,
   Title,
   Contexts,
   ContextsWrapper,
   Youtube,
   LikeDislikeWrapper,
-  LikeButton,
-  DislikeButton,
   ButtonWrapper,
   Label,
   GreyButton,
@@ -25,15 +21,24 @@ import {
 import {getDate} from '../commons/libraries/utils';
 import ReplyUI from '../reply/reply.container';
 import UpdateModal from './modal/Modal.container';
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
+import LinkIcon from '@material-ui/icons/Link';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 export default function BoardReadUI({
   data,
   onClickListButton,
-  onClickUpdateButton,
+  open,
+  handleClose,
+  handleClickOpen,
+  onClickLike,
+  onClickDislike,
 }) {
   return (
     <>
       <TotalWrapper>
+        {open && <UpdateModal handleClose={handleClose} />}
         <Wrapper>
           <NavigationBar>
             <WriterDateInfoWrapper>
@@ -44,11 +49,10 @@ export default function BoardReadUI({
               </WriterDateInfoWrapper2>
             </WriterDateInfoWrapper>
             <IconWrapper>
-              <Link
-                onClick={onClickUpdateButton}
-                style={{backgroundImage: 'url(/link.png)'}}
-              ></Link>
-              <Icons style={{backgroundImage: 'url(/location.png)'}}></Icons>
+              <LinkIcon style={{fontSize: 35, color: '#FFD600'}}></LinkIcon>
+              <LocationOnIcon
+                style={{fontSize: 35, color: '#FFD600'}}
+              ></LocationOnIcon>
             </IconWrapper>
           </NavigationBar>
           <Title>{data?.fetchBoard.title}</Title>
@@ -58,18 +62,28 @@ export default function BoardReadUI({
           <Youtube></Youtube>
           <LikeDislikeWrapper>
             <ButtonWrapper>
-              <LikeButton src="/like.png"></LikeButton>
-              <Label style={{color: '#FFD600'}}>1920</Label>
+              <ThumbUpAltIcon
+                onClick={onClickLike}
+                style={{cursor: 'pointer', fontSize: 30, color: '#FFD600'}}
+              ></ThumbUpAltIcon>
+              <Label style={{color: '#FFD600'}}>
+                {data?.fetchBoard.likeCount}
+              </Label>
             </ButtonWrapper>
             <ButtonWrapper>
-              <DislikeButton src="/dislike.png"></DislikeButton>
-              <Label style={{color: '#828282'}}>1920</Label>
+              <ThumbDownAltIcon
+                onClick={onClickDislike}
+                style={{cursor: 'pointer', fontSize: 30, color: '#828282'}}
+              ></ThumbDownAltIcon>
+              <Label style={{color: '#828282'}}>
+                {data?.fetchBoard.dislikeCount}
+              </Label>
             </ButtonWrapper>
           </LikeDislikeWrapper>
         </Wrapper>
         <GreyButtonWrapper>
           <GreyButton onClick={onClickListButton}>목록으로</GreyButton>
-          <UpdateModal></UpdateModal>
+          <GreyButton onClick={handleClickOpen}>수정하기</GreyButton>
         </GreyButtonWrapper>
         <ReplyUI />
       </TotalWrapper>

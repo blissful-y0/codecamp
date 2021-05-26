@@ -11,26 +11,16 @@ import {
   ContentsWrapper,
   UploadButton,
   StringLengthCount,
-  // Star,
-  ReadCommentWrapper,
-  ProfilePhoto,
-  CommentContentsWrapper,
-  CommentWriter,
-  CommentContents,
-  CommnetCreatedAt,
-  UpdateIcon,
-  DeleteIcon,
-  UIWrapper
-} from './reply.style'
-import { getDate } from '../commons/libraries/utils'
-
-export default function RenderCommentUI ({
+  UIWrapper,
+} from './reply.style';
+import ReplyUpdateUI from './replyitems.presenter';
+export default function RenderCommentUI({
   data,
   onChangeCommentInput,
   onClickCommentButton,
   commentLength,
   commentFlag,
-  commentData
+  commentData,
 }) {
   return (
     <UIWrapper>
@@ -74,18 +64,9 @@ export default function RenderCommentUI ({
       </TotalWrapper>
       {data?.fetchBoardComments?.map((data) => (
         <div key={data._id}>
-          <ReadCommentWrapper>
-            <ProfilePhoto src="/profile.png"></ProfilePhoto>
-            <CommentContentsWrapper>
-              <CommentWriter>{data.writer}</CommentWriter>
-              <CommentContents>{data.contents}</CommentContents>
-              <CommnetCreatedAt>{getDate(data.createdAt)}</CommnetCreatedAt>
-            </CommentContentsWrapper>
-            <UpdateIcon src="/update.png" />
-            <DeleteIcon src="/delete.png" />
-          </ReadCommentWrapper>
+          <ReplyUpdateUI data={data}></ReplyUpdateUI>
         </div>
       ))}
     </UIWrapper>
-  )
+  );
 }
