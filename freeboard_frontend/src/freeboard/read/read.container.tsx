@@ -51,9 +51,8 @@ export default function QueryReadPage() {
         },
       });
       refetch();
-      console.log(likeCount);
     } catch (error) {
-      console.log('yes');
+      console.log('Error');
     }
   };
 
@@ -65,9 +64,8 @@ export default function QueryReadPage() {
         },
       });
       refetch();
-      console.log(dislikeCount);
     } catch (error) {
-      console.log('yes');
+      console.log('Error');
     }
   };
 
@@ -78,7 +76,6 @@ export default function QueryReadPage() {
   return (
     <>
       <BoardReadUI
-        onClickUpdateButton={onClickUpdateButton}
         data={data}
         onClickListButton={onClickListButton}
         open={open}

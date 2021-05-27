@@ -17,10 +17,19 @@ import {
   PhotoWrapper,
   LabelForMainSetting,
 } from './write.style';
+import Postcode from '../../commons/components/postcode/postcode.presenter';
 
-export default function WriteUI({onChangeInput, onClickPost, flag}) {
+export default function WriteUI({
+  onChangeInput,
+  onClickPost,
+  flag,
+  handleOpen,
+  open,
+  handleClose,
+}) {
   return (
     <Wrapper>
+      {open && <Postcode handleClose={handleClose} />}
       <Title>게시물 등록</Title>
       <Container>
         <WriterInfoWrapper>
@@ -59,12 +68,16 @@ export default function WriteUI({onChangeInput, onClickPost, flag}) {
         <Label>주소</Label>
         <div>
           <Address placeholder="07250"></Address>
-          <BlackBox>우편번호 검색</BlackBox>
+          <BlackBox onClick={handleOpen}>우편번호 검색</BlackBox>
         </div>
         <AddressAndLink></AddressAndLink>
         <AddressAndLink></AddressAndLink>
         <Label>유투브</Label>
-        <AddressAndLink placeholder="링크를 복사해주세요."></AddressAndLink>
+        <AddressAndLink
+          name="youtubeUrl"
+          onChange={onChangeInput}
+          placeholder="링크를 복사해주세요."
+        ></AddressAndLink>
         <Label>사진 첨부</Label>
         <PhotoWrapper>
           <PhotoAttach>+ Upload</PhotoAttach>

@@ -10,7 +10,6 @@ import {
   Title,
   Contexts,
   ContextsWrapper,
-  Youtube,
   LikeDislikeWrapper,
   ButtonWrapper,
   Label,
@@ -18,13 +17,14 @@ import {
   GreyButtonWrapper,
   TotalWrapper,
 } from './read.style';
-import {getDate} from '../commons/libraries/utils';
+import {getDate} from '../../commons/libraries/utils';
 import ReplyUI from '../reply/reply.container';
 import UpdateModal from './modal/Modal.container';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import LinkIcon from '@material-ui/icons/Link';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import YoutubeUI from '../../commons/components/youtube/youtube.container';
 
 export default function BoardReadUI({
   data,
@@ -59,7 +59,7 @@ export default function BoardReadUI({
           <ContextsWrapper>
             <Contexts>{data?.fetchBoard.contents}</Contexts>
           </ContextsWrapper>
-          <Youtube></Youtube>
+          <YoutubeUI Url={data?.fetchBoard.youtubeUrl} />
           <LikeDislikeWrapper>
             <ButtonWrapper>
               <ThumbUpAltIcon

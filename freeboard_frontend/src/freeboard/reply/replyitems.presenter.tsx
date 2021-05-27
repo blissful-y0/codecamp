@@ -15,7 +15,7 @@ import {
   StringLengthCount,
   UpdateContents,
 } from './reply.style';
-import {getDate} from '../commons/libraries/utils';
+import {getDate} from '../../commons/libraries/utils';
 import {useState} from 'react';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
