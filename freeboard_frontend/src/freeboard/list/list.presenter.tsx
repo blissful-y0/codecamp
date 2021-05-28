@@ -9,18 +9,27 @@ import {
   ListBar,
   BoardWriteButton,
   WriteButtonWrapper,
+  Span,
+  PageIndexWrapper,
 } from './list.style';
 import CreateIcon from '@material-ui/icons/Create';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 interface IProps {
   data: any;
   onClickTitle: any;
   onClickWriteButton: any;
+  onClickPage: any;
+  currentPage: any;
 }
+
 export default function RenderUI({
   data,
   onClickTitle,
   onClickWriteButton,
+  onClickPage,
+  currentPage,
 }: IProps) {
   return (
     <>
@@ -49,6 +58,20 @@ export default function RenderUI({
             게시물 등록하기
           </BoardWriteButton>
         </WriteButtonWrapper>
+        <PageIndexWrapper>
+          <NavigateBeforeIcon />
+          {new Array(10).fill(1).map((_, index) => (
+            <Span
+              key={String(index + 1)}
+              id={String(index + 1)}
+              onClick={onClickPage}
+              isActive={currentPage === index + 1}
+            >
+              {index + 1}
+            </Span>
+          ))}
+          <NavigateNextIcon />
+        </PageIndexWrapper>
       </Wrapper>
     </>
   );

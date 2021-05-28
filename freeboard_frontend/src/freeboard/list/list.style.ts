@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import {IProps} from './list.types';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -95,7 +96,7 @@ export const CreatedAt = styled.div`
   text-align: center;
 `;
 export const BoardWriteButton = styled.button`
-  margin-top: 40px;
+  /* margin-top: 10px; */
   width: 171px;
   height: 52px;
   border: 1px solid #f2f2f2;
@@ -113,6 +114,23 @@ export const BoardWriteButton = styled.button`
 export const WriteButtonWrapper = styled.div`
   display: flex;
   width: 80%;
-  /* border: 1px solid black; */
   justify-content: flex-end;
+  margin-top: 15px;
+`;
+
+export const Span = styled.span`
+  font-size: 16px;
+  align-items: center;
+  cursor: pointer;
+  color: ${(props: IProps) => (props.isActive ? '#FFD600' : 'black')};
+  border-bottom: ${(props: IProps) =>
+    props.isActive ? '1px solid #FFD600' : '0px'};
+`;
+
+export const PageIndexWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  align-items: center;
+  margin-top: -38px;
 `;

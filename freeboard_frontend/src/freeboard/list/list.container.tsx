@@ -6,11 +6,15 @@ import {
   IQuery,
   IQueryFetchBoardArgs,
 } from '../../commons/types/generated/types';
+import {useState} from 'react';
 
 export default function RenderListPage() {
   const router = useRouter();
-  const {data, loading, error} =
-    useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_LIST);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const {data, loading, error} = useQuery(FETCH_LIST, {
+    variables: {page: Number(currentPage)},
+  });
 
   if (loading) {
     return <></>;
@@ -18,6 +22,10 @@ export default function RenderListPage() {
   if (error) {
     return <></>;
   }
+
+  const onClickPage = (event) => {
+    setCurrentPage(Number(event.target.id));
+  };
 
   const onClickTitle = (_id: string) => () => {
     router.push(`board/list/${_id}`);
@@ -32,6 +40,8 @@ export default function RenderListPage() {
       data={data}
       onClickTitle={onClickTitle}
       onClickWriteButton={onClickWriteButton}
+      currentPage={currentPage}
+      onClickPage={onClickPage}
     />
   );
 }

@@ -21,7 +21,7 @@ export type IBoard = {
   writer?: Maybe<Scalars['String']>;
   title: Scalars['String'];
   contents: Scalars['String'];
-  youtubeUrl: Scalars['String'];
+  youtubeUrl?: Maybe<Scalars['String']>;
   likeCount: Scalars['Int'];
   dislikeCount: Scalars['Int'];
   boardAddress?: Maybe<IBoardAddress>;
@@ -36,7 +36,7 @@ export type IBoardAddress = {
   _id: Scalars['ID'];
   zipcode: Scalars['String'];
   address: Scalars['String'];
-  addressDetail: Scalars['String'];
+  addressDetail?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   deletedAt?: Maybe<Scalars['DateTime']>;
@@ -94,6 +94,7 @@ export type ICreateUserInput = {
 export type IMutation = {
   __typename?: 'Mutation';
   createBoard: IBoard;
+  deleteBoard: Scalars['ID'];
   deleteBoards: Array<Scalars['ID']>;
   dislikeBoard: Scalars['Int'];
   likeBoard: Scalars['Int'];
@@ -120,6 +121,10 @@ export type IMutation = {
 
 export type IMutationCreateBoardArgs = {
   createBoardInput: ICreateBoardInput;
+};
+
+export type IMutationDeleteBoardArgs = {
+  boardId: Scalars['ID'];
 };
 
 export type IMutationDeleteBoardsArgs = {
@@ -257,7 +262,12 @@ export type IQueryFetchBoardArgs = {
   boardId: Scalars['ID'];
 };
 
+export type IQueryFetchBoardsArgs = {
+  page?: Maybe<Scalars['Int']>;
+};
+
 export type IQueryFetchBoardCommentsArgs = {
+  page?: Maybe<Scalars['Int']>;
   boardId: Scalars['ID'];
 };
 
