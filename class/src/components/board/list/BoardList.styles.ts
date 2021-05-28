@@ -9,6 +9,24 @@ export const Wrapper = styled.div`
   /* padding: 30px; */
 `;
 
+export const PageIndex = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 30px;
+  font-size: 30px;
+  cursor: pointer;
+`;
+
+interface IProps {
+  isActive: boolean;
+}
+
+export const Span = styled.span`
+  cursor: pointer;
+  color: ${(props: IProps) => (props.isActive ? 'red' : 'black')};
+`;
+
 export const SelectButton = styled.button`
   background-color: #ed0086;
   margin: 30px;

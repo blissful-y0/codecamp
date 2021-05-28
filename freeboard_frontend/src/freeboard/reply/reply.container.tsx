@@ -85,7 +85,6 @@ export default function ReplyComponent() {
       onChangeCommentInput={onChangeCommentInput}
       commentLength={commentLength}
       commentFlag={commentFlag}
-      refetch={refetch}
     />
   );
 }

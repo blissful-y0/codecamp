@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function SimpleModal({handleClose}) {
+export default function SimpleModal({handleClose, open, setData}) {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const handleComplete = (data) => {
@@ -40,8 +40,14 @@ export default function SimpleModal({handleClose}) {
       }
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
-    console.log(Boolean(fullAddress));
-    console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+    console.log(data);
+
+    setData((prev) => ({
+      ...prev,
+      address: fullAddress,
+    }));
+
+    handleClose();
   };
 
   const body = (
@@ -55,13 +61,17 @@ export default function SimpleModal({handleClose}) {
   );
 
   return (
-    <Modal
-      aria-labelledby="modal-title"
-      aria-describedby="modal-description"
-      open={true}
-      onClose={handleClose}
-    >
-      {body}
-    </Modal>
+    <>
+      {open && (
+        <Modal
+          aria-labelledby="modal-title"
+          aria-describedby="modal-description"
+          open={true}
+          onClose={handleClose}
+        >
+          {body}
+        </Modal>
+      )}
+    </>
   );
 }

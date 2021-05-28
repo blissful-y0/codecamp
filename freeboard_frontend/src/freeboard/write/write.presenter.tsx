@@ -26,10 +26,12 @@ export default function WriteUI({
   handleOpen,
   open,
   handleClose,
+  setData,
+  data,
 }) {
   return (
     <Wrapper>
-      {open && <Postcode handleClose={handleClose} />}
+      <Postcode handleClose={handleClose} open={open} setData={setData} />
       <Title>게시물 등록</Title>
       <Container>
         <WriterInfoWrapper>
@@ -67,10 +69,18 @@ export default function WriteUI({
         ></Paragraph>
         <Label>주소</Label>
         <div>
-          <Address placeholder="07250"></Address>
+          <Address
+            placeholder="07250"
+            readOnly={true}
+            // value={'01234'}
+          ></Address>
           <BlackBox onClick={handleOpen}>우편번호 검색</BlackBox>
         </div>
-        <AddressAndLink></AddressAndLink>
+        <AddressAndLink
+          name="address"
+          value={data.address}
+          readOnly={true}
+        ></AddressAndLink>
         <AddressAndLink></AddressAndLink>
         <Label>유투브</Label>
         <AddressAndLink

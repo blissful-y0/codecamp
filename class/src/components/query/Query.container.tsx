@@ -1,6 +1,6 @@
 import QueryUI from './Query.presenter';
 import {useMutation, gql} from '@apollo/client';
-import {useState} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import {useRouter} from 'next/router';
 import {
   IMutation,
@@ -15,6 +15,22 @@ export default function Query() {
       }
     }
   `;
+
+  const [testState, setTestState] = useState();
+  const [ccc, setCcc] = useState(123);
+
+  useEffect(() => {
+    inputRef.current.focus();
+    console.log(inputRef);
+  }, [ccc]);
+
+  console.log('1111');
+
+  const handleChangeCCC = () => {
+    setCcc(456);
+  };
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
 
@@ -50,7 +66,12 @@ export default function Query() {
   };
   return (
     <>
-      <QueryUI onChnageInput={onChnageInput} onClickButton={onClickButton} />
+      <QueryUI
+        onChnageInput={onChnageInput}
+        onClickButton={onClickButton}
+        inputRef={inputRef}
+        handleChangeCcc={handleChangeCCC}
+      />
     </>
   );
 }

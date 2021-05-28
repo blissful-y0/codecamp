@@ -16,6 +16,7 @@ export default function MutationFreeboard() {
     title: '',
     contents: '',
     youtubeUrl: '',
+    address: '',
   });
   const [flag, setFlag] = useState(true);
   const [open, setOpen] = useState(false);
@@ -72,6 +73,8 @@ export default function MutationFreeboard() {
         open={open}
         handleClose={handleClose}
         handleOpen={handleOpen}
+        setData={setData}
+        data={data}
       />
     </>
   );
