@@ -12,7 +12,6 @@ export default function Navigation() {
     <>
       <MenuBar>
         <MenuWrapper>
-          {' '}
           <Freeboard>자유게시판</Freeboard>
           <Bar />
           <Market>중고마켓</Market>
