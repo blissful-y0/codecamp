@@ -23,11 +23,11 @@ export const TotalWrapper = styled.div`
 `;
 
 export const WriterWrapper = styled.div`
-  width: 400px;
+  width: 44%;
   /* border: 1px solid black; */
   padding: 10px;
   display: flex;
-  /* align-items: center; */
+  align-items: center;
   justify-content: space-between;
   margin-left: -10px;
 `;
@@ -164,4 +164,12 @@ export const CommentContentsWrapper = styled.div`
   margin-left: 15px;
   width: 100%;
   padding-bottom: 10px;
+`;
+
+export const WriterRatingWrapper = styled.div`
+  display: flex;
+  width: 20%;
+  /* border: 1px solid black; */
+  align-items: center;
+  justify-content: space-between;
 `;

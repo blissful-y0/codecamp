@@ -1,3 +1,4 @@
+import {useRouter} from 'next/router';
 import {
   Bar,
   Freeboard,
@@ -8,15 +9,21 @@ import {
 } from './navigation.style';
 
 export default function Navigation() {
+  const router = useRouter();
+
   return (
     <>
       <MenuBar>
         <MenuWrapper>
-          <Freeboard>자유게시판</Freeboard>
+          <Freeboard select={router.pathname.includes('board')}>
+            자유게시판
+          </Freeboard>
           <Bar />
-          <Market>중고마켓</Market>
+          <Market select={router.pathname.includes('market')}>중고마켓</Market>
           <Bar />
-          <MyPage>마이페이지</MyPage>
+          <MyPage select={router.pathname.includes('mypage')}>
+            마이페이지
+          </MyPage>
         </MenuWrapper>
       </MenuBar>
     </>

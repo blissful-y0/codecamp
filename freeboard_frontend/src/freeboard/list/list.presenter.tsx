@@ -11,6 +11,7 @@ import {
   WriteButtonWrapper,
   Span,
   PageIndexWrapper,
+  ListWholeWrapper,
 } from './list.style';
 import CreateIcon from '@material-ui/icons/Create';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -33,6 +34,7 @@ export default function RenderUI({
 }: IProps) {
   return (
     <>
+      {/* <ListWholeWrapper> */}
       <Wrapper>
         <NavigationBar>
           <ListNumber>번호</ListNumber>
@@ -73,6 +75,7 @@ export default function RenderUI({
           <NavigateNextIcon />
         </PageIndexWrapper>
       </Wrapper>
+      {/* </ListWholeWrapper> */}
     </>
   );
 }

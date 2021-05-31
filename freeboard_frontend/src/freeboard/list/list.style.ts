@@ -1,6 +1,13 @@
 import styled from '@emotion/styled';
 import {IProps} from './list.types';
 
+export const ListWholeWrapper = styled.div`
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  border: 1px solid black;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -130,7 +137,7 @@ export const Span = styled.span`
 export const PageIndexWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  width: 60%;
+  width: 30%;
   align-items: center;
   margin-top: -38px;
 `;

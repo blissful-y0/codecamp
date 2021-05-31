@@ -1,6 +1,6 @@
 import GlobalStyles from '../src/commons/style/globalStyles';
 import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
-import Header from '../src/commons/components/layout/header/header.presenter';
+import Layout from '../src/commons/components/layout/layout.presenter';
 
 function MyApp({Component, pageProps}) {
   const client = new ApolloClient({
@@ -10,9 +10,10 @@ function MyApp({Component, pageProps}) {
 
   return (
     <ApolloProvider client={client}>
-      <Header />
-      <GlobalStyles />
-      <Component {...pageProps} />
+      <Layout>
+        <GlobalStyles />
+        <Component {...pageProps} />
+      </Layout>
     </ApolloProvider>
   );
 }

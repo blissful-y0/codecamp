@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+// interface IProps {
+//   select: boolean;
+// }
+
 export const MenuBar = styled.div`
   width: 100%;
   height: 64px;
@@ -29,8 +33,9 @@ export const Freeboard = styled.button`
   background-color: transparent;
   border: 0px;
   font-size: 18px;
-  color: #514400;
+  color: black;
   cursor: pointer;
+  font-weight: ${({select}: {select: boolean}) => (select ? 'bold' : 'none')};
 `;
 
 export const Market = styled.button`
@@ -40,6 +45,7 @@ export const Market = styled.button`
   font-size: 18px;
   color: #514400;
   cursor: pointer;
+  font-weight: ${({select}: {select: boolean}) => (select ? 'bold' : 'none')};
 `;
 
 export const MyPage = styled.button`
@@ -49,4 +55,5 @@ export const MyPage = styled.button`
   font-size: 18px;
   color: #514400;
   cursor: pointer;
+  font-weight: ${({select}: {select: boolean}) => (select ? 'bold' : 'none')};
 `;

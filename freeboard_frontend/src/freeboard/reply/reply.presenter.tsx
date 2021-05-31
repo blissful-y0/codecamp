@@ -14,6 +14,7 @@ import {
   UIWrapper,
 } from './reply.style';
 import ReplyUpdateUI from './replyitems.presenter';
+
 export default function RenderCommentUI({
   data,
   onChangeCommentInput,
@@ -21,6 +22,8 @@ export default function RenderCommentUI({
   commentLength,
   commentFlag,
   commentData,
+  Rating,
+  handleSaveStar,
 }) {
   return (
     <UIWrapper>
@@ -45,6 +48,14 @@ export default function RenderCommentUI({
               onChange={onChangeCommentInput}
               placeholder="비밀번호"
               value={commentData.password}
+            />
+            <Rating
+              name="rating"
+              onChange={(event, newValue) => {
+                handleSaveStar(newValue);
+              }}
+              // value={commentData.value}
+              size="medium"
             />
           </WriterWrapper>
           <Contents

@@ -9,14 +9,39 @@ import {
 } from '../../commons/types/generated/types';
 import {useState} from 'react';
 import ReplyUI from './reply.presenter';
+import Rating from '@material-ui/lab/Rating';
+import {makeStyles, Theme, createStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      '& > * + *': {
+        marginTop: theme.spacing(1),
+      },
+    },
+  })
+);
+
+export function HalfRating({size}) {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <Rating name="half-rating" precision={0.5} />
+    </div>
+  );
+}
 
 export default function ReplyComponent() {
   const router = useRouter();
+  const [ratingData, setRatingData] = useState('');
   const [commentData, setcommentData] = useState({
     writer: '',
     password: '',
     contents: '',
-    rating: 5,
+    rating: 0,
   });
 
   const [commentFlag, setCommentFlag] = useState(true);
@@ -34,7 +59,14 @@ export default function ReplyComponent() {
   const [createBoardComment] =
     useMutation<IMutation, IMutationCreateBoardCommentArgs>(CREATE_COMMENT);
 
-  const onChangeCommentInput = (event) => {
+  const handleSaveStar = (event) => {
+    setcommentData({
+      ...commentData,
+      rating: event,
+    });
+  };
+
+  const onChangeCommentInput = (event, event2) => {
     const inputData = {
       ...commentData,
       [event.target.name]: event.target.value,
@@ -61,7 +93,7 @@ export default function ReplyComponent() {
         writer: '',
         password: '',
         contents: '',
-        rating: 5,
+        rating: Number(''),
       });
       refetch();
     } catch (error) {
@@ -77,6 +109,8 @@ export default function ReplyComponent() {
     return <></>;
   }
 
+  console.log(commentData);
+
   return (
     <ReplyUI
       data={data}
@@ -85,6 +119,8 @@ export default function ReplyComponent() {
       onChangeCommentInput={onChangeCommentInput}
       commentLength={commentLength}
       commentFlag={commentFlag}
+      Rating={Rating}
+      handleSaveStar={handleSaveStar}
     />
   );
 }
