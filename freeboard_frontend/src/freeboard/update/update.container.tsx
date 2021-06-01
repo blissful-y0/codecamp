@@ -1,5 +1,5 @@
 import {useRouter} from 'next/router';
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useEffect, useState} from 'react';
 import {UPDATE_BOARD, FETCH_BOARD} from './update.query';
 import UpdateUI from './update.presenter';
 import {useMutation, useQuery} from '@apollo/client';
@@ -44,11 +44,18 @@ export default function UpdateWriteComponent() {
   } = data.fetchBoard;
 
   const onClickPost = async () => {
+    const _incomingData = {};
+    Object.keys(incomingData).forEach((el) => {
+      if (incomingData[el] !== '') _incomingData[el] = incomingData[el];
+    });
+    if (!Object.keys(_incomingData).length) {
+      router.push(String(`../${router.query._id}`));
+    }
     try {
       const result = await updateBoardMutation({
         variables: {
           updateBoardInput: {
-            ...incomingData,
+            ..._incomingData,
           },
           password: password,
           boardId: String(router.query._id),
@@ -64,15 +71,18 @@ export default function UpdateWriteComponent() {
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     const userData = {...incomingData, [event.target.name]: event.target.value};
     setIncomingData(userData);
-    if (userData.title && userData.contents) {
-      setFlag(false);
-    } else {
-      setFlag(true);
-    }
+    // if (userData.password) {
+    //   setFlag(false);
+    // } else {
+    //   setFlag(true);
+    // }
   };
 
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
+    if (!event.target.value) {
+      setFlag(true);
+    }
   };
 
   return (

@@ -51,10 +51,10 @@ export default function RenderCommentUI({
             />
             <Rating
               name="rating"
+              precision={0.5}
               onChange={(event, newValue) => {
                 handleSaveStar(newValue);
               }}
-              // value={commentData.value}
               size="medium"
             />
           </WriterWrapper>

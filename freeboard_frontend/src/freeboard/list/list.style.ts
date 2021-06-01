@@ -17,6 +17,47 @@ export const Wrapper = styled.div`
   /* padding: 30px; */
 `;
 
+export const SearchBarWrapper = styled.div`
+  display: flex;
+  width: 80%;
+  /* border: 1px solid black; */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+export const DatePickerAndSearchButtonWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid black; */
+`;
+
+export const DatePickerWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 20px;
+  /* border: 1px solid black; */
+`;
+
+export const SearchButton = styled.button`
+  width: 94px;
+  height: 52px;
+  background: #000000;
+  border: 0px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 16px;
+  color: white;
+  cursor: pointer;
+`;
+
 export const SelectButton = styled.button`
   background-color: #ed0086;
   margin: 30px;

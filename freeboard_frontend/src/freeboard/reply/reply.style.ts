@@ -98,7 +98,7 @@ export const ContentsWrapper = styled.div`
 `;
 
 export const UploadButton = styled.button`
-  width: 10%;
+  width: 11%;
   height: 52px;
   background-color: ${({disabled}) =>
     disabled === false ? 'black' : '#bdbdbd'};
@@ -109,7 +109,7 @@ export const UploadButton = styled.button`
 `;
 
 export const UpdateButton = styled.button`
-  width: 10%;
+  width: 11%;
   height: 52px;
   background-color: #ffd600;
   text-align: center;

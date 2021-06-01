@@ -17,7 +17,7 @@ import {
   WriterRatingWrapper,
 } from './reply.style';
 import {getDate} from '../../commons/libraries/utils';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {useMutation} from '@apollo/client';
@@ -25,7 +25,7 @@ import {
   IMutation,
   IMutationUpdateBoardCommentArgs,
 } from '../../commons/types/generated/types';
-import {UPDATE_COMMENT, FETCH_REPLY} from './reply.query';
+import {UPDATE_COMMENT} from './reply.query';
 import Rating from '@material-ui/lab/Rating';
 import {makeStyles, Theme, createStyles} from '@material-ui/core/styles';
 
@@ -46,7 +46,7 @@ export function HalfRating() {
 
   return (
     <div className={classes.root}>
-      <Rating name="half-rating" precision={0.5} />
+      <Rating name="half-rating" />
     </div>
   );
 }
@@ -65,7 +65,7 @@ export default function ReplyUpdateUI({data}) {
 
   const updateSaveStar = (event) => {
     setcommentData({
-      ...commentData,
+      contents: updateData.contents || data?.contents,
       rating: event,
     });
   };
@@ -108,20 +108,14 @@ export default function ReplyUpdateUI({data}) {
       [event.target.name]: event.target.value,
     };
     setcommentData(inputData);
-    if (inputData.contents) {
-      setCommentFlag(false);
-    } else {
-      setCommentFlag(true);
-    }
-
     setCommentLength(inputData.contents.length);
   };
 
   const onChangePassword = (event) => {
-    setPassword(event.target.value);
+    const password = event.target.value;
+    setPassword(password);
+    setCommentFlag(() => (!password ? true : false));
   };
-
-  console.log(data);
 
   return (
     <div>
@@ -132,6 +126,7 @@ export default function ReplyUpdateUI({data}) {
             <WriterRatingWrapper>
               <CommentWriter>{data.writer}</CommentWriter>
               <Rating
+                precision={0.5}
                 size="small"
                 defaultValue={updateData.rating || data.rating}
                 readOnly
@@ -158,7 +153,8 @@ export default function ReplyUpdateUI({data}) {
               />
               <Rating
                 size="medium"
-                defaultValue={data.rating}
+                precision={0.5}
+                defaultValue={updateData.rating || data.rating}
                 name="update-rating"
                 onChange={(event, newValue) => {
                   updateSaveStar(newValue);
@@ -167,12 +163,16 @@ export default function ReplyUpdateUI({data}) {
             </WriterWrapper>
             <UpdateContents
               onChange={onChangeCommentInput}
-              defaultValue={data.contents}
+              defaultValue={updateData.contents || data.contents}
               name="contents"
               maxLength={Number(100)}
             ></UpdateContents>
             <ContentsWrapper>
-              <StringLengthCount>{commentLength}/100</StringLengthCount>
+              <StringLengthCount>
+                {(commentData.contents && commentLength) ||
+                  data.contents.length}
+                /100
+              </StringLengthCount>
               <UpdateButton
                 onClick={onClickUpdateButton}
                 disabled={commentFlag}

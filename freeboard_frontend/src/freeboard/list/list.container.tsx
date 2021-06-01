@@ -2,15 +2,15 @@ import {useRouter} from 'next/router';
 import {useQuery} from '@apollo/client';
 import {FETCH_LIST} from './list.query';
 import RenderUI from '../list/list.presenter';
-import {
-  IQuery,
-  IQueryFetchBoardArgs,
-} from '../../commons/types/generated/types';
 import {useState} from 'react';
+import SearchBar from './search.navigation.presenter';
+import DatePicker from './datepicker.navigation.presenter';
 
 export default function RenderListPage() {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
+  // const [selectedDate, handleDateChange] = useState(new Date());
+  // const [selectedDateTwo, handleDateChangeTwo] = useState(new Date());
 
   const {data, loading, error} = useQuery(FETCH_LIST, {
     variables: {page: Number(currentPage)},
@@ -42,6 +42,8 @@ export default function RenderListPage() {
       onClickWriteButton={onClickWriteButton}
       currentPage={currentPage}
       onClickPage={onClickPage}
+      SearchBar={SearchBar}
+      DatePicker={DatePicker}
     />
   );
 }

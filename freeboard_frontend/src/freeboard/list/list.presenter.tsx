@@ -11,7 +11,10 @@ import {
   WriteButtonWrapper,
   Span,
   PageIndexWrapper,
-  ListWholeWrapper,
+  SearchBarWrapper,
+  SearchButton,
+  DatePickerAndSearchButtonWrapper,
+  DatePickerWrapper,
 } from './list.style';
 import CreateIcon from '@material-ui/icons/Create';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -23,6 +26,8 @@ interface IProps {
   onClickWriteButton: any;
   onClickPage: any;
   currentPage: any;
+  SearchBar: any;
+  DatePicker: any;
 }
 
 export default function RenderUI({
@@ -31,11 +36,21 @@ export default function RenderUI({
   onClickWriteButton,
   onClickPage,
   currentPage,
+  SearchBar,
+  DatePicker,
 }: IProps) {
   return (
     <>
-      {/* <ListWholeWrapper> */}
       <Wrapper>
+        <SearchBarWrapper>
+          <SearchBar />
+          <DatePickerAndSearchButtonWrapper>
+            <DatePickerWrapper>
+              <DatePicker />
+            </DatePickerWrapper>
+            <SearchButton>검색하기</SearchButton>
+          </DatePickerAndSearchButtonWrapper>
+        </SearchBarWrapper>
         <NavigationBar>
           <ListNumber>번호</ListNumber>
           <ListTitle>제목</ListTitle>
@@ -75,7 +90,6 @@ export default function RenderUI({
           <NavigateNextIcon />
         </PageIndexWrapper>
       </Wrapper>
-      {/* </ListWholeWrapper> */}
     </>
   );
 }

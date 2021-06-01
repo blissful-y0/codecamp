@@ -36,7 +36,6 @@ export function HalfRating({size}) {
 
 export default function ReplyComponent() {
   const router = useRouter();
-  const [ratingData, setRatingData] = useState('');
   const [commentData, setcommentData] = useState({
     writer: '',
     password: '',
