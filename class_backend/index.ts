@@ -76,9 +76,9 @@ const server = new ApolloServer({ typeDefs, resolvers });
 
 createConnection({
   type: "postgres",
-  database: "postgres",
-  username: "postgres",
-  password: "postgres",
+  database: "",
+  username: "",
+  password: "",
   port: 5004,
   host: "34.64.71.71",
   entities: [__dirname + "/*.postgres.ts"],
