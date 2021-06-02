@@ -17,7 +17,7 @@ import {
   WriterRatingWrapper,
 } from './reply.style';
 import {getDate} from '../../commons/libraries/utils';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {useMutation} from '@apollo/client';
@@ -28,6 +28,7 @@ import {
 import {UPDATE_COMMENT} from './reply.query';
 import Rating from '@material-ui/lab/Rating';
 import {makeStyles, Theme, createStyles} from '@material-ui/core/styles';
+import DeleteModal from './CommentDeleteModal.presenter';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,8 +52,12 @@ export function HalfRating() {
   );
 }
 
-export default function ReplyUpdateUI({data}) {
+export default function ReplyUpdateUI({data, refetch}) {
   const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen((prev) => !prev);
+  };
+
   const [commentData, setcommentData] = useState({
     contents: '',
     rating: 0,
@@ -86,7 +91,6 @@ export default function ReplyUpdateUI({data}) {
           password: password,
           boardCommentId: String(data._id),
         },
-        // refetchQueries: [{query: FETCH_REPLY, variables: {}}],
       });
       setupdateData({
         contents: updateResult.data.updateBoardComment.contents,
@@ -94,12 +98,8 @@ export default function ReplyUpdateUI({data}) {
       });
       setOpen(false);
     } catch (error) {
-      console.log('no');
+      alert('에러 발생!');
     }
-  };
-
-  const handleOpen = () => {
-    setOpen((prev) => !prev);
   };
 
   const onChangeCommentInput = (event) => {
@@ -117,10 +117,23 @@ export default function ReplyUpdateUI({data}) {
     setCommentFlag(() => (!password ? true : false));
   };
 
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
+  const handleDeleteModalToggle = () => {
+    setDeleteOpen((prev) => !prev);
+  };
+
   return (
     <div>
       {!open ? (
         <ReadCommentWrapper>
+          {deleteOpen && (
+            <DeleteModal
+              refetch={refetch}
+              data={data}
+              handleDeleteModalToggle={handleDeleteModalToggle}
+            />
+          )}
           <ProfilePhoto src="/profile.png"></ProfilePhoto>
           <CommentContentsWrapper>
             <WriterRatingWrapper>
@@ -138,7 +151,10 @@ export default function ReplyUpdateUI({data}) {
             <CommnetCreatedAt>{getDate(data.createdAt)}</CommnetCreatedAt>
           </CommentContentsWrapper>
           <CreateIcon style={{cursor: 'pointer'}} onClick={handleOpen} />
-          <DeleteIcon style={{cursor: 'pointer', marginLeft: '10px'}} />
+          <DeleteIcon
+            style={{cursor: 'pointer', marginLeft: '10px'}}
+            onClick={handleDeleteModalToggle}
+          />
         </ReadCommentWrapper>
       ) : (
         <TotalWrapper>

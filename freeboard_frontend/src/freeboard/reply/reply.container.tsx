@@ -108,8 +108,6 @@ export default function ReplyComponent() {
     return <></>;
   }
 
-  console.log(commentData);
-
   return (
     <ReplyUI
       data={data}
@@ -120,6 +118,7 @@ export default function ReplyComponent() {
       commentFlag={commentFlag}
       Rating={Rating}
       handleSaveStar={handleSaveStar}
+      refetch={refetch}
     />
   );
 }

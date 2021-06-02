@@ -24,6 +24,7 @@ export default function RenderCommentUI({
   commentData,
   Rating,
   handleSaveStar,
+  refetch,
 }) {
   return (
     <UIWrapper>
@@ -75,7 +76,7 @@ export default function RenderCommentUI({
       </TotalWrapper>
       {data?.fetchBoardComments?.map((data) => (
         <div key={data._id}>
-          <ReplyUpdateUI data={data}></ReplyUpdateUI>
+          <ReplyUpdateUI refetch={refetch} data={data}></ReplyUpdateUI>
         </div>
       ))}
     </UIWrapper>

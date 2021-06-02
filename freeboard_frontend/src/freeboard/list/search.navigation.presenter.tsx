@@ -11,7 +11,7 @@ export default function SearchAppBar() {
         borderRadius: theme.shape.borderRadius,
         backgroundColor: '#F2F2F2',
         marginLeft: 0,
-        width: '40%',
+        width: '80%',
       },
       searchIcon: {
         padding: theme.spacing(0, 2),
