@@ -19,6 +19,7 @@ import {
 import CreateIcon from '@material-ui/icons/Create';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import {MouseEvent} from 'react';
 
 interface IProps {
   data: any;
@@ -28,6 +29,10 @@ interface IProps {
   currentPage: any;
   SearchBar: any;
   DatePicker: any;
+  onClickNextPage: () => void;
+  boardCount: any;
+  nextPageCursor: any;
+  onClickPrevPage: () => void;
 }
 
 export default function RenderUI({
@@ -38,6 +43,10 @@ export default function RenderUI({
   currentPage,
   SearchBar,
   DatePicker,
+  onClickNextPage,
+  boardCount,
+  nextPageCursor,
+  onClickPrevPage,
 }: IProps) {
   return (
     <>
@@ -76,18 +85,25 @@ export default function RenderUI({
           </BoardWriteButton>
         </WriteButtonWrapper>
         <PageIndexWrapper>
-          <NavigateBeforeIcon />
-          {new Array(10).fill(1).map((_, index) => (
-            <Span
-              key={String(index + 1)}
-              id={String(index + 1)}
-              onClick={onClickPage}
-              isActive={currentPage === index + 1}
-            >
-              {index + 1}
-            </Span>
-          ))}
-          <NavigateNextIcon />
+          <NavigateBeforeIcon onClick={onClickPrevPage} />
+          {new Array(10)
+            .fill(1)
+            .filter(
+              (_, index) =>
+                index + 1 + nextPageCursor <
+                Math.floor(boardCount?.fetchBoardsCount / 10)
+            )
+            .map((_, index) => (
+              <Span
+                key={String(index + 1 + nextPageCursor)}
+                id={String(index + 1 + nextPageCursor)}
+                onClick={onClickPage}
+                isActive={currentPage === index + 1 + nextPageCursor}
+              >
+                {index + 1 + nextPageCursor}
+              </Span>
+            ))}
+          <NavigateNextIcon onClick={onClickNextPage} />
         </PageIndexWrapper>
       </Wrapper>
     </>

@@ -7,8 +7,6 @@ export default function SearchNavigation() {
   const [selectedDateTwo, handleDateChangeTwo] = useState(new Date());
   const today = new Date();
 
-  console.log(selectedDateTwo);
-
   return (
     <>
       <div
@@ -28,7 +26,6 @@ export default function SearchNavigation() {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <DatePicker
             variant="inline"
-            defaultValue={today}
             value={selectedDate}
             onChange={handleDateChange}
           />
@@ -50,7 +47,6 @@ export default function SearchNavigation() {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <DatePicker
             variant="inline"
-            defaultValue={today}
             value={selectedDateTwo}
             onChange={handleDateChangeTwo}
           />

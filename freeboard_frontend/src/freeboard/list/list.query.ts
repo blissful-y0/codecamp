@@ -15,3 +15,9 @@ export const FETCH_LIST = gql`
     }
   }
 `;
+
+export const FETCH_BOARD_COUNT = gql`
+  query {
+    fetchBoardsCount
+  }
+`;

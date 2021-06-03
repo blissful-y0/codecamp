@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import {createStyles, Theme, makeStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -11,7 +10,7 @@ export default function SearchAppBar() {
         borderRadius: theme.shape.borderRadius,
         backgroundColor: '#F2F2F2',
         marginLeft: 0,
-        width: '80%',
+        width: '100%',
       },
       searchIcon: {
         padding: theme.spacing(0, 2),
@@ -24,6 +23,7 @@ export default function SearchAppBar() {
       },
       inputRoot: {
         color: 'inherit',
+        width: '100%',
       },
       inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
