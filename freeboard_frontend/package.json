@@ -19,6 +19,7 @@
     "@material-ui/lab": "^4.0.0-alpha.58",
     "@material-ui/pickers": "^3.3.10",
     "antd": "^4.15.4",
+    "apollo-upload-client": "^15.0.0",
     "axios": "^0.21.1",
     "graphql": "^15.5.0",
     "moment": "^2.29.1",

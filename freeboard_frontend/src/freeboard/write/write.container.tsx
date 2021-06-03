@@ -1,6 +1,6 @@
 import {useRouter} from 'next/router';
 import {useState} from 'react';
-import {CREATED_BOARD} from './write.mutation';
+import {CREATED_BOARD} from './write.query';
 import WriteUI from './write.presenter';
 import {useMutation} from '@apollo/client';
 import {
