@@ -6,8 +6,11 @@ import styled from '@emotion/styled';
 
 export default function PhotoUploadUI({}) {
   const fileRef = useRef<HTMLInputElement>(null);
-  const [images, setImages] = useState(null);
+  const imageRef = useRef(null);
+  const [images, setImages] = useState([]);
   const Image = styled.img`
+    width: 100px;
+    height: 100px;
     max-width: 100px;
     max-height: 100px;
     margin: 20px;
@@ -17,11 +20,11 @@ export default function PhotoUploadUI({}) {
   `;
 
   const onChangeFile = (event) => {
-    const uploadedFile = event.target.files;
+    let uploadedFile = event.target.files;
 
     if (!validateImage(uploadedFile)) return;
 
-    const uploadedFileArray = [];
+    let uploadedFileArray = [];
     for (const element of uploadedFile) {
       const reader = new FileReader();
       reader.readAsDataURL(element);
@@ -29,9 +32,18 @@ export default function PhotoUploadUI({}) {
         uploadedFileArray.push(event.target.result);
         if (uploadedFile.length === uploadedFileArray.length) {
           setImages(uploadedFileArray);
+          uploadedFile = [];
+          uploadedFileArray = [];
         }
       };
     }
+  };
+
+  const onClickImage = (event) => {
+    let newArr = [...images];
+    let output = newArr.indexOf(event.target.id);
+    newArr[output] = '';
+    setImages(newArr);
   };
 
   return (
@@ -42,9 +54,18 @@ export default function PhotoUploadUI({}) {
           <PhotoAttach key={index} />
         ))}
       </span>
-      {new Array(images?.length).fill(1).map((_, index) => (
-        <Image src={images?.[index]}></Image>
-      ))}
+      <div ref={imageRef}>
+        {images
+          .filter((data) => (data ? true : false))
+          .map((data, index) => (
+            <Image
+              id={data}
+              key={data}
+              onClick={onClickImage}
+              src={data}
+            ></Image>
+          ))}
+      </div>
     </>
   );
 }
