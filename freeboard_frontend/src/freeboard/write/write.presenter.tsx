@@ -18,6 +18,7 @@ import {
   LabelForMainSetting,
 } from './write.style';
 import Postcode from '../../commons/components/postcode/postcode.presenter';
+import ImageUpload from './write.photoUpload.presenter';
 
 export default function WriteUI({
   onChangeInput,
@@ -28,9 +29,11 @@ export default function WriteUI({
   handleClose,
   setData,
   data,
+  setFile,
+  onClickPage,
 }) {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClickPage}>
       <Postcode handleClose={handleClose} open={open} setData={setData} />
       <Title>게시물 등록</Title>
       <Container>
@@ -90,9 +93,7 @@ export default function WriteUI({
         ></AddressAndLink>
         <Label>사진 첨부</Label>
         <PhotoWrapper>
-          <PhotoAttach>+ Upload</PhotoAttach>
-          <PhotoAttach>+ Upload</PhotoAttach>
-          <PhotoAttach>+ Upload</PhotoAttach>
+          <ImageUpload setFile={setFile} />
         </PhotoWrapper>
         <Label>메인 설정</Label>
         <PhotoWrapper>

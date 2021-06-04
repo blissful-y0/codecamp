@@ -79,11 +79,24 @@ export const Label = styled.label`
 `;
 
 export const PhotoAttach = styled.img`
-  width: 78px;
-  height: 78px;
+  /* position: relative; */
+  width: 100px;
+  height: 100px;
   background-color: #4f4f4f;
   color: white;
   margin: 5px;
+`;
+
+export const Image = styled.img`
+  background-color: white;
+  width: 100px;
+  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  margin: 5px;
+  :hover {
+    border: 1px solid black;
+  }
 `;
 
 export const UploadButton = styled.button`

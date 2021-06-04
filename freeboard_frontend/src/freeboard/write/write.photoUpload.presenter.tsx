@@ -1,26 +1,18 @@
 import {validateImage} from '../../commons/libraries/utils';
 import {UPLOAD_IMAGE} from './write.query';
-import {PhotoAttach} from './write.style';
+import {PhotoAttach, Image} from './write.style';
 import {useEffect, useRef, useState} from 'react';
 import styled from '@emotion/styled';
 
-export default function PhotoUploadUI({}) {
+export default function PhotoUploadUI({setFile}) {
   const fileRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef(null);
   const [images, setImages] = useState([]);
-  const Image = styled.img`
-    width: 100px;
-    height: 100px;
-    max-width: 100px;
-    max-height: 100px;
-    margin: 20px;
-    :hover {
-      border: 3px solid black;
-    }
-  `;
+  const [uploadedFileArr, setUploadedFileArr] = useState([]);
 
   const onChangeFile = (event) => {
     let uploadedFile = event.target.files;
+    등록이라면 && setUploadedFileArr(uploadedFile);
 
     if (!validateImage(uploadedFile)) return;
 
@@ -39,29 +31,48 @@ export default function PhotoUploadUI({}) {
     }
   };
 
-  const onClickImage = (event) => {
+  const onClickImage = () => {
+    fileRef.current.click();
+  };
+
+  const onChangeImage = (event) => {
     let newArr = [...images];
+    let newfileArr = [...uploadedFileArr];
+    console.log('newfileArr', newfileArr);
     let output = newArr.indexOf(event.target.id);
     newArr[output] = '';
+    newfileArr[output] = '';
+    setFile(newfileArr);
     setImages(newArr);
   };
 
   return (
     <>
-      <input ref={fileRef} onChange={onChangeFile} multiple type="file" />
-      <span>
-        {new Array(3).fill(1).map((_, index) => (
-          <PhotoAttach key={index} />
-        ))}
-      </span>
-      <div ref={imageRef}>
+      <input
+        ref={fileRef}
+        onChange={onChangeFile}
+        style={{display: 'none'}}
+        multiple
+        type="file"
+      />
+      {new Array(3).fill(1).map((_, index) => (
+        <PhotoAttach onClick={onClickImage} key={index} />
+      ))}
+      <div
+        style={{
+          display: 'flex',
+          marginLeft: '-330px',
+          // border: '1px solid black',
+        }}
+        ref={imageRef}
+      >
         {images
           .filter((data) => (data ? true : false))
-          .map((data, index) => (
+          .map((data) => (
             <Image
               id={data}
               key={data}
-              onClick={onClickImage}
+              onClick={onChangeImage}
               src={data}
             ></Image>
           ))}

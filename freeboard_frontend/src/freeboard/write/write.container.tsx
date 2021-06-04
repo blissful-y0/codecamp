@@ -16,10 +16,12 @@ export default function MutationFreeboard() {
     title: '',
     contents: '',
     youtubeUrl: '',
+    images: '',
     // address: '',
   });
   const [flag, setFlag] = useState(true);
   const [open, setOpen] = useState(false);
+  const [file, setFile] = useState(null);
 
   const handleOpen = () => {
     setOpen(true);
@@ -49,6 +51,10 @@ export default function MutationFreeboard() {
     }
   }
 
+  function onClickPage() {
+    // console.log(file);
+  }
+
   const onChangeInput = (event) => {
     const userData = {...data, [event.target.name]: event.target.value};
     setData(userData);
@@ -75,6 +81,8 @@ export default function MutationFreeboard() {
         handleOpen={handleOpen}
         setData={setData}
         data={data}
+        setFile={setFile}
+        onClickPage={onClickPage}
       />
     </>
   );
