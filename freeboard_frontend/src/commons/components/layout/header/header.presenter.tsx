@@ -31,7 +31,7 @@ export default function Header() {
           </LoginSignInWrapper>
         </TitleWrapper>
         <Slider />
-        {isNavigation && <Navigation />}
+        <Navigation />
       </LayoutContext.Provider>
     </>
   );
