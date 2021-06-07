@@ -152,7 +152,7 @@ export const CommnetCreatedAt = styled.div`
   color: #4f4f4f;
 `;
 
-export const ProfilePhoto = styled.img`
+export const ProfilePhoto = styled.div`
   margin-top: 10px;
   width: 40px;
   height: 40px;

@@ -67,7 +67,6 @@ export const Title = styled.h2`
 export const ProfilePhoto = styled.div`
   width: 47px;
   height: 47px;
-  background-image: url('/Profile.png');
   margin: 15px;
 `;
 
@@ -158,4 +157,10 @@ export const GreyButton = styled.button`
 export const GreyButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+export const Image = styled.img`
+  max-width: 500px;
+  max-height: 1000px;
+  margin: 10px;
 `;

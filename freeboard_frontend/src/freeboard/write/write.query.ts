@@ -12,8 +12,8 @@ export const CREATED_BOARD = gql`
 `;
 
 export const UPLOAD_IMAGE = gql`
-  mutation uploadFile($upload: Uplpad!) {
-    uploadFile(file: $upload) {
+  mutation uploadFile($file: Upload!) {
+    uploadFile(file: $file) {
       url
     }
   }

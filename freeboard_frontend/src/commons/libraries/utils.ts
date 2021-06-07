@@ -42,3 +42,7 @@ export const validateImage = (image) => {
 
   return true;
 };
+
+export const getStorageUrl = (url) => {
+  return `http://storage.cloud.google.com/` + url;
+};

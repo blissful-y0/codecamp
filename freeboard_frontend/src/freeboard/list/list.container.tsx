@@ -1,29 +1,29 @@
 import {useRouter} from 'next/router';
-import {useApolloClient, useQuery} from '@apollo/client';
+import {useQuery} from '@apollo/client';
 import {FETCH_BOARD_COUNT, FETCH_LIST} from './list.query';
 import RenderUI from '../list/list.presenter';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import SearchBar from './search.navigation.presenter';
 import DatePicker from './datepicker.navigation.presenter';
+import CardContainer from './card.presenter';
 
 export default function RenderListPage() {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const [nextPageCursor, setNextPageCursor] = useState(0);
-  // const [prevPageCursor, setPrevPageCursor] = useState(0);
-  // const client = useApolloClient();
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const {data: searchData} = useQuery(FETCH_LIST, {
+    variables: {search: searchKeyword},
+  });
+  const [searchResult, setSearchResult] = useState('');
+  const [searchIndexResult, setSearchIndexResult] = useState(0);
 
-  // useEffect(() => {
-  //   const find = async () => {
-  //     const result = await client.query({
-  //       query: FETCH_BOARD_COUNT,
-  //     });
-  //     console.log(result);
-  //   };
-  //   find();
-  // }, []);
-
-  const {data: boardCount} = useQuery(FETCH_BOARD_COUNT);
+  const {data: boardCount, refetch} = useQuery(FETCH_BOARD_COUNT);
+  const {data: searchIndex} = useQuery(FETCH_BOARD_COUNT, {
+    variables: {
+      search: searchKeyword,
+    },
+  });
 
   const {data, loading, error} = useQuery(FETCH_LIST, {
     variables: {page: Number(currentPage)},
@@ -59,6 +59,15 @@ export default function RenderListPage() {
     setNextPageCursor(nextPageCursor - 10);
   };
 
+  const onChangeSearch = (event) => {
+    setSearchKeyword(event.target.value);
+  };
+
+  const onClickSearchButton = () => {
+    setSearchResult(searchData);
+    setSearchIndexResult(searchIndex);
+  };
+
   return (
     <RenderUI
       data={data}
@@ -72,6 +81,11 @@ export default function RenderListPage() {
       boardCount={boardCount}
       nextPageCursor={nextPageCursor}
       onClickPrevPage={onClickPrevPage}
+      onChangeSearch={onChangeSearch}
+      onClickSearchButton={onClickSearchButton}
+      searchData={searchResult}
+      searchIndex={searchIndexResult}
+      CardContainer={CardContainer}
     />
   );
 }

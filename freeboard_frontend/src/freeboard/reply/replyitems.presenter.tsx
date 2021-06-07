@@ -29,6 +29,7 @@ import {UPDATE_COMMENT} from './reply.query';
 import Rating from '@material-ui/lab/Rating';
 import {makeStyles, Theme, createStyles} from '@material-ui/core/styles';
 import DeleteModal from './CommentDeleteModal.presenter';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -134,7 +135,11 @@ export default function ReplyUpdateUI({data, refetch}) {
               handleDeleteModalToggle={handleDeleteModalToggle}
             />
           )}
-          <ProfilePhoto src="/profile.png"></ProfilePhoto>
+          <ProfilePhoto>
+            <AccountCircleIcon
+              style={{width: '47px', height: '47px', color: '#BDBDBD'}}
+            />
+          </ProfilePhoto>
           <CommentContentsWrapper>
             <WriterRatingWrapper>
               <CommentWriter>{data.writer}</CommentWriter>

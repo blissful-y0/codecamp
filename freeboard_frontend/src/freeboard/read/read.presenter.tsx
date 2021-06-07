@@ -16,6 +16,7 @@ import {
   GreyButton,
   GreyButtonWrapper,
   TotalWrapper,
+  Image,
 } from './read.style';
 import {getDate} from '../../commons/libraries/utils';
 import ReplyUI from '../reply/reply.container';
@@ -25,6 +26,7 @@ import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import LinkIcon from '@material-ui/icons/Link';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import YoutubeUI from '../../commons/components/youtube/youtube.container';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 export default function BoardReadUI({
   data,
@@ -42,7 +44,11 @@ export default function BoardReadUI({
         <Wrapper>
           <NavigationBar>
             <WriterDateInfoWrapper>
-              <ProfilePhoto></ProfilePhoto>
+              <ProfilePhoto>
+                <AccountCircleIcon
+                  style={{color: '#BDBDBD', width: '47px', height: '47px'}}
+                />
+              </ProfilePhoto>
               <WriterDateInfoWrapper2>
                 <WriterName>{data?.fetchBoard.writer}</WriterName>
                 <CreatedAt>{getDate(data?.fetchBoard.createdAt)}</CreatedAt>
@@ -60,6 +66,9 @@ export default function BoardReadUI({
             <Contexts>{data?.fetchBoard.contents}</Contexts>
           </ContextsWrapper>
           <YoutubeUI Url={data?.fetchBoard.youtubeUrl} />
+          {data?.fetchBoard?.images.map((data) => (
+            <Image src={data} />
+          ))}
           <LikeDislikeWrapper>
             <ButtonWrapper>
               <ThumbUpAltIcon

@@ -2,7 +2,7 @@ import InputBase from '@material-ui/core/InputBase';
 import {createStyles, Theme, makeStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 
-export default function SearchAppBar() {
+export default function SearchAppBar({onChangeSearch}) {
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       search: {
@@ -34,17 +34,13 @@ export default function SearchAppBar() {
   );
   const classes = useStyles();
 
-  const onChangeSearchInput = (event) => {
-    const temp = event.target.value;
-  };
-
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
         <SearchIcon />
       </div>
       <InputBase
-        onChange={onChangeSearchInput}
+        onChange={onChangeSearch}
         placeholder="제목을 입력해 주세요."
         classes={{
           root: classes.inputRoot,

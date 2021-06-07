@@ -29,6 +29,8 @@ export default function QueryReadPage() {
     },
   });
 
+  console.log(data);
+
   const onClickListButton = () => {
     router.push('../');
   };

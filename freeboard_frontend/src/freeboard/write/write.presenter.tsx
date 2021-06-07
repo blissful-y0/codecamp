@@ -29,11 +29,11 @@ export default function WriteUI({
   handleClose,
   setData,
   data,
-  setFile,
-  onClickPage,
+  setUploadedFileArr,
+  uploadedFileArr,
 }) {
   return (
-    <Wrapper onClick={onClickPage}>
+    <Wrapper>
       <Postcode handleClose={handleClose} open={open} setData={setData} />
       <Title>게시물 등록</Title>
       <Container>
@@ -93,7 +93,10 @@ export default function WriteUI({
         ></AddressAndLink>
         <Label>사진 첨부</Label>
         <PhotoWrapper>
-          <ImageUpload setFile={setFile} />
+          <ImageUpload
+            setUploadedFileArr={setUploadedFileArr}
+            uploadedFileArr={uploadedFileArr}
+          />
         </PhotoWrapper>
         <Label>메인 설정</Label>
         <PhotoWrapper>

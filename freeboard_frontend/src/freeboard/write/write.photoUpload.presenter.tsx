@@ -4,19 +4,18 @@ import {PhotoAttach, Image} from './write.style';
 import {useEffect, useRef, useState} from 'react';
 import styled from '@emotion/styled';
 
-export default function PhotoUploadUI({setFile}) {
+export default function PhotoUploadUI({setUploadedFileArr, uploadedFileArr}) {
   const fileRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef(null);
   const [images, setImages] = useState([]);
-  const [uploadedFileArr, setUploadedFileArr] = useState([]);
+  // const [uploadedFileArr, setUploadedFileArr] = useState([]);
 
   const onChangeFile = (event) => {
     let uploadedFile = event.target.files;
-    등록이라면 && setUploadedFileArr(uploadedFile);
+    let uploadedFileArray = [];
 
     if (!validateImage(uploadedFile)) return;
 
-    let uploadedFileArray = [];
     for (const element of uploadedFile) {
       const reader = new FileReader();
       reader.readAsDataURL(element);
@@ -24,6 +23,7 @@ export default function PhotoUploadUI({setFile}) {
         uploadedFileArray.push(event.target.result);
         if (uploadedFile.length === uploadedFileArray.length) {
           setImages(uploadedFileArray);
+          setUploadedFileArr(uploadedFile);
           uploadedFile = [];
           uploadedFileArray = [];
         }
@@ -38,11 +38,10 @@ export default function PhotoUploadUI({setFile}) {
   const onChangeImage = (event) => {
     let newArr = [...images];
     let newfileArr = [...uploadedFileArr];
-    console.log('newfileArr', newfileArr);
     let output = newArr.indexOf(event.target.id);
     newArr[output] = '';
     newfileArr[output] = '';
-    setFile(newfileArr);
+    setUploadedFileArr(newfileArr);
     setImages(newArr);
   };
 

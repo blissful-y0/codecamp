@@ -19,7 +19,6 @@ import {
 import CreateIcon from '@material-ui/icons/Create';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import {MouseEvent} from 'react';
 
 interface IProps {
   data: any;
@@ -33,6 +32,11 @@ interface IProps {
   boardCount: any;
   nextPageCursor: any;
   onClickPrevPage: () => void;
+  onChangeSearch: any;
+  onClickSearchButton: () => void;
+  searchData: any;
+  searchIndex: number;
+  CardContainer: any;
 }
 
 export default function RenderUI({
@@ -47,17 +51,23 @@ export default function RenderUI({
   boardCount,
   nextPageCursor,
   onClickPrevPage,
+  onChangeSearch,
+  onClickSearchButton,
+  searchData,
+  searchIndex,
+  CardContainer,
 }: IProps) {
   return (
     <>
       <Wrapper>
+        <CardContainer />
         <SearchBarWrapper>
-          <SearchBar />
+          <SearchBar onChangeSearch={onChangeSearch} />
           <DatePickerAndSearchButtonWrapper>
             <DatePickerWrapper>
               <DatePicker />
             </DatePickerWrapper>
-            <SearchButton>검색하기</SearchButton>
+            <SearchButton onClick={onClickSearchButton}>검색하기</SearchButton>
           </DatePickerAndSearchButtonWrapper>
         </SearchBarWrapper>
         <NavigationBar>
@@ -66,7 +76,7 @@ export default function RenderUI({
           <Writer>작성자</Writer>
           <CreatedAt>작성일</CreatedAt>
         </NavigationBar>
-        {data?.fetchBoards?.slice(0, 10).map((data, index) => (
+        {searchData?.fetchBoards?.slice(0, 10).map((data, index) => (
           <div key={data._id}>
             <ListBar>
               <ListNumber>{index + 1}</ListNumber>
@@ -77,7 +87,19 @@ export default function RenderUI({
               <CreatedAt>{getDate(data.createdAt)}</CreatedAt>
             </ListBar>
           </div>
-        ))}
+        )) ||
+          data?.fetchBoards?.slice(0, 10).map((data, index) => (
+            <div key={data._id}>
+              <ListBar>
+                <ListNumber>{index + 1}</ListNumber>
+                <ListTitle onClick={onClickTitle(data._id)}>
+                  {data.title}
+                </ListTitle>
+                <Writer>{data.writer}</Writer>
+                <CreatedAt>{getDate(data.createdAt)}</CreatedAt>
+              </ListBar>
+            </div>
+          ))}
         <WriteButtonWrapper>
           <BoardWriteButton onClick={onClickWriteButton}>
             <CreateIcon />
@@ -91,7 +113,9 @@ export default function RenderUI({
             .filter(
               (_, index) =>
                 index + 1 + nextPageCursor <
-                Math.floor(boardCount?.fetchBoardsCount / 10)
+                Math.floor(
+                  searchIndex / 10 || boardCount?.fetchBoardsCount / 10
+                )
             )
             .map((_, index) => (
               <Span
