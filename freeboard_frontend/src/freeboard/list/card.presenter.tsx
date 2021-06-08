@@ -53,8 +53,6 @@ export default function MediaCard() {
     '/cardimage4.png',
   ];
 
-  console.log(data?.fetchBoardsOfTheBest);
-
   return (
     <>
       <Wrapper>

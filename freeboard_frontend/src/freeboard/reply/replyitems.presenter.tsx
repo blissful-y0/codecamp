@@ -63,6 +63,7 @@ export default function ReplyUpdateUI({data, refetch}) {
     contents: '',
     rating: 0,
   });
+
   const [password, setPassword] = useState('');
   const [updateData, setupdateData] = useState({
     contents: '',

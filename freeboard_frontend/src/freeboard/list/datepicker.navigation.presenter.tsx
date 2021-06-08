@@ -5,7 +5,7 @@ import {useState} from 'react';
 export default function SearchNavigation() {
   const [selectedDate, handleDateChange] = useState(new Date());
   const [selectedDateTwo, handleDateChangeTwo] = useState(new Date());
-  const today = new Date();
+  // const today = new Date();
 
   return (
     <>

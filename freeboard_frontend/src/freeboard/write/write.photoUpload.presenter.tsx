@@ -37,7 +37,7 @@ export default function PhotoUploadUI({setUploadedFileArr, uploadedFileArr}) {
 
   const onChangeImage = (event) => {
     let newArr = [...images];
-    let newfileArr = [...uploadedFileArr];
+    let newfileArr = [...uploadedFileArr]; // 업로드할 파일 내용
     let output = newArr.indexOf(event.target.id);
     newArr[output] = '';
     newfileArr[output] = '';

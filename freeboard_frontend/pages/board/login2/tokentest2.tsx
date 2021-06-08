@@ -2,8 +2,9 @@ import {useRouter} from 'next/router';
 import {useContext, useEffect} from 'react';
 import {AppContext} from '../../_app';
 import Link from 'next/link';
+import withAuth from '../../../src/commons/components/hocs/withAuth';
 
-export default function TokenTestPageTwo() {
+export function TokenTestPageTwo(props) {
   const router = useRouter();
   const {accessToken} = useContext(AppContext);
 
@@ -24,3 +25,5 @@ export default function TokenTestPageTwo() {
     </>
   );
 }
+
+export default withAuth(TokenTestPageTwo);

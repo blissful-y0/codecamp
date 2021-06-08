@@ -35,7 +35,7 @@ interface IProps {
   onChangeSearch: any;
   onClickSearchButton: () => void;
   searchData: any;
-  searchIndex: number;
+  searchIndex: any;
   CardContainer: any;
 }
 
@@ -77,14 +77,14 @@ export default function RenderUI({
           <CreatedAt>작성일</CreatedAt>
         </NavigationBar>
         {searchData?.fetchBoards?.slice(0, 10).map((data, index) => (
-          <div key={data._id}>
+          <div key={data?._id}>
             <ListBar>
               <ListNumber>{index + 1}</ListNumber>
-              <ListTitle onClick={onClickTitle(data._id)}>
-                {data.title}
+              <ListTitle onClick={onClickTitle(data?._id)}>
+                {data?.title}
               </ListTitle>
-              <Writer>{data.writer}</Writer>
-              <CreatedAt>{getDate(data.createdAt)}</CreatedAt>
+              <Writer>{data?.writer}</Writer>
+              <CreatedAt>{getDate(data?.createdAt)}</CreatedAt>
             </ListBar>
           </div>
         )) ||

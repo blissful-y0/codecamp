@@ -18,7 +18,7 @@ export default function RenderListPage() {
   const [searchResult, setSearchResult] = useState('');
   const [searchIndexResult, setSearchIndexResult] = useState(0);
 
-  const {data: boardCount, refetch} = useQuery(FETCH_BOARD_COUNT);
+  const {data: boardCount} = useQuery(FETCH_BOARD_COUNT);
   const {data: searchIndex} = useQuery(FETCH_BOARD_COUNT, {
     variables: {
       search: searchKeyword,
@@ -49,7 +49,10 @@ export default function RenderListPage() {
   };
 
   const onClickNextPage = () => {
-    if ((nextPageCursor + 10) * 10 >= Math.floor(boardCount?.fetchBoardsCount))
+    if (
+      (nextPageCursor + 10) * 10 >=
+      Math.floor(searchIndexResult || boardCount?.fetchBoardsCount)
+    )
       return;
     setNextPageCursor(nextPageCursor + 10);
   };
@@ -65,8 +68,10 @@ export default function RenderListPage() {
 
   const onClickSearchButton = () => {
     setSearchResult(searchData);
-    setSearchIndexResult(searchIndex);
+    setSearchIndexResult(Number(searchIndex.fetchBoardsCount));
   };
+
+  console.log(searchIndex?.fetchBoardsCount);
 
   return (
     <RenderUI
