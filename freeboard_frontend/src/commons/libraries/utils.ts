@@ -1,3 +1,5 @@
+import * as yup from 'yup';
+
 export const getDate = (date) => {
   if (!date || typeof date !== 'string') return '';
 
@@ -46,3 +48,26 @@ export const validateImage = (image) => {
 export const getStorageUrl = (url) => {
   return `http://storage.cloud.google.com/` + url;
 };
+
+export const signUpValidation = yup.object({
+  email: yup
+    .string()
+    .required('아이디를 입력해주세요.')
+    .matches(
+      /^(([^<>()\[\]\\.,;:\s@“]+(\.[^<>()\[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      '이메일 형식에 맞지 않습니다.'
+    ),
+  name: yup
+    .string()
+    .required('닉네임을 입력해주세요.')
+    .max(15, '닉네임은 15자리 이하여야 합니다.')
+    .min(2, '닉네임은 2자리 이상이어야 합니다.'),
+  password: yup
+    .string()
+    .required('비밀번호를 입력해주세요.')
+    .max(15, '비밀번호는 15자리 이하여야 합니다.')
+    .min(4, '비밀번호는 4자리 이상이어야 합니다.'),
+  passwordCheck: yup
+    .string()
+    .oneOf([yup.ref('password'), null], '비밀번호가 일치하지 않습니다.'),
+});

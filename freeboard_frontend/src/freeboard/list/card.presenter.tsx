@@ -19,6 +19,7 @@ import {
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import {getDate} from '../../commons/libraries/utils';
+import Link from 'next/link';
 
 const useStyles = makeStyles({
   root: {
@@ -53,41 +54,45 @@ export default function MediaCard() {
     '/cardimage4.png',
   ];
 
+  const onClickCard = (event) => {};
+
   return (
     <>
       <Wrapper>
         {data?.fetchBoardsOfTheBest.map((data, index) => (
           <div key={data._id}>
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image={imageArray[index] || data.images[0]}
-                />
-                <CardContent>
-                  <CardWrapper>
-                    <ContentsWrapper>
-                      <Title>{data.title}</Title>
-                      <ProfileWrapper>
-                        <AccountCircleIcon />
-                        <User>{data.writer}</User>
-                      </ProfileWrapper>
-                      <CreatedAt>DATE : {getDate(data.createdAt)}</CreatedAt>
-                    </ContentsWrapper>
-                    <ThumpsUpWrapper>
-                      <ThumbUpIcon
-                        style={{
-                          width: '28px',
-                          height: '30px',
-                          color: '#FFD600',
-                        }}
-                      />
-                      <LikeCount>{data.likeCount}</LikeCount>
-                    </ThumpsUpWrapper>
-                  </CardWrapper>
-                </CardContent>
-              </CardActionArea>
-            </Card>
+            <Link href={`/board/list/${data._id}`}>
+              <Card className={classes.root}>
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.media}
+                    image={imageArray[index] || data.images[0]}
+                  />
+                  <CardContent>
+                    <CardWrapper>
+                      <ContentsWrapper>
+                        <Title>{data.title}</Title>
+                        <ProfileWrapper>
+                          <AccountCircleIcon />
+                          <User>{data.writer}</User>
+                        </ProfileWrapper>
+                        <CreatedAt>DATE : {getDate(data.createdAt)}</CreatedAt>
+                      </ContentsWrapper>
+                      <ThumpsUpWrapper>
+                        <ThumbUpIcon
+                          style={{
+                            width: '28px',
+                            height: '30px',
+                            color: '#FFD600',
+                          }}
+                        />
+                        <LikeCount>{data.likeCount}</LikeCount>
+                      </ThumpsUpWrapper>
+                    </CardWrapper>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Link>
           </div>
         ))}
       </Wrapper>

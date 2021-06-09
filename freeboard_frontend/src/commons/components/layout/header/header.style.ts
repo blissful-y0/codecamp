@@ -18,6 +18,7 @@ export const SignInButton = styled.button`
   padding: 10px 16px;
   font-weight: bold;
   cursor: pointer;
+  outline: none;
 `;
 
 export const LoginButton = styled.button`
@@ -30,6 +31,7 @@ export const LoginButton = styled.button`
   font-weight: bold;
   background-color: white;
   cursor: pointer;
+  outline: none;
 `;
 
 export const Logo = styled.img`

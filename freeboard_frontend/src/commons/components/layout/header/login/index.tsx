@@ -1,0 +1,88 @@
+import Dialog from '@material-ui/core/Dialog';
+import {LOGIN_USER} from './query';
+import {useContext, useState} from 'react';
+import {
+  BackgroundImage,
+  ContentsWrapper,
+  DialogWrapper,
+  Logo,
+  Input,
+  LoginStatus,
+  Checkbox,
+  LoginButton,
+  LogoWrapper,
+  IDPasswordSigninWrapper,
+  SignInButton,
+  FindIDButton,
+  FindPasswordButton,
+} from './style';
+import {useMutation} from '@apollo/client';
+import {AppContext} from '../../../../../../pages/_app';
+
+export default function LoginUI({handleClose}) {
+  const {setAccessToken} = useContext(AppContext);
+  const [LOGIN] = useMutation(LOGIN_USER);
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const onChangeInput = (event) => {
+    const result = {...loginData, [event.target.name]: event.target.value};
+    setLoginData(result);
+  };
+
+  const onClickLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const {data} = await LOGIN({
+        variables: {
+          email: loginData.email,
+          password: loginData.password,
+        },
+      });
+      setAccessToken(data?.loginUser.accessToken);
+      console.log(data?.loginUser.accessToken);
+      handleClose();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  return (
+    <Dialog onClose={handleClose} open={true}>
+      <DialogWrapper>
+        <BackgroundImage>
+          <ContentsWrapper>
+            <LogoWrapper>
+              <Logo src="/logo.png" />
+            </LogoWrapper>
+            <Input
+              name="email"
+              type="text"
+              placeholder="이메일을 입력해주세요"
+              onChange={onChangeInput}
+            />
+            <Input
+              type="password"
+              name="password"
+              placeholder="비밀번호를 입력해주세요"
+              style={{marginTop: '-20px'}}
+              onChange={onChangeInput}
+            />
+            <LoginStatus>
+              <Checkbox type="checkbox" />
+              로그인 상태 유지
+            </LoginStatus>
+            <LoginButton onClick={onClickLogin}>로그인</LoginButton>
+            <IDPasswordSigninWrapper>
+              <SignInButton>이메일 찾기</SignInButton>
+              <FindIDButton>비밀번호 찾기</FindIDButton>
+              <FindPasswordButton>회원가입</FindPasswordButton>
+            </IDPasswordSigninWrapper>
+          </ContentsWrapper>
+        </BackgroundImage>
+      </DialogWrapper>
+    </Dialog>
+  );
+}

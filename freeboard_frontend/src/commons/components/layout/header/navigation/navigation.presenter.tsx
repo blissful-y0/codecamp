@@ -11,17 +11,39 @@ import {
 export default function Navigation() {
   const router = useRouter();
 
+  const onClickFreeBoard = () => {
+    router.push('/board');
+  };
+
+  const onClickMarket = () => {};
+
+  const onClickMyPage = () => {};
+
   return (
     <>
       <MenuBar>
         <MenuWrapper>
-          <Freeboard select={router.pathname.includes('board')}>
+          <Freeboard
+            style={{cursor: 'pointer'}}
+            onClick={onClickFreeBoard}
+            select={router.pathname.includes('board')}
+          >
             자유게시판
           </Freeboard>
           <Bar />
-          <Market select={router.pathname.includes('market')}>중고마켓</Market>
+          <Market
+            style={{cursor: 'pointer'}}
+            onClick={onClickMarket}
+            select={router.pathname.includes('market')}
+          >
+            중고마켓
+          </Market>
           <Bar />
-          <MyPage select={router.pathname.includes('mypage')}>
+          <MyPage
+            style={{cursor: 'pointer'}}
+            onClick={onClickMyPage}
+            select={router.pathname.includes('mypage')}
+          >
             마이페이지
           </MyPage>
         </MenuWrapper>

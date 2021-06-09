@@ -71,8 +71,6 @@ export default function RenderListPage() {
     setSearchIndexResult(Number(searchIndex.fetchBoardsCount));
   };
 
-  console.log(searchIndex?.fetchBoardsCount);
-
   return (
     <RenderUI
       data={data}
