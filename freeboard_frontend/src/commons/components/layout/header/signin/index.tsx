@@ -60,7 +60,11 @@ export default function SignIn({handleSignInClose}) {
   };
 
   return (
-    <Dialog onClose={handleSignInClose} open={true}>
+    <Dialog
+      // PaperProps={{style: {borderRadius: '20px'}}}
+      onClose={handleSignInClose}
+      open={true}
+    >
       <Wrapper>
         <DialogWrapper>
           <Title>회원가입</Title>
@@ -72,12 +76,12 @@ export default function SignIn({handleSignInClose}) {
             <Input {...register('name')} />
             <ErrorMessage>{errors.name && errors.name.message}</ErrorMessage>
             <Label htmlFor="password">비밀번호</Label>
-            <Input {...register('password')} />
+            <Input type="password" {...register('password')} />
             <ErrorMessage>
               {errors.password && errors.password.message}
             </ErrorMessage>
             <Label htmlFor="passwordCheck">비밀번호 확인</Label>
-            <Input {...register('passwordCheck')} />
+            <Input type="password" {...register('passwordCheck')} />
             <ErrorMessage>
               {errors.passwordCheck && errors.passwordCheck.message}
             </ErrorMessage>

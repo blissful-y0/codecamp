@@ -15,7 +15,9 @@ export default function Navigation() {
     router.push('/board');
   };
 
-  const onClickMarket = () => {};
+  const onClickMarket = () => {
+    router.push('/market');
+  };
 
   const onClickMyPage = () => {};
 

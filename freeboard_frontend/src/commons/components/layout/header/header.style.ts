@@ -42,6 +42,16 @@ export const Logo = styled.img`
 
 export const LoginSignInWrapper = styled.div`
   display: flex;
-  width: 10%;
-  justify-content: space-around;
+  width: 20%;
+  justify-content: center;
+`;
+
+export const LoggedIn = styled.button`
+  width: 184px;
+  height: 44px;
+  border-radius: 10px;
+  border: 0px;
+  background-color: #ffd600;
+  font-weight: bold;
+  outline: none;
 `;

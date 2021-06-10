@@ -3,7 +3,7 @@ import {useQuery} from '@apollo/client';
 import {FETCH_BOARD_COUNT, FETCH_LIST} from './list.query';
 import RenderUI from '../list/list.presenter';
 import {useState} from 'react';
-import SearchBar from './search.navigation.presenter';
+import SearchBar from '../../commons/components/search/search.navigation.presenter';
 import DatePicker from './datepicker.navigation.presenter';
 import CardContainer from './card.presenter';
 

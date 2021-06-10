@@ -15,6 +15,7 @@ import {
   SignInButton,
   FindIDButton,
   FindPasswordButton,
+  ErrorMessage,
 } from './style';
 import {useMutation} from '@apollo/client';
 import {AppContext} from '../../../../../../pages/_app';
@@ -26,6 +27,7 @@ export default function LoginUI({handleClose}) {
     email: '',
     password: '',
   });
+  const [errorMsg, setErrorMsg] = useState('');
 
   const onChangeInput = (event) => {
     const result = {...loginData, [event.target.name]: event.target.value};
@@ -42,10 +44,9 @@ export default function LoginUI({handleClose}) {
         },
       });
       setAccessToken(data?.loginUser.accessToken);
-      console.log(data?.loginUser.accessToken);
       handleClose();
     } catch (error) {
-      console.log(error.message);
+      setErrorMsg(error.message);
     }
   };
 
@@ -75,6 +76,7 @@ export default function LoginUI({handleClose}) {
               로그인 상태 유지
             </LoginStatus>
             <LoginButton onClick={onClickLogin}>로그인</LoginButton>
+            <ErrorMessage>{errorMsg}</ErrorMessage>
             <IDPasswordSigninWrapper>
               <SignInButton>이메일 찾기</SignInButton>
               <FindIDButton>비밀번호 찾기</FindIDButton>

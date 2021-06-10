@@ -65,9 +65,11 @@ export const signUpValidation = yup.object({
   password: yup
     .string()
     .required('비밀번호를 입력해주세요.')
-    .max(15, '비밀번호는 15자리 이하여야 합니다.')
-    .min(4, '비밀번호는 4자리 이상이어야 합니다.'),
+    .max(30, '비밀번호는 30자리 이하여야 합니다.')
+    .min(4, '비밀번호는 4자리 이상이어야 합니다.')
+    .matches(/^[a-zA-Z0-9]*$/i),
   passwordCheck: yup
     .string()
-    .oneOf([yup.ref('password'), null], '비밀번호가 일치하지 않습니다.'),
+    .oneOf([yup.ref('password'), null], '비밀번호가 일치하지 않습니다.')
+    .matches(/^[a-zA-Z0-9]*$/i),
 });

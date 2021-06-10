@@ -1,0 +1,79 @@
+import {
+  ItemOnSales,
+  ItemOnSalesWrapper,
+  NavigationBar,
+  PageWrapper,
+  SearchButton,
+  SearchWrapper,
+  Wrapper,
+  ItemOnSold,
+  ItemListWrapper,
+  ItemSumnail,
+  ItemTitle,
+  ItemInfoWrapper,
+  ItemSubtitle,
+  ItemHashTag,
+  ProfileIcon,
+  ItemTitleWrapper,
+  ProfileWrapper,
+  HeartIcon,
+  ItemPrice,
+} from './list.style';
+import SearchUI from '../../commons/components/search/search.navigation.presenter';
+import {getDate} from '../../commons/libraries/utils';
+
+export default function MarketListUI({data, onChangeSearch}) {
+  return (
+    <>
+      <PageWrapper>
+        <Wrapper>
+          <NavigationBar>
+            <ItemOnSalesWrapper>
+              <ItemOnSales>판매중상품</ItemOnSales>
+              <ItemOnSold>판매된상품</ItemOnSold>
+            </ItemOnSalesWrapper>
+            <SearchWrapper>
+              <SearchUI onChangeSearch={onChangeSearch} />
+              <SearchButton>검색</SearchButton>
+            </SearchWrapper>
+          </NavigationBar>
+          {data?.fetchUseditems?.map((data) => (
+            <ItemListWrapper key={data._id}>
+              <ItemSumnail />
+              <ItemInfoWrapper>
+                <ItemTitleWrapper>
+                  <ItemTitle>
+                    {data.name}
+                    <ItemSubtitle>
+                      {data.remarks}
+                      <ItemHashTag>
+                        {data.tags.map((data) => data)}
+                        <ItemHashTag>{getDate(data.createdAt)}</ItemHashTag>
+                      </ItemHashTag>
+                    </ItemSubtitle>
+                  </ItemTitle>
+                </ItemTitleWrapper>
+                <ProfileWrapper>
+                  <ProfileIcon style={{color: '#BDBDBD', marginRight: '5px'}} />
+                  {data.seller.name}
+                  <HeartIcon
+                    style={{
+                      color: '#FFD600',
+                      marginLeft: '20px',
+                      marginRight: '5px',
+                    }}
+                  />
+                  200
+                </ProfileWrapper>
+              </ItemInfoWrapper>
+              <ItemPrice>
+                <span style={{color: '#FFD600', marginRight: '6px'}}>₩</span>
+                {data.price.toLocaleString()}원
+              </ItemPrice>
+            </ItemListWrapper>
+          ))}
+        </Wrapper>
+      </PageWrapper>
+    </>
+  );
+}

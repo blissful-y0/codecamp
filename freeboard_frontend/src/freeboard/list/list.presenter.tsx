@@ -75,6 +75,7 @@ export default function RenderUI({
           <ListTitle>제목</ListTitle>
           <Writer>작성자</Writer>
           <CreatedAt>작성일</CreatedAt>
+          fetchUseditems
         </NavigationBar>
         {searchData?.fetchBoards?.slice(0, 10).map((data, index) => (
           <div key={data?._id}>
