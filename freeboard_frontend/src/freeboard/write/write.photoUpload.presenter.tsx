@@ -1,8 +1,6 @@
 import {validateImage} from '../../commons/libraries/utils';
-import {UPLOAD_IMAGE} from './write.query';
 import {PhotoAttach, Image} from './write.style';
-import {useEffect, useRef, useState} from 'react';
-import styled from '@emotion/styled';
+import {useRef, useState} from 'react';
 
 export default function PhotoUploadUI({setUploadedFileArr, uploadedFileArr}) {
   const fileRef = useRef<HTMLInputElement>(null);

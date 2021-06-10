@@ -4,7 +4,6 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 export const Wrapper = styled.div`
   width: 80%;
-  height: 1000px;
   /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
@@ -56,7 +55,7 @@ export const ItemTitleWrapper = styled.div`
   height: 160px;
 `;
 
-export const ItemTitle = styled.h1`
+export const ItemTitle = styled.div`
   font-size: 24px;
   font-weight: 500;
   height: 24px;
@@ -81,7 +80,7 @@ export const ProfileWrapper = styled.div`
   justify-content: center;
 `;
 
-export const ItemSubtitle = styled.h2`
+export const ItemSubtitle = styled.div`
   font-size: 16px;
   color: #4f4f4f;
   font-weight: 500;
@@ -89,7 +88,7 @@ export const ItemSubtitle = styled.h2`
   height: 16px;
 `;
 
-export const ItemHashTag = styled.h3`
+export const ItemHashTag = styled.div`
   font-size: 16px;
   color: #bdbdbd;
   font-weight: 500;
@@ -127,8 +126,8 @@ export const ItemOnSold = styled.div`
 export const ItemOnSalesWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  width: 20%;
+  justify-content: space-evenly;
+  width: 15%;
   margin-left: -20px;
 `;
 

@@ -9,14 +9,13 @@ import {
 } from './header.style';
 import Navigation from './navigation/navigation.presenter';
 import {useRouter} from 'next/router';
-import {useState, createContext, useContext} from 'react';
+import {useState, useContext} from 'react';
 import LoginModal from './login/index';
 import SignInModal from './signin/index';
 import {AppContext} from '../../../../../pages/_app';
 
 export default function Header() {
   const router = useRouter();
-  const [test, setTest] = useState('이것은 테스트입니다.');
   const [open, setOpen] = useState(false);
   const [signInOpen, setSignInOpen] = useState(false);
 
