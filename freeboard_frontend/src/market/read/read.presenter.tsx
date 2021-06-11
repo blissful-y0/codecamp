@@ -26,6 +26,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Link from 'next/link';
 import Slider from './slider/read.slider.presenter';
 import Map from '../../commons/components/map/map';
+import CommentWrite from '../reply/reply.container';
 
 export default function MarketReadUI({fetchitem}) {
   return (
@@ -84,6 +85,7 @@ export default function MarketReadUI({fetchitem}) {
           </Link>
           <GreyButton>수정하기</GreyButton>
         </GreyButtonWrapper>
+        <CommentWrite />
       </TotalWrapper>
     </>
   );

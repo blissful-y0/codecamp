@@ -4,13 +4,13 @@ import KakaomapComponent from './map.component';
 
 const Map: React.FC = () => {
   useEffect(() => {
-    var container = document.getElementById('map');
-    var options = {
+    const container = document.getElementById('map');
+    const options = {
       center: new window.kakao.maps.LatLng(33.450701, 126.570667),
       level: 3,
     };
 
-    var map = new window.kakao.maps.Map(container, options);
+    const map = new window.kakao.maps.Map(container, options);
   }, []);
 
   return (
@@ -28,7 +28,6 @@ const Map: React.FC = () => {
               center: new kakao.maps.LatLng(33.450701, 126.570667),
               level: 3,
             };
-        
             var map = new kakao.maps.Map(container, options);
           `,
           }}

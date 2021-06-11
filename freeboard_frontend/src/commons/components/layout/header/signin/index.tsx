@@ -1,4 +1,4 @@
-import {useForm, SubmitHandler, Controller} from 'react-hook-form';
+import {useForm, SubmitHandler} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useMutation} from '@apollo/client';
 import {CREATE_USER} from './query';
