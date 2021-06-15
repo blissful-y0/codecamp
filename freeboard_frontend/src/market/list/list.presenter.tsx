@@ -18,9 +18,12 @@ import {
   ProfileWrapper,
   HeartIcon,
   ItemPrice,
+  WriteBoardButton,
+  ButtonWrapper,
 } from './list.style';
 import SearchUI from '../../commons/components/search/search.navigation.presenter';
 import {getDate} from '../../commons/libraries/utils';
+import Link from 'next/link';
 
 export default function MarketListUI({data, onChangeSearch, onClickTitle}) {
   return (
@@ -38,8 +41,8 @@ export default function MarketListUI({data, onChangeSearch, onClickTitle}) {
             </SearchWrapper>
           </NavigationBar>
           {data?.fetchUseditems
-            ?.slice(0, data?.fetchUseditems.length)
-            .sort((a, b) => a.price - b.price)
+            // ?.slice(0, data?.fetchUseditems.length)
+            // .sort((a, b) => a.price - b.price)
             .map((data) => (
               <ItemListWrapper onClick={onClickTitle(data?._id)} key={data._id}>
                 <ItemSumnail />
@@ -77,6 +80,11 @@ export default function MarketListUI({data, onChangeSearch, onClickTitle}) {
                 </ItemPrice>
               </ItemListWrapper>
             ))}
+          <ButtonWrapper>
+            <Link href="/market/write">
+              <WriteBoardButton>상품 등록하기</WriteBoardButton>
+            </Link>
+          </ButtonWrapper>
         </Wrapper>
       </PageWrapper>
     </>

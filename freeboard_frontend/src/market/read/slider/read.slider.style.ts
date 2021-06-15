@@ -16,7 +16,7 @@ export const SliderWrapper = styled(Slider)`
     width: 500px;
     height: 500px;
     /* border: 1px solid black; */
-    outline: none;
+    /* outline: none; */
   }
   .slick-dots {
     position: absolute;

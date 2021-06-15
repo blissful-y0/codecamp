@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import React, {useEffect} from 'react';
-import KakaomapComponent from './map.component';
 
 const Map: React.FC = () => {
   useEffect(() => {

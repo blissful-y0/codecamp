@@ -1,5 +1,5 @@
-import {validateImage} from '../../commons/libraries/utils';
-import {PhotoAttach, Image} from './write.style';
+import {validateImage} from '../../libraries/utils';
+import {PhotoAttach, Image} from '../../../freeboard/write/write.style';
 import {useRef, useState} from 'react';
 
 export default function PhotoUploadUI({setUploadedFileArr, uploadedFileArr}) {

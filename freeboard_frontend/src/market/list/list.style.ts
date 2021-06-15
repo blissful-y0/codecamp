@@ -147,3 +147,19 @@ export const SearchWrapper = styled.div`
   justify-content: flex-end;
   width: 45%;
 `;
+
+export const WriteBoardButton = styled.button`
+  background: #ffffff;
+  /* Black */
+  padding: 14px 16px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  cursor: pointer;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin: 10px;
+`;

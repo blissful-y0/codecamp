@@ -18,7 +18,7 @@ import {
   LabelForMainSetting,
 } from './write.style';
 import Postcode from '../../commons/components/postcode/postcode.presenter';
-import ImageUpload from './write.photoUpload.presenter';
+import ImageUpload from '../../commons/components/imageUpload/photoUpload.presenter';
 
 export default function WriteUI({
   onChangeInput,

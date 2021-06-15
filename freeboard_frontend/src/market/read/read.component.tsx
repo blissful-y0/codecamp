@@ -27,8 +27,6 @@ export function ReadUI({}) {
   if (loading) return <></>;
   if (error) return router.push('/board');
 
-  console.log(fetcheditem);
-
   return (
     <>
       <MarketReadUI fetchitem={fetcheditem} />
