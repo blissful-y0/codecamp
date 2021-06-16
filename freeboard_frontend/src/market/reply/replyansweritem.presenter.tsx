@@ -7,17 +7,22 @@ import {
   WriterRatingWrapper,
   CommnetCreatedAt,
   UIWrapper,
-} from './replyitems.style';
+  ReplyIcon,
+  Wrapper,
+} from './replyansweritem.style';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
+import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
 import {getDate} from '../../commons/libraries/utils';
-import AnswerUI from './replyansweritem.presenter';
 
-export function ReplyQuestionUI({data}) {
+export default function AnswerUI() {
   return (
-    <>
-      <UIWrapper>
+    <UIWrapper>
+      <Wrapper>
+        <ReplyIcon>
+          <SubdirectoryArrowRightIcon style={{width: '30px', height: '30px'}} />
+        </ReplyIcon>
         <ReadCommentWrapper>
           <ProfilePhoto>
             <AccountCircleIcon
@@ -26,12 +31,10 @@ export function ReplyQuestionUI({data}) {
           </ProfilePhoto>
           <CommentContentsWrapper>
             <WriterRatingWrapper>
-              <CommentWriter>{data?.user?.name}</CommentWriter>
+              <CommentWriter>adsf</CommentWriter>
             </WriterRatingWrapper>
-            <CommentContents>{data?.contents}</CommentContents>
-            <CommnetCreatedAt>
-              {getDate(data?.updatedAt) || getDate(data?.createdAt)}
-            </CommnetCreatedAt>
+            <CommentContents>asdf</CommentContents>
+            <CommnetCreatedAt>asdf</CommnetCreatedAt>
           </CommentContentsWrapper>
           <CreateIcon style={{cursor: 'pointer'}} />
           <DeleteIcon
@@ -39,10 +42,7 @@ export function ReplyQuestionUI({data}) {
             // onClick={handleDeleteModalToggle}
           />
         </ReadCommentWrapper>
-      </UIWrapper>
-      <AnswerUI />
-    </>
+      </Wrapper>
+    </UIWrapper>
   );
 }
-
-export default ReplyQuestionUI;
