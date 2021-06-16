@@ -7,7 +7,6 @@ export const UIWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px;
-  margin: 10px;
   margin-top: 20px;
 `;
 
@@ -15,6 +14,12 @@ export const Wrapper = styled.div`
   width: 95%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+`;
+
+export const ReplyWrapper = styled.div`
+  width: 100%;
+  align-items: center;
   justify-content: center;
 `;
 

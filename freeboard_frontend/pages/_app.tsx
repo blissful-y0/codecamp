@@ -14,10 +14,13 @@ import axios from 'axios';
 export const AppContext = createContext({
   accessToken: '',
   setAccessToken: (_: string) => {},
+  userInfo: {},
+  setUserInfo: (_: any) => {},
 });
 
 function MyApp({Component, pageProps}) {
   const [accessToken, setAccessToken] = useState('');
+  const [userInfo, setUserInfo] = useState({});
 
   const uploadLink = createUploadLink({
     uri: 'http://backend.codebootcamp.co.kr/graphql',
@@ -71,7 +74,9 @@ function MyApp({Component, pageProps}) {
 
   return (
     <>
-      <AppContext.Provider value={{accessToken, setAccessToken}}>
+      <AppContext.Provider
+        value={{accessToken, setAccessToken, setUserInfo, userInfo}}
+      >
         <ApolloProvider client={client}>
           <Layout>
             <GlobalStyles />

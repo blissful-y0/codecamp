@@ -33,10 +33,8 @@ export default function SignIn({handleSignInClose}) {
     // mode: 'onBlur',
   });
   const [createUser] = useMutation(CREATE_USER);
-  const [validateMessage, setValidateMessage] = useState('');
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    console.log(data);
     event.preventDefault();
     try {
       let userData = {
@@ -44,14 +42,11 @@ export default function SignIn({handleSignInClose}) {
         name: data.name,
         password: data.password,
       };
-
       const result = await createUser({
         variables: {
           createUserInput: userData,
         },
       });
-
-      console.log(result);
       handleSignInClose();
       alert('가입에 성공했습니다!');
     } catch (error) {

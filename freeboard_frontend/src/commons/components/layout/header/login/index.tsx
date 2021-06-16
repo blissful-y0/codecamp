@@ -1,5 +1,5 @@
 import Dialog from '@material-ui/core/Dialog';
-import {LOGIN_USER} from './query';
+import {LOGIN_USER, FETCH_USER_LOGGED_IN} from './query';
 import {useContext, useState} from 'react';
 import {
   BackgroundImage,
@@ -17,17 +17,18 @@ import {
   FindPasswordButton,
   ErrorMessage,
 } from './style';
-import {useMutation} from '@apollo/client';
+import {useMutation, useApolloClient} from '@apollo/client';
 import {AppContext} from '../../../../../../pages/_app';
 
 export default function LoginUI({handleClose}) {
-  const {setAccessToken} = useContext(AppContext);
+  const {setAccessToken, setUserInfo} = useContext(AppContext);
   const [LOGIN] = useMutation(LOGIN_USER);
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   });
   const [errorMsg, setErrorMsg] = useState('');
+  const client = useApolloClient();
 
   const onChangeInput = (event) => {
     const result = {...loginData, [event.target.name]: event.target.value};
@@ -44,6 +45,13 @@ export default function LoginUI({handleClose}) {
         },
       });
       setAccessToken(data?.loginUser.accessToken);
+      const userInfo = await client.query({
+        query: FETCH_USER_LOGGED_IN,
+        context: {
+          headers: {authorization: data?.loginUser.accessToken},
+        },
+      });
+      setUserInfo(userInfo.data.fetchUserLoggedIn);
       handleClose();
     } catch (error) {
       setErrorMsg(error.message);

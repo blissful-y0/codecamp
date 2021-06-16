@@ -24,7 +24,6 @@ interface IProps {
   onSubmit: () => void;
   handleSubmit: () => void;
   errors: string;
-  onClickSubmit: () => void;
 }
 
 export default function WriteUI({
@@ -34,7 +33,6 @@ export default function WriteUI({
   errors,
   setContext,
   context,
-  onClickSubmit,
 }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -101,9 +99,7 @@ export default function WriteUI({
             <Label>사진</Label>
             <ImageWrapper>{/* <ImageUpload /> */}</ImageWrapper>
           </LabelWrapper>
-          <UploadButton type="submit" onClick={onClickSubmit}>
-            등록하기
-          </UploadButton>
+          <UploadButton type="submit">등록하기</UploadButton>
         </Wrapper>
       </UIWrapper>
     </form>

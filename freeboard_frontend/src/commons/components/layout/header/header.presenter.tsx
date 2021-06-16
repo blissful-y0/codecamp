@@ -19,7 +19,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [signInOpen, setSignInOpen] = useState(false);
 
-  const {accessToken} = useContext(AppContext);
+  const {accessToken, userInfo} = useContext(AppContext);
 
   const handleClickOpenSignin = () => {
     setSignInOpen(true);
@@ -48,7 +48,7 @@ export default function Header() {
               </SignInButton>
             </>
           ) : (
-            <LoggedIn>어서오세요!</LoggedIn>
+            <LoggedIn>어서오세요! {userInfo?.name} 님</LoggedIn>
           )}
         </LoginSignInWrapper>
       </TitleWrapper>

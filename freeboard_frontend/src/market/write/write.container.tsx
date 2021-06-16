@@ -32,23 +32,21 @@ export function UsedBoardWrite() {
   });
   if (!accessToken) return <></>;
 
-  const [data, setData] = useState({
-    name: '',
-    remark: '',
-    price: '',
-    tags: '',
-  });
   const [context, setContext] = useState('');
 
   const [createUsedBoard] =
     useMutation<IMutation, IMutationCreateUseditemArgs>(CREATE_USED_BOARD);
 
-  const onSubmit = (value) => {
-    setData(value);
-  };
-
-  const onClickSubmit = async () => {
+  const onSubmit = async (value) => {
+    event.preventDefault();
     try {
+      let data = {
+        name: value.name,
+        remark: value.remark,
+        price: value.price,
+        tags: value.tags,
+      };
+
       const result = await createUsedBoard({
         variables: {
           createUseditemInput: {
@@ -61,6 +59,7 @@ export function UsedBoardWrite() {
         },
       });
       alert('게시글 등록 완료');
+      router.push(`/market/list/${result.data.createUseditem._id}`);
     } catch (error) {
       console.log(error.message);
     }
@@ -75,7 +74,6 @@ export function UsedBoardWrite() {
         errors={errors}
         context={context}
         setContext={setContext}
-        onClickSubmit={onClickSubmit}
       />
     </>
   );
