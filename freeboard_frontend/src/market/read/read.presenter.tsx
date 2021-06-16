@@ -71,9 +71,11 @@ export default function MarketReadUI({fetchitem}) {
             <Contexts>
               <Slider />
             </Contexts>
-            <ContentsDetail>
-              {fetchitem?.fetchUseditem?.contents}
-            </ContentsDetail>
+            <ContentsDetail
+              dangerouslySetInnerHTML={{
+                __html: fetchitem?.fetchUseditem?.contents,
+              }}
+            ></ContentsDetail>
             <MapWrapper>
               <Map />
             </MapWrapper>

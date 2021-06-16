@@ -5,10 +5,11 @@ const Map: React.FC = () => {
   useEffect(() => {
     const container = document.getElementById('map');
     const options = {
+      // @ts-ignore
       center: new window.kakao.maps.LatLng(33.450701, 126.570667),
       level: 3,
     };
-
+    // @ts-ignore
     const map = new window.kakao.maps.Map(container, options);
   }, []);
 

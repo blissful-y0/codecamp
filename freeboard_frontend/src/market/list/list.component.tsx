@@ -31,6 +31,7 @@ export function MarketList(props) {
 
   const onLoadMore = () => {
     if (!data) return;
+    // @ts-ignore
     if (!data?.fetchUseditems?.length % 10 === 0) return;
     fetchMore({
       variables: {

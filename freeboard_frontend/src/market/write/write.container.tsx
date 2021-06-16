@@ -39,10 +39,15 @@ export function UsedBoardWrite() {
     tags: '',
   });
   const [context, setContext] = useState('');
+
   const [createUsedBoard] =
     useMutation<IMutation, IMutationCreateUseditemArgs>(CREATE_USED_BOARD);
-  const onSubmit = async (value) => {
+
+  const onSubmit = (value) => {
     setData(value);
+  };
+
+  const onClickSubmit = async () => {
     try {
       const result = await createUsedBoard({
         variables: {
@@ -55,10 +60,8 @@ export function UsedBoardWrite() {
           },
         },
       });
-      console.log(result);
       alert('게시글 등록 완료');
     } catch (error) {
-      console.log(context);
       console.log(error.message);
     }
   };
@@ -69,9 +72,10 @@ export function UsedBoardWrite() {
         onSubmit={onSubmit}
         handleSubmit={handleSubmit}
         register={register}
+        errors={errors}
         context={context}
         setContext={setContext}
-        errors={errors}
+        onClickSubmit={onClickSubmit}
       />
     </>
   );
