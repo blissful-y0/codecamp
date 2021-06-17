@@ -25,16 +25,16 @@ export function ReplyQuestionUI({data}) {
     setOpen((prev) => !prev);
   };
 
-  const {
-    data: questionAnswersData,
-    loading,
-    error,
-    refetch,
-  } = useQuery(FETCH_USED_ITEM_QUESTION_ANSWERS, {
-    variables: {
-      useditemQuestionId: String(data._id),
-    },
-  });
+  const {data: questionAnswersData, refetch} = useQuery(
+    FETCH_USED_ITEM_QUESTION_ANSWERS,
+    {
+      variables: {
+        useditemQuestionId: String(data._id),
+      },
+    }
+  );
+
+  console.log(data._id);
 
   return (
     <>
@@ -66,9 +66,17 @@ export function ReplyQuestionUI({data}) {
         </ReadCommentWrapper>
       </UIWrapper>
       {open && (
-        <ReplyWrite replyId={data._id} handleClickOpen={handleClickOpen} />
+        <ReplyWrite
+          replyId={data._id}
+          handleClickOpen={handleClickOpen}
+          refetch={refetch}
+        />
       )}
-      <AnswerUI data={questionAnswersData} />
+      <AnswerUI
+        refetch={refetch}
+        replyId={data._id}
+        data={questionAnswersData}
+      />
     </>
   );
 }
