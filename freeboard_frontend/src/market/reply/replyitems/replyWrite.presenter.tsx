@@ -8,7 +8,7 @@ import {
   UploadButton,
 } from './replyWrite.style';
 import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
-import {CREATE_USED_ITEM_QUESTION_ANSWER} from './reply.query';
+import {CREATE_USED_ITEM_QUESTION_ANSWER} from '../reply.query';
 import {useState} from 'react';
 import {useMutation} from '@apollo/client';
 
@@ -18,8 +18,6 @@ export function ReplyWriteUI({replyId, handleClickOpen, refetch}) {
   const [createUsedItemQuestionAnswer] = useMutation(
     CREATE_USED_ITEM_QUESTION_ANSWER
   );
-
-  console.log(replyId);
 
   const onChangeTextArea = (event) => {
     if (event.target.value.length > 0) {

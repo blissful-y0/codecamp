@@ -12,11 +12,11 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReplyIcon from '@material-ui/icons/Reply';
-import {getDate} from '../../commons/libraries/utils';
-import AnswerUI from './replyansweritem.presenter';
+import {getDate} from '../../../commons/libraries/utils';
+import AnswerUI from '../replyAnswer/replyansweritem.presenter';
 import ReplyWrite from './replyWrite.presenter';
 import {useState} from 'react';
-import {FETCH_USED_ITEM_QUESTION_ANSWERS} from './reply.query';
+import {FETCH_USED_ITEM_QUESTION_ANSWERS} from '../reply.query';
 import {useQuery} from '@apollo/client';
 
 export function ReplyQuestionUI({data}) {

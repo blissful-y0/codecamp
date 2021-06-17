@@ -15,7 +15,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
 import ReplyIconforUI from '@material-ui/icons/Reply';
-import {getDate} from '../../commons/libraries/utils';
+import {getDate} from '../../../commons/libraries/utils';
 import {useState} from 'react';
 import ReplyWrite from './replyAnswerWrite.presenter';
 

@@ -7,7 +7,7 @@ import {
   UploadButton,
   ReplyWrapper,
 } from './reply.style';
-import ReplyQuestionUI from './replyitems.presenter';
+import ReplyQuestionUI from './replyitems/replyitems.presenter';
 
 export default function RenderCommentUI({
   onClickUpload,

@@ -6,9 +6,9 @@ import {
   Input,
   BottomNavigation,
   UploadButton,
-} from './replyWrite.style';
+} from '../replyitems/replyWrite.style';
 import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
-import {CREATE_USED_ITEM_QUESTION_ANSWER} from './reply.query';
+import {CREATE_USED_ITEM_QUESTION_ANSWER} from '../reply.query';
 import {useState} from 'react';
 import {useMutation} from '@apollo/client';
 
