@@ -18,7 +18,6 @@ export const ContentsWrapper = styled.div`
 export const ReadCommentWrapper = styled.div`
   display: flex;
   width: 100%;
-  padding: 15px;
   margin-top: 10px;
   justify-content: center;
 `;
@@ -63,7 +62,7 @@ export const WriterRatingWrapper = styled.div`
 export const UIWrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 102%;
+  width: 101.5%;
 `;
 
 export const ReplyIcon = styled.div`

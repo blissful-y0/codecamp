@@ -14,6 +14,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
+import ReplyIconforUI from '@material-ui/icons/Reply';
 import {getDate} from '../../commons/libraries/utils';
 
 export default function AnswerUI() {
@@ -36,6 +37,7 @@ export default function AnswerUI() {
             <CommentContents>asdf</CommentContents>
             <CommnetCreatedAt>asdf</CommnetCreatedAt>
           </CommentContentsWrapper>
+          <ReplyIconforUI style={{cursor: 'pointer', marginRight: '12px'}} />
           <CreateIcon style={{cursor: 'pointer'}} />
           <DeleteIcon
             style={{cursor: 'pointer', marginLeft: '10px'}}

@@ -20,10 +20,10 @@ export const ContentsWrapper = styled.div`
 export const ReadCommentWrapper = styled.div`
   display: flex;
   width: 93%;
-  padding: 15px;
   margin-top: 10px;
   border-bottom: 1px solid #bdbdbd;
   display: flex;
+  padding-bottom: 10px;
 `;
 
 export const CommentWriter = styled.h1`

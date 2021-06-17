@@ -50,13 +50,14 @@ export const FETCH_USED_ITEM_QUESTION_ANSWERS = gql`
   }
 `;
 
-export const CREATE_USED_ITEM_QUESTION_ASWER = gql`
-  mutation {
+export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
+  mutation createUseditemQuestionAnswer(
+    $createUseditemQuestionAnswerInput: CreateUseditemQuestionAnswerInput!
+    $useditemQuestionId: ID!
+  ) {
     createUseditemQuestionAnswer(
-      useditemQuestionId: "60c9aec1d3d082002a0fed42"
-      createUseditemQuestionAnswerInput: {
-        contents: "우와아아악우와아아아아아아아악"
-      }
+      createUseditemQuestionAnswerInput: $createUseditemQuestionAnswerInput
+      useditemQuestionId: $useditemQuestionId
     ) {
       _id
       contents
