@@ -32,10 +32,8 @@ export const FETCH_USED_ITEM_QUESTIONS = gql`
 `;
 
 export const FETCH_USED_ITEM_QUESTION_ANSWERS = gql`
-  query {
-    fetchUseditemQuestionAnswers(
-      useditemQuestionId: "60c9b6d5d3d082002a0fed57"
-    ) {
+  query fetchUseditemQuestionAnswers($useditemQuestionId: ID!) {
+    fetchUseditemQuestionAnswers(useditemQuestionId: $useditemQuestionId) {
       _id
       contents
       useditemQuestion {

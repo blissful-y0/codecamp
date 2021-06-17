@@ -29,7 +29,7 @@ export const CommentWriter = styled.h1`
 export const CommentContents = styled.div`
   font-size: 16px;
   color: #4f4f4f;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 `;
 
 export const CommnetCreatedAt = styled.div`

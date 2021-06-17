@@ -32,7 +32,6 @@ function WebEditor({context, setContext}) {
     'color',
     'background',
   ];
-  const [value, setValue] = useState('');
 
   const onChange = (value) => {
     setContext(value);

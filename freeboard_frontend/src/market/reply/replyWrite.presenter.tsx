@@ -19,7 +19,6 @@ export function ReplyWriteUI({replyId, handleClickOpen}) {
     CREATE_USED_ITEM_QUESTION_ANSWER
   );
 
-  console.log(replyId);
   const onChangeTextArea = (event) => {
     if (event.target.value.length > 0) {
       setFlag(true);

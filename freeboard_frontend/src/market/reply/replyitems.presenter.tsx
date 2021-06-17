@@ -16,12 +16,25 @@ import {getDate} from '../../commons/libraries/utils';
 import AnswerUI from './replyansweritem.presenter';
 import ReplyWrite from './replyWrite.presenter';
 import {useState} from 'react';
+import {FETCH_USED_ITEM_QUESTION_ANSWERS} from './reply.query';
+import {useQuery} from '@apollo/client';
 
 export function ReplyQuestionUI({data}) {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen((prev) => !prev);
   };
+
+  const {
+    data: questionAnswersData,
+    loading,
+    error,
+    refetch,
+  } = useQuery(FETCH_USED_ITEM_QUESTION_ANSWERS, {
+    variables: {
+      useditemQuestionId: String(data._id),
+    },
+  });
 
   return (
     <>
@@ -55,7 +68,7 @@ export function ReplyQuestionUI({data}) {
       {open && (
         <ReplyWrite replyId={data._id} handleClickOpen={handleClickOpen} />
       )}
-      <AnswerUI />
+      <AnswerUI data={questionAnswersData} />
     </>
   );
 }
