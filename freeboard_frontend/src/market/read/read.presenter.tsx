@@ -28,7 +28,7 @@ import Slider from './slider/read.slider.presenter';
 import Map from '../../commons/components/map/map';
 import CommentWrite from '../reply/reply.container';
 
-export default function MarketReadUI({fetchitem}) {
+export default function MarketReadUI({fetchitem, onClickUpdate}) {
   return (
     <>
       <TotalWrapper>
@@ -85,7 +85,7 @@ export default function MarketReadUI({fetchitem}) {
           <Link href="/market">
             <GreyButton>목록으로</GreyButton>
           </Link>
-          <GreyButton>수정하기</GreyButton>
+          <GreyButton onClick={onClickUpdate}>수정하기</GreyButton>
         </GreyButtonWrapper>
         <CommentWrite />
       </TotalWrapper>

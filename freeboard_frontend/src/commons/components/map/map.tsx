@@ -11,7 +11,30 @@ const Map: React.FC = () => {
     };
     // @ts-ignore
     const map = new window.kakao.maps.Map(container, options);
+    // @ts-ignore
+    const markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+    // @ts-ignore
+    const marker = new kakao.maps.Marker({
+      position: markerPosition,
+    });
+
+    marker.setMap(map);
+    // marker.setDraggable(true);
+
+    // @ts-ignore
+    // kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+    //   var latlng = mouseEvent.latLng;
+
+    //   marker.setPosition(latlng);
+    // });
   }, []);
+
+  const onClickMap = () => {
+    window.open(
+      'https://map.kakao.com/link/map/33.450701,126.570667',
+      'target:_blank'
+    );
+  };
 
   return (
     <>

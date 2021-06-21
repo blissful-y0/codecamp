@@ -34,8 +34,6 @@ export function ReplyQuestionUI({data}) {
     }
   );
 
-  console.log(data._id);
-
   return (
     <>
       <UIWrapper>

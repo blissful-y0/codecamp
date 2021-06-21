@@ -27,9 +27,13 @@ export function ReadUI({}) {
   if (loading) return <></>;
   if (error) return router.push('/board');
 
+  const onClickUpdate = () => {
+    router.push(`/market/list/${router.query._id}/update`);
+  };
+
   return (
     <>
-      <MarketReadUI fetchitem={fetcheditem} />
+      <MarketReadUI onClickUpdate={onClickUpdate} fetchitem={fetcheditem} />
     </>
   );
 }

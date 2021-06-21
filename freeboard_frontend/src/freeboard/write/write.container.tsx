@@ -32,8 +32,6 @@ export default function MutationFreeboard() {
     setOpen(false);
   };
 
-  // console.log(uploadedFileArr);
-
   const [uploadImage] =
     useMutation<IMutation, IMutationUploadFileArgs>(UPLOAD_IMAGE);
   const [createBoardMutation] =

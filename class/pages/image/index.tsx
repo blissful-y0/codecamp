@@ -1,5 +1,6 @@
 import {useState, useRef} from 'react';
 import {useMutation, gql} from '@apollo/client';
+import {validateImage} from '../../src/commons/libraries/validations';
 
 const ImagePage = () => {
   const [myImage, setMyImage] = useState('');
@@ -19,15 +20,8 @@ const ImagePage = () => {
   const onChangeFile = (event) => {
     const uploadedFile = event.target.files[0];
     setFile(event.target.files[0]);
-    if (uploadedFile.size > 5 * 1024) {
-      alert('파일 사이즈가 5메가보다 큽니다');
-      return;
-    }
 
-    if (!uploadedFile.type.includes('png', 'jpg')) {
-      alert('png, jpg 타입만 가능합니다');
-      return;
-    }
+    if (!validateImage(uploadedFile)) return;
 
     const reader = new FileReader();
     reader.readAsDataURL(uploadedFile);

@@ -7,10 +7,11 @@ import {
 } from '@apollo/client';
 import GlobalStyles from '../src/commons/style/globalStyles';
 import {createUploadLink} from 'apollo-upload-client';
+import Head from 'next';
 
 function MyApp({Component, pageProps}) {
   const uploadLink = createUploadLink({
-    uri: 'http://backend.codebootcamp.co.kr/graphql',
+    uri: 'http://example.codebootcamp.co.kr/graphql',
   });
   const client = new ApolloClient({
     // uri: 'http://example.codebootcamp.co.kr/graphql',
@@ -19,12 +20,24 @@ function MyApp({Component, pageProps}) {
   });
 
   return (
-    <ApolloProvider client={client}>
-      {/* <Layout>
+    <>
+      <Head>
+        <script
+          type="text/javascript"
+          src="https://code.jquery.com/jquery-1.12.4.min.js"
+        ></script>
+        <script
+          type="text/javascript"
+          src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
+        ></script>
+      </Head>
+      <ApolloProvider client={client}>
+        {/* <Layout>
         <GlobalStyles /> */}
-      <Component {...pageProps} />
-      {/* </Layout> */}
-    </ApolloProvider>
+        <Component {...pageProps} />
+        {/* </Layout> */}
+      </ApolloProvider>
+    </>
   );
 }
 

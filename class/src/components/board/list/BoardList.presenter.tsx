@@ -19,6 +19,7 @@ export default function RenderUI({
   onClickTitle,
   onClickPage,
   currentPage,
+  onLoadMore,
 }) {
   return (
     <>
@@ -29,19 +30,8 @@ export default function RenderUI({
           <ListTitle>제목</ListTitle>
           <Writer>작성일</Writer>
         </NavigationBar>
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={() => {
-            console.log('1234');
-          }}
-          hasMore={true || false}
-          loader={
-            <div className="loader" key={0}>
-              Loading ...
-            </div>
-          }
-        >
-          {data.fetchBoards.map((data, index) => {
+        <InfiniteScroll loadMore={onLoadMore} hasMore={true} height={1000}>
+          {data?.fetchBoards.map((data, index) => {
             return (
               <div key={data?.number}>
                 <ListWrapper>

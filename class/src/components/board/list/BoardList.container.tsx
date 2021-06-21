@@ -11,14 +11,18 @@ export default function BoardPage() {
   const {data, loading, error, fetchMore} = useQuery(FETCH_BOARDS, {
     variables: {page: currentPage},
   });
-  if (loading) {
-    return '';
-  }
-  if (error) {
-    return '에러가 발생했습니다!';
-  }
 
-  const onClickPage = (page) => {
+  const onLoadMore = () => {
+    if (data?.fetchBoards.length % 10 !== 0) return;
+    fetchMore({
+      variables: {page: Math.floor(data?.fetchBoards.length / 10) + 1},
+      updateQuery: (prev, {fetchMoreResult}) => ({
+        fetchBoards: [...prev.fetchBoards, ...fetchMoreResult.fetchBoards],
+      }),
+    });
+  };
+
+  const onClickPage = (event) => {
     setCurrentPage(Number(event.target.id));
   };
 
@@ -38,6 +42,7 @@ export default function BoardPage() {
         onClickTitle={onClickTitle}
         onClickPage={onClickPage}
         currentPage={currentPage}
+        onLoadMore={onLoadMore}
       />
     </>
   );

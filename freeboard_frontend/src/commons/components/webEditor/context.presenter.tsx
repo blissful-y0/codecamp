@@ -1,9 +1,13 @@
-import {useContext, useState} from 'react';
 import 'react-quill/dist/quill.snow.css';
+import dynamic from 'next/dynamic';
 
-function WebEditor({context, setContext}) {
-  let ReactQuill =
-    typeof window === 'object' ? require('react-quill') : () => false;
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false,
+});
+
+function WebEditor({context, setContext, passedValue}) {
+  // let ReactQuill =
+  //   typeof window === 'object' ? require('react-quill') : () => false;
 
   const modules = {
     toolbar: [
@@ -37,7 +41,7 @@ function WebEditor({context, setContext}) {
     setContext(value);
   };
 
-  // console.log(value);
+  console.log(context);
 
   return (
     <div style={{width: '100%', marginBottom: '20px'}}>
@@ -45,7 +49,8 @@ function WebEditor({context, setContext}) {
         style={{width: '100%', height: '600px', marginBottom: '55px'}}
         modules={modules}
         formats={formats}
-        value={context || ''}
+        theme="snow"
+        defaultValue={passedValue}
         onChange={(content, delta, source, editor) =>
           onChange(editor.getHTML())
         }
