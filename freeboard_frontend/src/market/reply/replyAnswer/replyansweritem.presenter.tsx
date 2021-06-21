@@ -30,40 +30,46 @@ export default function AnswerUI({data, replyId, refetch}) {
       {data?.fetchUseditemQuestionAnswers
         ?.map((data) => (
           <>
-            <UIWrapper key={data._id}>
-              <Wrapper>
-                <ReplyIcon>
-                  <SubdirectoryArrowRightIcon
-                    style={{width: '30px', height: '30px'}}
-                  />
-                </ReplyIcon>
-                <ReadCommentWrapper>
-                  <ProfilePhoto>
-                    <AccountCircleIcon
-                      style={{width: '47px', height: '47px', color: '#BDBDBD'}}
+            <div key={data._id}>
+              <UIWrapper>
+                <Wrapper>
+                  <ReplyIcon>
+                    <SubdirectoryArrowRightIcon
+                      style={{width: '30px', height: '30px'}}
                     />
-                  </ProfilePhoto>
-                  <CommentContentsWrapper>
-                    <WriterRatingWrapper>
-                      <CommentWriter>{data.user.name}</CommentWriter>
-                    </WriterRatingWrapper>
-                    <CommentContents>{data.contents}</CommentContents>
-                    <CommnetCreatedAt>
-                      {getDate(data.updatedAt || data.createdAt)}
-                    </CommnetCreatedAt>
-                  </CommentContentsWrapper>
-                  <ReplyIconforUI
-                    onClick={handleClickOpen}
-                    style={{cursor: 'pointer', marginRight: '12px'}}
-                  />
-                  <CreateIcon style={{cursor: 'pointer'}} />
-                  <DeleteIcon
-                    style={{cursor: 'pointer', marginLeft: '10px'}}
-                    // onClick={handleDeleteModalToggle}
-                  />
-                </ReadCommentWrapper>
-              </Wrapper>
-            </UIWrapper>
+                  </ReplyIcon>
+                  <ReadCommentWrapper>
+                    <ProfilePhoto>
+                      <AccountCircleIcon
+                        style={{
+                          width: '47px',
+                          height: '47px',
+                          color: '#BDBDBD',
+                        }}
+                      />
+                    </ProfilePhoto>
+                    <CommentContentsWrapper>
+                      <WriterRatingWrapper>
+                        <CommentWriter>{data.user.name}</CommentWriter>
+                      </WriterRatingWrapper>
+                      <CommentContents>{data.contents}</CommentContents>
+                      <CommnetCreatedAt>
+                        {getDate(data.updatedAt || data.createdAt)}
+                      </CommnetCreatedAt>
+                    </CommentContentsWrapper>
+                    <ReplyIconforUI
+                      onClick={handleClickOpen}
+                      style={{cursor: 'pointer', marginRight: '12px'}}
+                    />
+                    <CreateIcon style={{cursor: 'pointer'}} />
+                    <DeleteIcon
+                      style={{cursor: 'pointer', marginLeft: '10px'}}
+                      // onClick={handleDeleteModalToggle}
+                    />
+                  </ReadCommentWrapper>
+                </Wrapper>
+              </UIWrapper>
+            </div>
           </>
         ))
         .reverse()}

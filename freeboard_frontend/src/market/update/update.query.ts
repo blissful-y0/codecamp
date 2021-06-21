@@ -21,7 +21,7 @@ export const UPDATE_USED_ITEM = gql`
     $UpdateUseditemInput: UpdateUseditemInput!
     $ID: ID!
   ) {
-    updateUseditem(UpdateUseditemInput: $UpdateUseditemInput, ID: $ID) {
+    updateUseditem(updateUseditemInput: $UpdateUseditemInput, useditemId: $ID) {
       _id
       name
     }

@@ -24,6 +24,11 @@ interface IProps {
   onSubmit: () => void;
   handleSubmit: () => void;
   errors: string;
+  // name: string;
+  // remarks: string;
+  // contents: string;
+  // price: number;
+  // tags: [];
 }
 
 export default function WriteUI({
@@ -33,7 +38,11 @@ export default function WriteUI({
   errors,
   setContext,
   context,
-  fetchedData,
+  // name,
+  // remarks,
+  // defaultContents,
+  // price,
+  // tags,
 }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -45,7 +54,8 @@ export default function WriteUI({
           </LabelWrapper>
           <Input
             name="name"
-            defaultValue={fetchedData?.fetchUseditem?.name}
+            ref={register}
+            defaultValue={name}
             {...register('name', {required: true, maxLength: 20})}
           />
           <ErrorWrapper>
@@ -58,7 +68,7 @@ export default function WriteUI({
           </LabelWrapper>
           <Input
             name="remark"
-            defaultValue={fetchedData?.fetchUseditem?.remarks}
+            ref={register}
             {...register('remark', {required: true, maxLength: 20})}
           />
           <ErrorWrapper>
@@ -70,16 +80,16 @@ export default function WriteUI({
           <LabelWrapper>
             <Label>상품설명</Label>
           </LabelWrapper>
-          <WebEditor
-            passedValue={fetchedData?.fetchUseditem?.contents}
+          {/* <WebEditor
+            // defaultContents={defaultContents}
             context={context}
             setContext={setContext}
-          />
+          /> */}
           <LabelWrapper>
             <Label>판매가격</Label>
             <Input
               name="price"
-              defaultValue={fetchedData?.fetchUseditem?.price}
+              ref={register}
               type="number"
               {...register('price', {required: true, maxLength: 20})}
             />
@@ -94,7 +104,7 @@ export default function WriteUI({
           </LabelWrapper>
           <Input
             name="tags"
-            defaultValue={fetchedData?.fetchUseditem?.tags}
+            ref={register}
             {...register('tags', {required: true, maxLength: 20})}
           />
           <ErrorWrapper>

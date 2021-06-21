@@ -5,7 +5,7 @@ const ReactQuill = dynamic(() => import('react-quill'), {
   ssr: false,
 });
 
-function WebEditor({context, setContext, passedValue}) {
+function WebEditor({context, setContext, defaultContents}) {
   // let ReactQuill =
   //   typeof window === 'object' ? require('react-quill') : () => false;
 
@@ -41,7 +41,7 @@ function WebEditor({context, setContext, passedValue}) {
     setContext(value);
   };
 
-  console.log(context);
+  console.log(defaultContents);
 
   return (
     <div style={{width: '100%', marginBottom: '20px'}}>
@@ -50,7 +50,7 @@ function WebEditor({context, setContext, passedValue}) {
         modules={modules}
         formats={formats}
         theme="snow"
-        defaultValue={passedValue}
+        defaultValue={defaultContents}
         onChange={(content, delta, source, editor) =>
           onChange(editor.getHTML())
         }
