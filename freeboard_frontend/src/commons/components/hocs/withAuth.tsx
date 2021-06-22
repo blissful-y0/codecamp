@@ -1,6 +1,7 @@
 import {useRouter} from 'next/router';
 import {useContext, useEffect} from 'react';
 import {AppContext} from '../../../../pages/_app';
+import getAccessToken from '../../libraries/getAccessToken';
 
 export default function withAuth(Component) {
   return function test(props) {
@@ -8,7 +9,8 @@ export default function withAuth(Component) {
     const {accessToken} = useContext(AppContext);
 
     useEffect(() => {
-      if (!accessToken) router.push('/board');
+      if (accessToken) return;
+      router.push('/board');
     }, []);
 
     if (!accessToken) return <></>;

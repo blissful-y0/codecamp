@@ -55,41 +55,38 @@ export function UsedBoardWrite() {
     onLoadData();
   }, [reset]);
 
-  console.log(context);
-
   const [updateUsedBoard] =
     useMutation<IMutation, IMutationUpdateUseditemArgs>(UPDATE_USED_ITEM);
 
   const onSubmit = async (value) => {
     event.preventDefault();
-    // try {
-    //   let data = {
-    //     name: value.name,
-    //     remark: value.remark,
-    //     price: value.price,
-    //     tags: value.tags,
-    //   };
+    try {
+      let data = {
+        name: value.name,
+        remark: value.remark,
+        price: value.price,
+        tags: value.tags,
+      };
 
-    //   const result = await updateUsedBoard({
-    //     variables: {
-    //       // @ts-ignore
-    //       UpdateUseditemInput: {
-    //         name: '',
-    //         remarks:
-    //           'fetchedData?.fetchUseditem?.remarks || String(data.remark),',
-    //         contents:
-    //           'fetchedData?.fetchUseditem?.contents || String(context),',
-    //         price: 'fetchedData?.fetchUseditem?.price || Number(data.price),',
-    //         tags: ' fetchedData?.fetchUseditem?.tags || [data.tags],',
-    //       },
-    //       ID: String(router.query._id),
-    //     },
-    //   });
-    //   alert('게시글 수정 완료');
-    //   // router.push(`/market/list/${result.data._id}`);
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
+      const result = await updateUsedBoard({
+        variables: {
+          // @ts-ignore
+          UpdateUseditemInput: {
+            name: data.name,
+            remarks: data.remark,
+            contents: context,
+            price: data.price,
+            tags: data.tags,
+          },
+          ID: String(router.query._id),
+        },
+      });
+      alert('게시글 수정 완료');
+      console.log(result);
+      router.push(`/market/list/${router.query._id}`);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (

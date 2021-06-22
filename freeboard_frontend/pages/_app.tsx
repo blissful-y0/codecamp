@@ -9,8 +9,9 @@ import Layout from '../src/commons/components/layout/layout.presenter';
 import {createUploadLink} from 'apollo-upload-client';
 import {createContext, useState} from 'react';
 import {onError} from '@apollo/client/link/error';
-import axios from 'axios';
 import getAccessToken from '../src/commons/libraries/getAccessToken';
+import {useRouter} from 'next/router';
+import {useEffect} from 'react';
 
 export const AppContext = createContext({
   accessToken: '',
@@ -20,6 +21,7 @@ export const AppContext = createContext({
 });
 
 function MyApp({Component, pageProps}) {
+  const router = useRouter();
   const [accessToken, setAccessToken] = useState('');
   const [userInfo, setUserInfo] = useState({});
 
@@ -27,39 +29,20 @@ function MyApp({Component, pageProps}) {
     uri: 'https://backend.codebootcamp.co.kr/graphql',
     headers: {
       authorization: `Bearer ${accessToken}`,
-      credential: 'include',
     },
+    credentials: 'include',
   });
 
+  //@ts-ignore
   const errorLink = onError(({graphQLErrors, operation, forward}) => {
     if (graphQLErrors) {
       for (let err of graphQLErrors) {
         if (err.extensions.code === 'UNAUTHENTICATED') {
           //만료된 토큰 재발급
-          const newAccessToken = getAccessToken({setAccessToken});
-          // const response = axios.post(
-          //   'https://backend.codebootcamp.co.kr/graphql',
-          //   {
-          //     query: `mutation {
-          //       restoreAccessToken {
-          //         accessToken
-          //       }
-          //     }`,
-          //   },
-          //   {
-          //     headers: {'Content-Type': 'application/json'},
-          //     withCredentials: true,
-          //   }
-          // );
-          // const newAccessToken =
-          //   response.data.data.restoreAccessToken.accessToken;
-          // setAccessToken(newAccessToken);
-          // 재발급 받은 토큰으로 실패했던 쿼리 다시 날리기
-
           operation.setContext({
             headers: {
               ...operation.getContext().headers,
-              authorization: `Bearer ${newAccessToken}`,
+              authorization: `Bearer ${getAccessToken({setAccessToken})}`,
             },
           });
           return forward(operation);
@@ -69,10 +52,20 @@ function MyApp({Component, pageProps}) {
   });
 
   const client = new ApolloClient({
-    uri: 'https://backend.codebootcamp.co.kr/graphql',
-    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
   });
+
+  useEffect(() => {
+    const restoreAccessToken = async () => {
+      const newAccessToken = await getAccessToken({
+        setAccessToken,
+        accessToken,
+      });
+      if (!newAccessToken) router.push('/board');
+    };
+    restoreAccessToken();
+  }, []);
 
   return (
     <>

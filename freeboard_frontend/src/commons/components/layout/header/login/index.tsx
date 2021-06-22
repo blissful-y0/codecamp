@@ -52,6 +52,7 @@ export default function LoginUI({handleClose}) {
         },
       });
       setUserInfo(userInfo.data.fetchUserLoggedIn);
+      localStorage.setItem('refreshToken', 'true');
       handleClose();
     } catch (error) {
       setErrorMsg(error.message);
