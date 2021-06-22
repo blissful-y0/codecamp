@@ -55,7 +55,6 @@ export default function WriteUI({
           <Input
             name="name"
             ref={register}
-            defaultValue={name}
             {...register('name', {required: true, maxLength: 20})}
           />
           <ErrorWrapper>
@@ -67,9 +66,9 @@ export default function WriteUI({
             <Label>한줄요약</Label>
           </LabelWrapper>
           <Input
-            name="remark"
+            name="remarks"
             ref={register}
-            {...register('remark', {required: true, maxLength: 20})}
+            {...register('remarks', {required: true, maxLength: 20})}
           />
           <ErrorWrapper>
             <ErrorMessage>
@@ -80,11 +79,7 @@ export default function WriteUI({
           <LabelWrapper>
             <Label>상품설명</Label>
           </LabelWrapper>
-          {/* <WebEditor
-            // defaultContents={defaultContents}
-            context={context}
-            setContext={setContext}
-          /> */}
+          <WebEditor context={context} setContext={setContext} />
           <LabelWrapper>
             <Label>판매가격</Label>
             <Input

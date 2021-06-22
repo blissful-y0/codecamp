@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 import {useContext, useEffect, useState} from 'react';
 import withAuth from '../../commons/components/hocs/withAuth';
 import {AppContext} from '../../../pages/_app';
-import {useApolloClient, useMutation, useQuery} from '@apollo/client';
+import {useApolloClient, useMutation} from '@apollo/client';
 import {FETCH_USED_ITEM, UPDATE_USED_ITEM} from './update.query';
 import {useForm} from 'react-hook-form';
 import {
@@ -15,7 +15,7 @@ export function UsedBoardWrite() {
   const router = useRouter();
   const {accessToken} = useContext(AppContext);
   const client = useApolloClient();
-  const [loadedData, setLoadedData] = useState({});
+  const [context, setContext] = useState('');
 
   useEffect(() => {
     if (!accessToken) router.push('/board');
@@ -30,6 +30,9 @@ export function UsedBoardWrite() {
   } = useForm({
     defaultValues: {
       name: '',
+      remarks: '',
+      price: '',
+      tags: '',
     },
   });
 
@@ -46,19 +49,13 @@ export function UsedBoardWrite() {
           },
         },
       });
-      // setLoadedData(data);
-      reset(data);
+      reset(data.data.fetchUseditem);
+      setContext(data.data.fetchUseditem.contents);
     };
     onLoadData();
   }, [reset]);
 
-  console.log(loadedData?.data?.fetchUseditem.name);
-
-  // const {name, remarks, contents, price, tags} =
-  // console.log(loadedData?.data?.fetchUseditem);
-
-  const [context, setContext] = useState('');
-  // if (!loadedData?.data?.fetchUseditem) return <div />;
+  console.log(context);
 
   const [updateUsedBoard] =
     useMutation<IMutation, IMutationUpdateUseditemArgs>(UPDATE_USED_ITEM);
@@ -104,11 +101,6 @@ export function UsedBoardWrite() {
         errors={errors}
         context={context}
         setContext={setContext}
-        // name={name}
-        // remarks={remarks}
-        // defaultContents={contents}
-        // price={price}
-        // tags={tags}
       />
     </>
   );
