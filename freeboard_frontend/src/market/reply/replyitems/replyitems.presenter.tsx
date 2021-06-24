@@ -27,6 +27,7 @@ import {
   UPDATE_USED_ITEM_QUESTION,
 } from '../reply.query';
 import {useMutation, useQuery} from '@apollo/client';
+import {CancelButton} from '../replyAnswer/replyansweritem.style';
 
 export function ReplyQuestionUI({data, refetchReply}) {
   const replyID = data._id;
@@ -38,6 +39,10 @@ export function ReplyQuestionUI({data, refetchReply}) {
   };
   const [updateOpen, setUpdateOpen] = useState(true);
   const handleClickUpdateOpen = () => {
+    setUpdateOpen((prev) => !prev);
+  };
+
+  const handleClickUpdateClose = () => {
     setUpdateOpen((prev) => !prev);
   };
 
@@ -113,10 +118,12 @@ export function ReplyQuestionUI({data, refetchReply}) {
               onChange={onChangeInput}
               maxLength={Number(100)}
               defaultValue={data?.contents || ''}
-              placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
             ></Contents>
             <UpdateContentsWrapper>
               <StringLengthCount>{contentsLength}/100</StringLengthCount>
+              <CancelButton onClick={handleClickUpdateClose}>
+                취소하기
+              </CancelButton>
               <UpdateButton onClick={onClickInputButton}>수정하기</UpdateButton>
             </UpdateContentsWrapper>
           </UpdateCommentWrapper>

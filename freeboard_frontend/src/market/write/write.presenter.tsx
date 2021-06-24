@@ -24,6 +24,8 @@ interface IProps {
   onSubmit: () => void;
   handleSubmit: () => void;
   errors: string;
+  uploadedFileArr: FileList;
+  setUploadedFileArr: () => void;
 }
 
 export default function WriteUI({
@@ -33,6 +35,8 @@ export default function WriteUI({
   errors,
   setContext,
   context,
+  uploadedFileArr,
+  setUploadedFileArr,
 }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -97,7 +101,12 @@ export default function WriteUI({
           </LocationWrapper>
           <LabelWrapper>
             <Label>사진</Label>
-            <ImageWrapper>{/* <ImageUpload /> */}</ImageWrapper>
+            <ImageWrapper>
+              <ImageUpload
+                uploadedFileArr={uploadedFileArr}
+                setUploadedFileArr={setUploadedFileArr}
+              />
+            </ImageWrapper>
           </LabelWrapper>
           <UploadButton type="submit">등록하기</UploadButton>
         </Wrapper>

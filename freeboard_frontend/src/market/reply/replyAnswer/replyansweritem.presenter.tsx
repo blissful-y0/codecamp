@@ -15,6 +15,7 @@ import {
   UpdateButton,
   StringLengthCount,
   UpdateWrapper,
+  CancelButton,
 } from './replyansweritem.style';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CreateIcon from '@material-ui/icons/Create';
@@ -44,6 +45,10 @@ export default function AnswerUI({
   const [contentsLength, setContentsLength] = useState(contents.length);
   const [updateOpen, setUpdateOpen] = useState(true);
   const handleClickUpdateOpen = () => {
+    setUpdateOpen((prev) => !prev);
+  };
+
+  const handleClickUpdateClose = () => {
     setUpdateOpen((prev) => !prev);
   };
 
@@ -134,6 +139,9 @@ export default function AnswerUI({
             ></Contents>
             <UpdateContentsWrapper>
               <StringLengthCount>{contentsLength}/100</StringLengthCount>
+              <CancelButton onClick={handleClickUpdateClose}>
+                취소하기
+              </CancelButton>
               <UpdateButton onClick={onClickInputButton}>수정하기</UpdateButton>
             </UpdateContentsWrapper>
           </UpdateCommentWrapper>

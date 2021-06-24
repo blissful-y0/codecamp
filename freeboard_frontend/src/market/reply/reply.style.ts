@@ -70,11 +70,10 @@ export const ContentsWrapper = styled.div`
 export const UploadButton = styled.button`
   width: 11%;
   height: 52px;
-  background-color: ${({disabled}) =>
-    disabled === false ? 'black' : '#bdbdbd'};
+  background-color: #ffd600;
   text-align: center;
-  color: ${({disabled}) => (disabled === false ? 'white' : 'black')};
-  border: 0px;
+  color: black;
+  border: 1px solid #ffd600;
   cursor: pointer;
 `;
 

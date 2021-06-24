@@ -19,10 +19,10 @@ export default function MutationFreeboard() {
     writer: '',
     password: '',
     title: '',
-    contents: '',
     youtubeUrl: '',
     // address: '',
   });
+  const [context, setContext] = useState('');
 
   const handleOpen = () => {
     setOpen(true);
@@ -54,6 +54,7 @@ export default function MutationFreeboard() {
         variables: {
           createBoardInput: {
             ...data,
+            contents: context,
             images: uploadfile.map((result) =>
               getStorageUrl(result.data.uploadFile.url)
             ),
@@ -71,12 +72,7 @@ export default function MutationFreeboard() {
   const onChangeInput = (event) => {
     const userData = {...data, [event.target.name]: event.target.value};
     setData(userData);
-    if (
-      userData.writer &&
-      userData.password &&
-      userData.title &&
-      userData.contents
-    ) {
+    if (userData.writer && userData.password && userData.title) {
       setFlag(false);
     } else {
       setFlag(true);
@@ -96,6 +92,8 @@ export default function MutationFreeboard() {
         data={data}
         setUploadedFileArr={setUploadedFileArr}
         uploadedFileArr={uploadedFileArr}
+        context={context}
+        setContext={setContext}
       />
     </>
   );

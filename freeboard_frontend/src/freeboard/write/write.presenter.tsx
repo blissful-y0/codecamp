@@ -19,6 +19,7 @@ import {
 } from './write.style';
 import Postcode from '../../commons/components/postcode/postcode.presenter';
 import ImageUpload from '../../commons/components/imageUpload/photoUpload.presenter';
+import WebEditor from '../../commons/components/webEditor/context.presenter';
 
 export default function WriteUI({
   onChangeInput,
@@ -31,6 +32,8 @@ export default function WriteUI({
   data,
   setUploadedFileArr,
   uploadedFileArr,
+  setContext,
+  context,
 }) {
   return (
     <Wrapper>
@@ -65,18 +68,10 @@ export default function WriteUI({
           placeholder="제목을 작성해주세요"
         ></AddressAndLink>
         <Label>내용</Label>
-        <Paragraph
-          name="contents"
-          onChange={onChangeInput}
-          placeholder="내용을 작성해주세요."
-        ></Paragraph>
+        <WebEditor context={context} setContext={setContext} />
         <Label>주소</Label>
         <div>
-          <Address
-            placeholder="07250"
-            readOnly={true}
-            // value={'01234'}
-          ></Address>
+          <Address placeholder="07250" readOnly={true}></Address>
           <BlackBox onClick={handleOpen}>우편번호 검색</BlackBox>
         </div>
         <AddressAndLink

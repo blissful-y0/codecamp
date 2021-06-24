@@ -7,3 +7,11 @@ export const CREATE_USED_BOARD = gql`
     }
   }
 `;
+
+export const UPLOAD_IMAGE = gql`
+  mutation uploadFile($file: Upload!) {
+    uploadFile(file: $file) {
+      url
+    }
+  }
+`;

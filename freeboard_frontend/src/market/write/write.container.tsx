@@ -4,11 +4,12 @@ import {useContext, useEffect, useState} from 'react';
 import withAuth from '../../commons/components/hocs/withAuth';
 import {AppContext} from '../../../pages/_app';
 import {useForm} from 'react-hook-form';
-import {CREATE_USED_BOARD} from './write.query';
+import {CREATE_USED_BOARD, UPLOAD_IMAGE} from './write.query';
 import {useMutation} from '@apollo/client';
 import {
   IMutation,
   IMutationCreateUseditemArgs,
+  IMutationUploadFileArgs,
 } from '../../commons/types/generated/types';
 
 interface IFormInput {
@@ -34,12 +35,27 @@ export function UsedBoardWrite() {
 
   const [context, setContext] = useState('');
 
+  const [uploadedFileArr, setUploadedFileArr] = useState([]);
+  const [uploadImage] =
+    useMutation<IMutation, IMutationUploadFileArgs>(UPLOAD_IMAGE);
+
   const [createUsedBoard] =
     useMutation<IMutation, IMutationCreateUseditemArgs>(CREATE_USED_BOARD);
 
   const onSubmit = async (value) => {
     event.preventDefault();
     try {
+      let fileArr = [...uploadedFileArr];
+      const uploadfile = await Promise.all(
+        fileArr.map((data) =>
+          uploadImage({
+            variables: {
+              file: data,
+            },
+          })
+        )
+      );
+
       let data = {
         name: value.name,
         remark: value.remark,
@@ -74,6 +90,8 @@ export function UsedBoardWrite() {
         errors={errors}
         context={context}
         setContext={setContext}
+        uploadedFileArr={uploadedFileArr}
+        setUploadedFileArr={setUploadedFileArr}
       />
     </>
   );

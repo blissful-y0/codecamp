@@ -111,13 +111,12 @@ export const UpdateContentsWrapper = styled.div`
 `;
 
 export const UpdateButton = styled.button`
-  width: 11%;
+  width: 5%;
   height: 52px;
-  background-color: ${({disabled}) =>
-    disabled === false ? 'black' : '#bdbdbd'};
+  background-color: #ffd600;
   text-align: center;
-  color: ${({disabled}) => (disabled === false ? 'white' : 'black')};
-  border: 0px;
+  color: black;
+  border: 1px solid #ffd600;
   cursor: pointer;
 `;
 
@@ -136,4 +135,14 @@ export const UpdateWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 200px;
+`;
+
+export const CancelButton = styled.button`
+  width: 5%;
+  height: 52px;
+  background-color: #bdbdbd;
+  text-align: center;
+  color: black;
+  border: 0px;
+  cursor: pointer;
 `;
