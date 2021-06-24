@@ -15,6 +15,7 @@ export default function RenderCommentUI({
   onChangeInput,
   replyData,
   contents,
+  refetch,
 }) {
   return (
     <>
@@ -36,7 +37,7 @@ export default function RenderCommentUI({
       <ReplyWrapper>
         {replyData?.fetchUseditemQuestions?.map((data) => (
           <div key={data._id}>
-            <ReplyQuestionUI data={data} />
+            <ReplyQuestionUI refetchReply={refetch} data={data} />
           </div>
         ))}
       </ReplyWrapper>

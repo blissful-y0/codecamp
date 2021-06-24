@@ -12,7 +12,6 @@ export default function withAuth(Component) {
       if (accessToken) return;
       router.push('/board');
     }, []);
-
     if (!accessToken) return <></>;
     return <Component {...props} />; // 컴포넌트 리턴
   };

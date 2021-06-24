@@ -67,3 +67,35 @@ export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
     }
   }
 `;
+
+export const UPDATE_USED_ITEM_QUESTION = gql`
+  mutation updateUseditemQuestion(
+    $UpdateUseditemQuestionInput: UpdateUseditemQuestionInput!
+    $ID: ID!
+  ) {
+    updateUseditemQuestion(
+      updateUseditemQuestionInput: $UpdateUseditemQuestionInput
+      useditemQuestionId: $ID
+    ) {
+      _id
+      contents
+      updatedAt
+    }
+  }
+`;
+
+export const UPDATE_USED_ITEM_QUESTION_ANSWER = gql`
+  mutation updateUseditemQuestionAnswer(
+    $UpdateUseditemQuestionAnswerInput: UpdateUseditemQuestionAnswerInput!
+    $ID: ID!
+  ) {
+    updateUseditemQuestionAnswer(
+      updateUseditemQuestionAnswerInput: $UpdateUseditemQuestionAnswerInput
+      useditemQuestionAnswerId: $ID
+    ) {
+      _id
+      updatedAt
+      contents
+    }
+  }
+`;

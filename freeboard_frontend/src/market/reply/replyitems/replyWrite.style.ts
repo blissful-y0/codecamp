@@ -62,3 +62,41 @@ export const UploadButton = styled.button`
   text-align: center;
   color: #000000;
 `;
+
+export const Contents = styled.textarea`
+  width: 100%;
+  height: 161px;
+  padding: 10px;
+  border: 1px solid #bdbdbd;
+  outline: none;
+  resize: none;
+`;
+
+export const ContentsWrapper = styled.div`
+  width: auto;
+  display: flex;
+  justify-content: flex-start;
+  border: 1px solid #bdbdbd;
+  border-top: 0px;
+`;
+
+export const UpdateButton = styled.button`
+  width: 11%;
+  height: 52px;
+  background-color: ${({disabled}) =>
+    disabled === false ? 'black' : '#bdbdbd'};
+  text-align: center;
+  color: ${({disabled}) => (disabled === false ? 'white' : 'black')};
+  border: 0px;
+  cursor: pointer;
+`;
+
+export const StringLengthCount = styled.div`
+  padding-left: 10px;
+  padding-top: 18px;
+  font-size: 16px;
+  width: 90%;
+  height: 52px;
+  text-align: left;
+  color: #bdbdbd;
+`;

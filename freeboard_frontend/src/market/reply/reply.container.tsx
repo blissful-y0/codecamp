@@ -58,6 +58,7 @@ export default function CommentForMarket() {
           useditemId: String(router.query._id),
         },
       });
+      setCommentLength(0);
       setContents('');
       refetch();
     } catch (error) {
@@ -75,6 +76,7 @@ export default function CommentForMarket() {
         onChangeInput={onChangeInput}
         onClickUpload={onClickUpload}
         replyData={replyData}
+        refetch={refetch}
       />
     </CommentContext.Provider>
   );

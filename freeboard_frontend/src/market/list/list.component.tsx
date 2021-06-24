@@ -12,10 +12,10 @@ export function MarketList(props) {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    if (!accessToken) router.push('/board');
-  });
-  if (!accessToken) return <></>;
+  // useEffect(() => {
+  //   if (!accessToken) router.push('/board');
+  // });
+  // if (!accessToken) return <></>;
 
   const {data, loading, error, fetchMore} = useQuery(FETCH_USED_ITEMS);
   if (loading) return <></>;
