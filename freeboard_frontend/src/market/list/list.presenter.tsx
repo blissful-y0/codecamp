@@ -33,7 +33,6 @@ export default function MarketListUI({data, onChangeSearch, onClickTitle}) {
           <NavigationBar>
             <ItemOnSalesWrapper>
               <ItemOnSales>판매중상품</ItemOnSales>
-              <ItemOnSold>판매된상품</ItemOnSold>
             </ItemOnSalesWrapper>
             <SearchWrapper>
               <SearchUI onChangeSearch={onChangeSearch} />

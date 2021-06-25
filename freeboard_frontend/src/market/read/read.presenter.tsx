@@ -77,7 +77,10 @@ export default function MarketReadUI({fetchitem, onClickUpdate}) {
               }}
             ></ContentsDetail>
             <MapWrapper>
-              <Map />
+              {
+                // @ts-ignore
+                <Map />
+              }
             </MapWrapper>
           </ContextsWrapper>
         </Wrapper>

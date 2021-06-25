@@ -63,7 +63,9 @@ export default function BoardReadUI({
           </NavigationBar>
           <Title>{data?.fetchBoard.title}</Title>
           <ContextsWrapper>
-            <Contexts>{data?.fetchBoard.contents}</Contexts>
+            <Contexts
+              dangerouslySetInnerHTML={{__html: data?.fetchBoard.contents}}
+            ></Contexts>
           </ContextsWrapper>
           <YoutubeUI Url={data?.fetchBoard.youtubeUrl} />
           {data?.fetchBoard?.images.map((data) => (

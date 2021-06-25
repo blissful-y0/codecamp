@@ -66,19 +66,36 @@ export default function SignIn({handleSignInClose}) {
           <SignInForm onSubmit={handleSubmit(onSubmit)}>
             <Label htmlFor="email">이메일</Label>
             <Input {...register('email')} />
-            <ErrorMessage>{errors.email && errors.email.message}</ErrorMessage>
+
+            <ErrorMessage>
+              {
+                // @ts-ignore
+                errors.email && errors.email.message
+              }
+            </ErrorMessage>
             <Label htmlFor="name">이름</Label>
             <Input {...register('name')} />
-            <ErrorMessage>{errors.name && errors.name.message}</ErrorMessage>
+            <ErrorMessage>
+              {
+                // @ts-ignore
+                errors.name && errors.name.message
+              }
+            </ErrorMessage>
             <Label htmlFor="password">비밀번호</Label>
             <Input type="password" {...register('password')} />
             <ErrorMessage>
-              {errors.password && errors.password.message}
+              {
+                // @ts-ignore
+                errors.password && errors.password.message
+              }
             </ErrorMessage>
             <Label htmlFor="passwordCheck">비밀번호 확인</Label>
             <Input type="password" {...register('passwordCheck')} />
             <ErrorMessage>
-              {errors.passwordCheck && errors.passwordCheck.message}
+              {
+                // @ts-ignore
+                errors.passwordCheck && errors.passwordCheck.message
+              }
             </ErrorMessage>
             <SubmitButton type="submit">회원가입</SubmitButton>
             <ErrorMessage></ErrorMessage>

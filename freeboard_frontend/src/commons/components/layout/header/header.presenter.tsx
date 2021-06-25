@@ -48,6 +48,7 @@ export default function Header() {
               </SignInButton>
             </>
           ) : (
+            // @ts-ignore
             <LoggedIn>어서오세요! {userInfo?.name} 님</LoggedIn>
           )}
         </LoginSignInWrapper>

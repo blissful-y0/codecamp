@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Modal from '@material-ui/core/Modal';
 import DaumPostcode from 'react-daum-postcode';
 import {makeStyles, Theme, createStyles} from '@material-ui/core/styles';
@@ -40,7 +40,6 @@ export default function SimpleModal({handleClose, open, setData}) {
       }
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
-    console.log(data);
 
     setData((prev) => ({
       ...prev,
@@ -61,7 +60,7 @@ export default function SimpleModal({handleClose, open, setData}) {
   );
 
   return (
-    <>
+    <Fragment>
       {open && (
         <Modal
           aria-labelledby="modal-title"
@@ -72,6 +71,6 @@ export default function SimpleModal({handleClose, open, setData}) {
           {body}
         </Modal>
       )}
-    </>
+    </Fragment>
   );
 }

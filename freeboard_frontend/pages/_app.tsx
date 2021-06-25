@@ -42,7 +42,10 @@ function MyApp({Component, pageProps}) {
           operation.setContext({
             headers: {
               ...operation.getContext().headers,
-              authorization: `Bearer ${getAccessToken({setAccessToken})}`,
+              authorization: `Bearer ${getAccessToken({
+                setAccessToken,
+                accessToken,
+              })}`,
             },
           });
           return forward(operation);

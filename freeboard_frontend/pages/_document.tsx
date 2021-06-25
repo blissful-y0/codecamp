@@ -17,9 +17,9 @@ class MyDocument extends Document {
           <NextScript />
           <script
             type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b361276d43366bba8247ce0a8956924"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b361276d43366bba8247ce0a8956924&libraries=services"
           ></script>
-          <script
+          {/* <script
             dangerouslySetInnerHTML={{
               __html: `
                 var container = document.getElementById('map');
@@ -30,7 +30,7 @@ class MyDocument extends Document {
                 var map = new kakao.maps.Map(container, options);
               `,
             }}
-          />
+          /> */}
         </body>
       </Html>
     );

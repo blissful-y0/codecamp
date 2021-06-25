@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React, {useEffect} from 'react';
 
-const Map: React.FC = () => {
+export function Map({address}) {
   useEffect(() => {
     const container = document.getElementById('map');
     const options = {
@@ -12,22 +12,21 @@ const Map: React.FC = () => {
     // @ts-ignore
     const map = new window.kakao.maps.Map(container, options);
     // @ts-ignore
-    const markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
-    // @ts-ignore
-    const marker = new kakao.maps.Marker({
-      position: markerPosition,
+    const geocoder = new window.kakao.maps.services.Geocoder();
+    geocoder.addressSearch(address, function (result, status) {
+      // 정상적으로 검색이 완료됐으면
+      if (status === kakao.maps.services.Status.OK) {
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+          map: map,
+          position: coords,
+        });
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+      }
     });
-
-    marker.setMap(map);
-    // marker.setDraggable(true);
-
-    // @ts-ignore
-    // kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
-    //   var latlng = mouseEvent.latLng;
-
-    //   marker.setPosition(latlng);
-    // });
-  }, []);
+  }, [address]);
 
   const onClickMap = () => {
     window.open(
@@ -41,24 +40,14 @@ const Map: React.FC = () => {
       <Head>
         <script
           type="text/javascript"
-          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b361276d43366bba8247ce0a8956924"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b361276d43366bba8247ce0a8956924&libraries=services"
         ></script>
-        {/* <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            var container = document.getElementById('map');
-            var options = {
-              center: new kakao.maps.LatLng(33.450701, 126.570667),
-              level: 3,
-            };
-            var map = new kakao.maps.Map(container, options);
-          `,
-          }}
-        /> */}
       </Head>
-      <div id="map" style={{width: '500px', height: '400px'}}></div>
+      <div
+        id="map"
+        style={{width: '450px', height: '250px', border: '1px solid black'}}
+      ></div>
     </>
   );
-};
-
+}
 export default Map;
