@@ -6,7 +6,6 @@ import {
   SearchButton,
   SearchWrapper,
   Wrapper,
-  ItemOnSold,
   ItemListWrapper,
   ItemSumnail,
   ItemTitle,

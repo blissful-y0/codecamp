@@ -1,8 +1,8 @@
 import {useRouter} from 'next/router';
 import {useContext, useEffect} from 'react';
-import {AppContext} from '../../_app';
+import {AppContext} from '../../freeboard_frontend/pages/_app';
 import Link from 'next/link';
-import withAuth from '../../../src/commons/components/hocs/withAuth';
+import withAuth from '../../freeboard_frontend/src/commons/components/hocs/withAuth';
 
 export function TokenTestPageTwo(props) {
   const router = useRouter();

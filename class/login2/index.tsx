@@ -1,7 +1,7 @@
 import {gql, useMutation} from '@apollo/client';
 import {useRouter} from 'next/router';
 import {useContext, useState} from 'react';
-import {AppContext} from '../../_app';
+import {AppContext} from '../../freeboard_frontend/pages/_app';
 
 const LOGIN_USER_EXAMPLE = gql`
   mutation loginUserExample($email: String!, $password: String!) {

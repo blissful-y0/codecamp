@@ -12,14 +12,18 @@ export function MarketList(props) {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
-  // useEffect(() => {
-  //   if (!accessToken) router.push('/board');
-  // });
-  // if (!accessToken) return <></>;
+  useEffect(() => {
+    if (!accessToken && !localStorage.getItem('refreshToken'))
+      router.push('/board');
+  });
+  if (!accessToken) return <></>;
 
-  const {data, loading, error, fetchMore} = useQuery(FETCH_USED_ITEMS);
-  if (loading) return <></>;
-  if (error) return router.push('/board');
+  const {data, loading, error, fetchMore} = useQuery(FETCH_USED_ITEMS, {
+    variables: {
+      page: currentPage,
+      search: searchKeyword,
+    },
+  });
 
   const onChangeSearch = (event) => {
     console.log(event.target.value);
