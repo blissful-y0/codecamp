@@ -112,6 +112,7 @@ export const MappedItemList = styled.div`
   padding-left: 5%;
   padding-right: 5%;
   border-bottom: 1px solid #bdbdbd;
+  cursor: pointer;
 `;
 
 export const Number = styled.h1`

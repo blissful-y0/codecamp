@@ -27,6 +27,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import {getDate} from '../commons/libraries/utils';
+import Link from 'next/link';
 
 export function MyPageUI({mySoldData}) {
   return (
@@ -73,12 +74,16 @@ export function MyPageUI({mySoldData}) {
             </MenuNavBar>
             {mySoldData?.fetchUseditemsISold
               .map((data, index) => (
-                <MappedItemList key={data._id}>
-                  <MapNumber>{index + 1}</MapNumber>
-                  <MapTitle>{data.name}</MapTitle>
-                  <MapPrice>₩ {data.price.toLocaleString()}</MapPrice>
-                  <MapDate>{getDate(data.updatedAt || data.createdAt)}</MapDate>
-                </MappedItemList>
+                <Link href={`/market/list/${data._id}`}>
+                  <MappedItemList key={data._id}>
+                    <MapNumber>{index + 1}</MapNumber>
+                    <MapTitle>{data.name}</MapTitle>
+                    <MapPrice>₩ {data.price.toLocaleString()}</MapPrice>
+                    <MapDate>
+                      {getDate(data.updatedAt || data.createdAt)}
+                    </MapDate>
+                  </MappedItemList>
+                </Link>
               ))
               .reverse()}
           </ListArea>

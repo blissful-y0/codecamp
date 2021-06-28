@@ -10,10 +10,11 @@ export function ReadUI({}) {
   const router = useRouter();
   const {accessToken} = useContext(AppContext);
 
-  // useEffect(() => {
-  //   if (!accessToken) router.push('/board');
-  // });
-  // if (!accessToken) return <></>;
+  useEffect(() => {
+    if (!accessToken && !localStorage.getItem('refreshToken'))
+      router.push('/board');
+  });
+  if (!accessToken) return <></>;
 
   const {
     data: fetcheditem,
