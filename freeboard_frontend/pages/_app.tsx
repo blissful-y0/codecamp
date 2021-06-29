@@ -12,6 +12,7 @@ import {onError} from '@apollo/client/link/error';
 import getAccessToken from '../src/commons/libraries/getAccessToken';
 import {useRouter} from 'next/router';
 import {useEffect} from 'react';
+import Head from 'next/head';
 
 export const AppContext = createContext({
   accessToken: '',
@@ -72,6 +73,31 @@ function MyApp({Component, pageProps}) {
 
   return (
     <>
+      <Head>
+        <meta property="og:title" content="2차마켓"></meta>
+        <meta property="og:image"></meta>
+        <meta
+          property="og:description"
+          content="중고 물품을 믿고 거래하세요!"
+        ></meta>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-39GK00YVLV"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-39GK00YVLV');`,
+          }}
+        ></script>
+        <meta
+          name="naver-site-verification"
+          content="9b78b5bac4b98cd7b78d118cf05632dfe2f3e40b"
+        />
+      </Head>
       <AppContext.Provider
         value={{accessToken, setAccessToken, setUserInfo, userInfo}}
       >
