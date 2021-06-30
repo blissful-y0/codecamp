@@ -22,16 +22,28 @@ import {
   MapTitle,
   MapPrice,
   MapDate,
+  ChargePoint,
 } from './mypage.style';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import {getDate} from '../commons/libraries/utils';
 import Link from 'next/link';
+import {useState} from 'react';
+import PaymentModal from './payment/payment.modal.presenter';
 
 export function MyPageUI({mySoldData, userInfo}) {
+  const [paymentOpen, setPaymentOpen] = useState(false);
+  const handleClickToggle = () => setPaymentOpen((prev) => !prev);
+
   return (
     <>
+      {paymentOpen && (
+        <PaymentModal
+          paymentOpen={paymentOpen}
+          handleClickToggle={handleClickToggle}
+        />
+      )}
       <PageWrapper>
         <Wrapper>
           <ProfileBar>
@@ -44,6 +56,7 @@ export function MyPageUI({mySoldData, userInfo}) {
               <WonMark>₩</WonMark>
               <Point>999,999</Point>
             </ShowMyPoint>
+            <ChargePoint onClick={handleClickToggle}>충전하기</ChargePoint>
             <MyList>
               <ShowMyPoint>
                 <ShoppingCartIcon

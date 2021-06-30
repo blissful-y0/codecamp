@@ -88,7 +88,7 @@ export const MyList = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  margin-top: 30%;
+  margin-top: 20%;
 `;
 
 export const MenuNavBar = styled.div`
@@ -173,4 +173,18 @@ export const MapDate = styled.h1`
   color: #4f4f4f;
   width: 10%;
   text-align: center;
+`;
+
+export const ChargePoint = styled.button`
+  width: 80px;
+  height: 40px;
+  background-color: #ffd600;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  outline: none;
+  border: 0px;
+  margin-top: 5px;
+  border-radius: 10px;
+  cursor: pointer;
 `;

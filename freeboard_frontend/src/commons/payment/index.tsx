@@ -10,8 +10,7 @@ export const CRATE_POINT_TRASACTION_OF_LOADING = gql`
   }
 `;
 
-function PaymentPage() {
-  const [amount, setAmount] = useState(200);
+export function PaymentPage(selectedAmount) {
   const [createPoint] = useMutation(CRATE_POINT_TRASACTION_OF_LOADING);
   const onClickPayment = () => {
     // @ts-ignore
@@ -25,12 +24,7 @@ function PaymentPage() {
         pay_method: 'card',
         // merchant_uid: 'ORD20180131-0000011',
         name: '철수쿤...',
-        amount,
-        // buyer_email: 'gildong@gmail.com',
-        // buyer_name: '철수',
-        // buyer_tel: '010-1234-5678',
-        // buyer_addr: '서울특별시 강남구 신사동',
-        // buyer_postcode: '01181',
+        selectedAmount,
         m_redirect_url: '/paymentok',
       },
       async (rsp) => {
