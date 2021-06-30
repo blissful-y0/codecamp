@@ -28,6 +28,8 @@ export function ReadUI({}) {
   if (loading) return <></>;
   if (error) return router.push('/board');
 
+  console.log(fetcheditem.fetchUseditem.images);
+
   const onClickUpdate = () => {
     router.push(`/market/list/${router.query._id}/update`);
   };

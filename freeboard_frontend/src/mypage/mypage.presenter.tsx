@@ -29,7 +29,7 @@ import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import {getDate} from '../commons/libraries/utils';
 import Link from 'next/link';
 
-export function MyPageUI({mySoldData}) {
+export function MyPageUI({mySoldData, userInfo}) {
   return (
     <>
       <PageWrapper>
@@ -39,7 +39,7 @@ export function MyPageUI({mySoldData}) {
             <AccountCircleIcon
               style={{width: '80px', height: '80px', color: '#bdbdbd'}}
             />
-            <UserName>김아무개</UserName>
+            <UserName>{userInfo?.name}</UserName>
             <ShowMyPoint>
               <WonMark>₩</WonMark>
               <Point>999,999</Point>

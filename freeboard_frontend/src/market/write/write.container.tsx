@@ -11,6 +11,7 @@ import {
   IMutationCreateUseditemArgs,
   IMutationUploadFileArgs,
 } from '../../commons/types/generated/types';
+import {getStorageUrl} from '../../commons/libraries/utils';
 
 interface IFormInput {
   title: string;
@@ -57,6 +58,8 @@ export function UsedBoardWrite() {
         )
       );
 
+      console.log(uploadfile);
+
       let data = {
         name: value.name,
         remark: value.remark,
@@ -72,6 +75,10 @@ export function UsedBoardWrite() {
             contents: String(context),
             price: Number(data.price),
             tags: [data.tags],
+            // @ts-ignore
+            images: uploadfile.map((result) =>
+              getStorageUrl(result.data.uploadFile.url)
+            ),
           },
         },
       });

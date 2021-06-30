@@ -8,7 +8,9 @@ import {useQuery} from '@apollo/client';
 
 export function MyPage() {
   const router = useRouter();
-  const {accessToken} = useContext(AppContext);
+  const {accessToken, userInfo} = useContext(AppContext);
+
+  console.log(userInfo);
 
   useEffect(() => {
     if (!accessToken && !localStorage.getItem('refreshToken'))
@@ -17,13 +19,10 @@ export function MyPage() {
   if (!accessToken) return <></>;
 
   const {data: mySoldData, loading, error} = useQuery(FETCH_USED_ITEMS_I_SOLD);
-  // const {};
-
-  console.log(mySoldData);
 
   return (
     <>
-      <MyPageUI mySoldData={mySoldData} />
+      <MyPageUI mySoldData={mySoldData} userInfo={userInfo} />
     </>
   );
 }

@@ -69,7 +69,7 @@ export default function MarketReadUI({fetchitem, onClickUpdate}) {
               </Remark>
             </ProductWrapper>
             <Contexts>
-              <Slider />
+              <Slider images={fetchitem?.fetchUseditem?.images} />
             </Contexts>
             <ContentsDetail
               dangerouslySetInnerHTML={{

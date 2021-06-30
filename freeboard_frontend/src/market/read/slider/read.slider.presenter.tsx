@@ -3,8 +3,8 @@ import {SliderWrapper} from './read.slider.style';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-export default function SimpleSlider() {
-  const headerImage = ['/header.png', '/header2.png', '/header3.png'];
+export default function SimpleSlider({images}) {
+  const headerImage = images;
   const settings = {
     dots: true,
     infinite: true,
@@ -24,7 +24,7 @@ export default function SimpleSlider() {
       <Slider {...settings}>
         {headerImage.map((data, index) => (
           <div key={index}>
-            <img src={data} style={{width: '100%', outline: 'none;'}} />
+            <img src={data} style={{width: '100%', height: '100%'}} />
           </div>
         ))}
       </Slider>
