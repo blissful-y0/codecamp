@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import Head from 'next/head';
 import {gql, useMutation} from '@apollo/client';
 
@@ -24,7 +23,7 @@ export function PaymentPage(selectedAmount) {
         pay_method: 'card',
         // merchant_uid: 'ORD20180131-0000011',
         name: '철수쿤...',
-        selectedAmount,
+        amount: selectedAmount,
         m_redirect_url: '/paymentok',
       },
       async (rsp) => {
@@ -61,7 +60,7 @@ export function PaymentPage(selectedAmount) {
           src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
         ></script>
       </Head>
-      <div>결제 금액: {amount}</div>
+      <div>결제 금액: {selectedAmount}</div>
       <button onClick={onClickPayment}>결제하기</button>
     </>
   );

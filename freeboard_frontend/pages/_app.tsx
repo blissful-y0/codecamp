@@ -74,6 +74,7 @@ function MyApp({Component, pageProps}) {
   return (
     <>
       <Head>
+        <title>덕질은 보호 받아야 한다! : 2차마켓</title>
         <meta property="og:title" content="2차마켓"></meta>
         <meta property="og:image"></meta>
         <meta
