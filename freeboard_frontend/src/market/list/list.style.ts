@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import {urlObjectKeys} from 'next/dist/next-server/lib/utils';
+
+interface IProps {
+  image: string;
+}
 
 export const Wrapper = styled.div`
   width: 80%;
@@ -46,6 +51,9 @@ export const ItemListWrapper = styled.div`
 export const ItemSumnail = styled.img`
   width: 160px;
   height: 160px;
+  background-image: ${(props: IProps) =>
+    props.image ? `url('${props.image}')` : `url('')`};
+  background-size: 160px;
 `;
 
 export const ItemTitleWrapper = styled.div`
