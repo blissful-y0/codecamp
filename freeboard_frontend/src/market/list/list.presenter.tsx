@@ -43,10 +43,7 @@ export default function MarketListUI({data, onChangeSearch, onClickTitle}) {
             // .sort((a, b) => a.price - b.price)
             .map((data) => (
               <ItemListWrapper onClick={onClickTitle(data?._id)} key={data._id}>
-                <ItemSumnail
-                  style={{backgroundImage: 'url('}}
-                  image={data.images[0]}
-                />
+                <ItemSumnail />
                 <ItemInfoWrapper>
                   <ItemTitleWrapper>
                     <ItemTitle>
