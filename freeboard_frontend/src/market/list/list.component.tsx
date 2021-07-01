@@ -33,6 +33,8 @@ export function MarketList(props) {
     router.push(`market/list/${_id}`);
   };
 
+  console.log(data);
+
   const onLoadMore = () => {
     if (!data) return;
     // @ts-ignore

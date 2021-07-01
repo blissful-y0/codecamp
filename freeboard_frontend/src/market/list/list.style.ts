@@ -46,7 +46,6 @@ export const ItemListWrapper = styled.div`
 export const ItemSumnail = styled.img`
   width: 160px;
   height: 160px;
-  border: 1px solid black;
 `;
 
 export const ItemTitleWrapper = styled.div`
