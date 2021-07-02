@@ -26,14 +26,12 @@ export function MarketList(props) {
   });
 
   const onChangeSearch = (event) => {
-    console.log(event.target.value);
+    setSearchKeyword(event.target.value);
   };
 
   const onClickTitle = (_id: string) => () => {
     router.push(`market/list/${_id}`);
   };
-
-  console.log(data);
 
   const onLoadMore = () => {
     if (!data) return;
