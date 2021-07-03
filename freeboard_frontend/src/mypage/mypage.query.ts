@@ -11,3 +11,15 @@ export const FETCH_USED_ITEMS_I_SOLD = gql`
     }
   }
 `;
+
+export const FETCH_POINT_OF_TRASACTION = gql`
+  query {
+    fetchPointTransactions {
+      impUid
+      amount
+      balance
+      createdAt
+      status
+    }
+  }
+`;

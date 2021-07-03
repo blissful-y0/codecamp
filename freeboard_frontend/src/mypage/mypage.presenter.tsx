@@ -32,7 +32,7 @@ import Link from 'next/link';
 import {useState} from 'react';
 import PaymentModal from './payment/payment.modal.presenter';
 
-export function MyPageUI({mySoldData, userInfo}) {
+export function MyPageUI({mySoldData, userInfo, myTransaction}) {
   const [paymentOpen, setPaymentOpen] = useState(false);
   const handleClickToggle = () => setPaymentOpen((prev) => !prev);
 
@@ -54,7 +54,7 @@ export function MyPageUI({mySoldData, userInfo}) {
             <UserName>{userInfo?.name}</UserName>
             <ShowMyPoint>
               <WonMark>₩</WonMark>
-              <Point>999,999</Point>
+              <Point>2,000</Point>
             </ShowMyPoint>
             <ChargePoint onClick={handleClickToggle}>충전하기</ChargePoint>
             <MyList>
@@ -87,16 +87,18 @@ export function MyPageUI({mySoldData, userInfo}) {
             </MenuNavBar>
             {mySoldData?.fetchUseditemsISold
               .map((data, index) => (
-                <Link href={`/market/list/${data._id}`}>
-                  <MappedItemList key={data._id}>
-                    <MapNumber>{index + 1}</MapNumber>
-                    <MapTitle>{data.name}</MapTitle>
-                    <MapPrice>₩ {data.price.toLocaleString()}</MapPrice>
-                    <MapDate>
-                      {getDate(data.updatedAt || data.createdAt)}
-                    </MapDate>
-                  </MappedItemList>
-                </Link>
+                <div key={data._id}>
+                  <Link href={`/market/list/${data._id}`}>
+                    <MappedItemList>
+                      <MapNumber>{index + 1}</MapNumber>
+                      <MapTitle>{data.name}</MapTitle>
+                      <MapPrice>₩ {data.price.toLocaleString()}</MapPrice>
+                      <MapDate>
+                        {getDate(data.updatedAt || data.createdAt)}
+                      </MapDate>
+                    </MappedItemList>
+                  </Link>
+                </div>
               ))
               .reverse()}
           </ListArea>

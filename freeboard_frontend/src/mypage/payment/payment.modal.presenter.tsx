@@ -14,7 +14,8 @@ import {useContext} from 'react';
 export const CRATE_POINT_TRASACTION_OF_LOADING = gql`
   mutation createPointTransactionOfLoading($impUid: ID!) {
     createPointTransactionOfLoading(impUid: $impUid) {
-      statis
+      status
+      balance
     }
   }
 `;
