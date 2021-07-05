@@ -21,8 +21,8 @@ export const BackgroundImage = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 236px;
-  height: 36px;
+  width: 132.25px;
+  height: 39px;
 `;
 
 export const ContentsWrapper = styled.div`

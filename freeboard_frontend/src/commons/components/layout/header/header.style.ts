@@ -35,8 +35,8 @@ export const LoginButton = styled.button`
 `;
 
 export const Logo = styled.img`
-  width: 236px;
-  height: 36px;
+  width: 264.5px;
+  height: 78px;
   cursor: pointer;
 `;
 
