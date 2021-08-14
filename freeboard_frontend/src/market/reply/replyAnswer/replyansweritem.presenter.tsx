@@ -147,7 +147,6 @@ export default function AnswerUI({
           </UpdateCommentWrapper>
         </UpdateWrapper>
       )}
-
       {open && (
         <ReplyWrite
           replyId={replyId}
