@@ -27,7 +27,7 @@ function MyApp({Component, pageProps}) {
   const [userInfo, setUserInfo] = useState({});
 
   const uploadLink = createUploadLink({
-    uri: 'https://backend.codebootcamp.co.kr/graphql05',
+    uri: 'https://backend.codebootcamp.co.kr/graphql',
     headers: {
       authorization: `Bearer ${accessToken}`,
     },
