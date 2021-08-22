@@ -1,9 +1,5 @@
-import RenderUI from '../../src/freeboard/list/list.container'
+import RenderUI from '../../src/freeboard/list/list.container';
 
-// interface IPros {
-//   RenderUI: any;
-// }
-
-export default function RenderList () {
-  return <RenderUI />
+export default function RenderList() {
+  return <RenderUI />;
 }
