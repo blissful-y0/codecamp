@@ -9,17 +9,27 @@ import {
 } from './mypage.query';
 import {useQuery, useLazyQuery} from '@apollo/client';
 import {useState} from 'react';
+import {IQuery} from '../commons/types/generated/types';
+import {FETCH_USER_LOGGED_IN} from '../commons/components/layout/header/login/query';
 
 export function MyPage() {
   const router = useRouter();
-  const {accessToken, userInfo} = useContext(AppContext);
+  const {accessToken} = useContext(AppContext);
   const {data: mySoldData} = useQuery(FETCH_USED_ITEMS_I_SOLD);
   const [status, setStatus] = useState('MyCart');
   const {
     data: myTransaction,
     loading,
     error,
-  } = useLazyQuery(FETCH_POINT_OF_TRASACTION);
+  } = useQuery(FETCH_POINT_OF_TRASACTION);
+
+  const {
+    data: userInfo,
+    loading: userLoading,
+    error: userError,
+  } = useQuery(FETCH_USER_LOGGED_IN);
+
+  console.log(userInfo);
 
   useEffect(() => {
     if (!accessToken && !localStorage.getItem('refreshToken'))
@@ -34,6 +44,7 @@ export function MyPage() {
         mySoldData={mySoldData}
         userInfo={userInfo}
         myTransaction={myTransaction}
+        userInfo={userInfo}
       />
     </>
   );

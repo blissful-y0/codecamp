@@ -61,7 +61,7 @@ export default function MarketListUI({data, onChangeSearch, onClickTitle}) {
                     <ProfileIcon
                       style={{color: '#BDBDBD', marginRight: '5px'}}
                     />
-                    {data.seller.name}
+                    {data?.seller?.name}
                     <HeartIcon
                       style={{
                         color: '#FFD600',

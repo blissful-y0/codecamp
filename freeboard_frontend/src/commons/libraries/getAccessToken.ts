@@ -4,7 +4,11 @@ import {ApolloClient, useApolloClient} from '@apollo/client';
 import {AppContext} from '../../../pages/_app';
 import {useContext} from 'react';
 
-export async function getAccessToken({setAccessToken, accessToken}) {
+export async function getAccessToken({
+  setAccessToken,
+  accessToken,
+  setUserInfo,
+}) {
   if (!localStorage.getItem('refreshToken')) return;
   if (accessToken) return;
 
@@ -29,13 +33,6 @@ export async function getAccessToken({setAccessToken, accessToken}) {
 
   const newAccessToken = response.data.data.restoreAccessToken.accessToken;
   setAccessToken(newAccessToken);
-  // const userInfo = await client.query({
-  //   query: FETCH_USER_LOGGED_IN,
-  //   context: {
-  //     headers: {authorization: data?.loginUser.accessToken},
-  //   },
-  // });
-  // setUserInfo(userInfo.data.fetchUserLoggedIn);
   return newAccessToken;
 }
 

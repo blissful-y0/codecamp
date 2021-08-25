@@ -46,6 +46,7 @@ function MyApp({Component, pageProps}) {
               authorization: `Bearer ${getAccessToken({
                 setAccessToken,
                 accessToken,
+                setUserInfo,
               })}`,
             },
           });
@@ -65,8 +66,9 @@ function MyApp({Component, pageProps}) {
       const newAccessToken = await getAccessToken({
         setAccessToken,
         accessToken,
+        setUserInfo,
       });
-      if (!newAccessToken) router.push('/board');
+      if (!newAccessToken) router.push('/market');
     };
     restoreAccessToken();
   }, []);

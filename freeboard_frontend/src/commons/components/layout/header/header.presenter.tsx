@@ -49,7 +49,7 @@ export default function Header() {
             </>
           ) : (
             // @ts-ignore
-            <LoggedIn>어서오세요! {userInfo?.name} 님</LoggedIn>
+            <LoggedIn>어서오세요! 로그인되었습니다! </LoggedIn>
           )}
         </LoginSignInWrapper>
       </TitleWrapper>

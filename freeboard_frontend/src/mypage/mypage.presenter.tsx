@@ -51,10 +51,10 @@ export function MyPageUI({mySoldData, userInfo, myTransaction}) {
             <AccountCircleIcon
               style={{width: '80px', height: '80px', color: '#bdbdbd'}}
             />
-            <UserName>{userInfo?.name}</UserName>
+            <UserName>{userInfo?.fetchUserLoggedIn?.name}</UserName>
             <ShowMyPoint>
               <WonMark>₩</WonMark>
-              <Point>2,000</Point>
+              <Point>{userInfo?.fetchUserLoggedIn?.userPoint?.amount}</Point>
             </ShowMyPoint>
             <ChargePoint onClick={handleClickToggle}>충전하기</ChargePoint>
             <MyList>
