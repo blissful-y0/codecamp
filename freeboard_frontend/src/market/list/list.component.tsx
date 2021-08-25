@@ -10,7 +10,7 @@ export function MarketList(props) {
   const router = useRouter();
   const {accessToken} = useContext(AppContext);
   const [searchKeyword, setSearchKeyword] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     if (!accessToken && !localStorage.getItem('refreshToken'))
@@ -18,10 +18,9 @@ export function MarketList(props) {
   });
   if (!accessToken) return <></>;
 
-  const {data, loading, error, fetchMore} = useQuery(FETCH_USED_ITEMS, {
+  const {data, fetchMore} = useQuery(FETCH_USED_ITEMS, {
     variables: {
-      page: currentPage,
-      search: searchKeyword,
+      page: 1,
     },
   });
 
@@ -35,12 +34,16 @@ export function MarketList(props) {
 
   const onLoadMore = () => {
     if (!data) return;
-    // @ts-ignore
-    if (!data?.fetchUseditems?.length % 10 === 0) return;
     fetchMore({
-      variables: {
-        search: searchKeyword,
-        page: currentPage,
+      variables: {page: Math.floor(data?.fetchUseditems.length / 10) + 1},
+      updateQuery: (prev, {fetchMoreResult}) => {
+        if (!fetchMoreResult?.fetchUseditems?.length) setHasMore(false);
+        return {
+          fetchUseditems: [
+            ...prev.fetchUseditems,
+            ...fetchMoreResult.fetchUseditems,
+          ],
+        };
       },
     });
   };
@@ -50,6 +53,8 @@ export function MarketList(props) {
       onChangeSearch={onChangeSearch}
       data={data}
       onClickTitle={onClickTitle}
+      onLoadMore={onLoadMore}
+      hasMore={hasMore}
     />
   );
 }

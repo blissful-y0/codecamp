@@ -44,7 +44,6 @@ export function MyPage() {
         mySoldData={mySoldData}
         userInfo={userInfo}
         myTransaction={myTransaction}
-        userInfo={userInfo}
       />
     </>
   );
