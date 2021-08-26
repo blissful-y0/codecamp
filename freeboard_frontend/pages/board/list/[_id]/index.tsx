@@ -26,29 +26,29 @@ function BoardReadPage({data}) {
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const client = new ApolloClient({
-//     uri: 'https://backend.codebootcamp.co.kr/graphql',
-//     cache: new InMemoryCache(),
-//   });
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const client = new ApolloClient({
+    uri: 'https://backend.codebootcamp.co.kr/graphql05',
+    cache: new InMemoryCache(),
+  });
 
-//   const {data} = await client.query({
-//     query: gql`
-//     query fetchBoard($boardId: ID!) {
-//       fetchBoard(boardId: ${context.params}) {
-//         title
-//         contents
-//         images
-//       }
-//     }
-//   `,
-//   });
+  const {data} = await client.query({
+    query: gql`
+    query fetchBoard($boardId: ID!) {
+      fetchBoard(boardId: ${context.params}) {
+        title
+        contents
+        images
+      }
+    }
+  `,
+  });
 
-//   return {
-//     props: {
-//       data: data.fetchBoard,
-//     },
-//   };
+  return {
+    props: {
+      data: data.fetchBoard,
+    },
+  };
 // };
 
 export default BoardReadPage;
