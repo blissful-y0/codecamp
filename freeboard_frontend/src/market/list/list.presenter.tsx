@@ -61,7 +61,7 @@ export default function MarketListUI({
                     onClick={onClickTitle(data?._id)}
                     key={data._id}
                   >
-                    <ItemSumnail image={data.images[0]} />
+                    <ItemSumnail image={data?.images[0]} />
                     <ItemInfoWrapper>
                       <ItemTitleWrapper>
                         <ItemTitle>

@@ -9,6 +9,7 @@ import {
   IQueryFetchBoardArgs,
 } from '../../commons/types/generated/types';
 import {useState} from 'react';
+import axios from 'axios';
 
 export default function QueryReadPage() {
   const router = useRouter();

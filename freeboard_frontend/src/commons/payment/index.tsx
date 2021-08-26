@@ -22,7 +22,7 @@ export function PaymentPage(selectedAmount) {
         pg: 'html5_inicis',
         pay_method: 'card',
         // merchant_uid: 'ORD20180131-0000011',
-        name: '철수쿤...',
+        name: '2차 마켓 : 제품 결제',
         amount: selectedAmount,
         m_redirect_url: '/paymentok',
       },
