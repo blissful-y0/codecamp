@@ -2,8 +2,11 @@ import {ApolloClient, InMemoryCache, gql} from '@apollo/client';
 import {GetServerSideProps} from 'next';
 import BoardReadUI from '../../../../src/freeboard/read/read.container';
 import Head from 'next/head';
+import {FETCH_BOARD} from '../../../../src/freeboard/read/read.query';
+import {request} from 'graphql-request';
 
 function BoardReadPage({data}) {
+  console.log(data);
   return (
     <>
       <Head>
@@ -26,29 +29,20 @@ function BoardReadPage({data}) {
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const client = new ApolloClient({
-//     uri: 'https://backend.codebootcamp.co.kr/graphql05',
-//     cache: new InMemoryCache(),
-//   });
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const result = await request(
+    'https://backend.codebootcamp.co.kr/graphql05',
+    FETCH_BOARD,
+    {
+      boardId: context.params._id,
+    }
+  );
 
-//   const {data} = await client.query({
-//     query: gql`
-//     query fetchBoard($boardId: ID!) {
-//       fetchBoard(boardId: ${context.params}) {
-//         title
-//         contents
-//         images
-//       }
-//     }
-//   `,
-//   });
-
-//   return {
-//     props: {
-//       data: data.fetchBoard,
-//     },
-//   };
-// };
+  return {
+    props: {
+      data: result.fetchBoard,
+    },
+  };
+};
 
 export default BoardReadPage;
