@@ -6,7 +6,6 @@ import {FETCH_BOARD} from '../../../../src/freeboard/read/read.query';
 import {request} from 'graphql-request';
 
 function BoardReadPage({data}) {
-  console.log(data);
   return (
     <>
       <Head>
@@ -24,7 +23,7 @@ function BoardReadPage({data}) {
           }
         />
       </Head>
-      <BoardReadUI />;
+      <BoardReadUI data={data} />;
     </>
   );
 }

@@ -11,7 +11,7 @@ import {
 import {useState} from 'react';
 import axios from 'axios';
 
-export default function QueryReadPage() {
+export default function QueryReadPage({data}) {
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function QueryReadPage() {
     setOpen(false);
   };
 
-  const {data, refetch} = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
+  const {refetch} = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
     variables: {
       boardId: String(router.query._id),
     },
