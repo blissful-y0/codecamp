@@ -17,10 +17,10 @@ export function UsedBoardWrite() {
   const client = useApolloClient();
   const [context, setContext] = useState('');
 
-  // useEffect(() => {
-  //   if (!accessToken) router.push('/board');
-  // });
-  // if (!accessToken) return <></>;
+  useEffect(() => {
+    if (!accessToken) router.push('/board');
+  });
+  if (!accessToken) return <></>;
 
   const {
     register,
