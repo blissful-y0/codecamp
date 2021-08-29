@@ -31,13 +31,13 @@ export function MarketList(props) {
   const onClickTitle = (_id: string) => () => {
     router.push(`market/list/${_id}`);
   };
-
   const onLoadMore = () => {
     if (!data) return;
+
     fetchMore({
       variables: {page: Math.floor(data?.fetchUseditems.length / 10) + 1},
       updateQuery: (prev, {fetchMoreResult}) => {
-        if (!fetchMoreResult?.fetchUseditems?.length) setHasMore(false);
+        if (!fetchMoreResult.fetchUseditems.length) setHasMore(false);
         return {
           fetchUseditems: [
             ...prev.fetchUseditems,

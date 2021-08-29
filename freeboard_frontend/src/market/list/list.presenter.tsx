@@ -45,7 +45,7 @@ export default function MarketListUI({
               <SearchButton>검색</SearchButton>
             </SearchWrapper>
           </NavigationBar>
-          <div style={{width: '100%'}}>
+          <div style={{width: '100%', height: '800px', overflow: 'auto'}}>
             <InfiniteScroll
               pageStart={0}
               loadMore={onLoadMore}
