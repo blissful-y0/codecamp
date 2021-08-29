@@ -20,7 +20,7 @@ export default function MutationFreeboard() {
     password: '',
     title: '',
     youtubeUrl: '',
-    // address: '',
+    boardAddress: {zipcode: 0, address: '', addressDetail: ''},
   });
   const [context, setContext] = useState('');
 
@@ -77,6 +77,11 @@ export default function MutationFreeboard() {
     } else {
       setFlag(true);
     }
+  };
+
+  const onChangeAddressDetail = (event) => {
+    const result = {...data};
+    setData(result);
   };
 
   return (

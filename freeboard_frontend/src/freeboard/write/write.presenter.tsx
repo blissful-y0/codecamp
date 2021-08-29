@@ -71,12 +71,16 @@ export default function WriteUI({
         <WebEditor context={context} setContext={setContext} />
         <Label>주소</Label>
         <div>
-          <Address placeholder="07250" readOnly={true}></Address>
+          <Address
+            placeholder="07250"
+            value={data.boardAddress.zipcode}
+            readOnly={true}
+          ></Address>
           <BlackBox onClick={handleOpen}>우편번호 검색</BlackBox>
         </div>
         <AddressAndLink
           name="address"
-          value={data.address}
+          value={data.boardAddress.address}
           readOnly={true}
         ></AddressAndLink>
         <AddressAndLink></AddressAndLink>

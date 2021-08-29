@@ -28,6 +28,7 @@ export default function SimpleModal({handleClose, open, setData}) {
   const [modalStyle] = React.useState(getModalStyle);
   const handleComplete = (data) => {
     let fullAddress = data.address;
+    let zonecode = data.zonecode;
     let extraAddress = '';
 
     if (data.addressType === 'R') {
@@ -43,7 +44,10 @@ export default function SimpleModal({handleClose, open, setData}) {
 
     setData((prev) => ({
       ...prev,
-      address: fullAddress,
+      boardAddress: {
+        zipcode: zonecode,
+        address: fullAddress,
+      },
     }));
 
     handleClose();

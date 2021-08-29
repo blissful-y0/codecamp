@@ -6,6 +6,7 @@ export function Map({address}) {
     if (!address) {
       address = '서울특별시 구로구 구로동 197-21';
     }
+
     const container = document.getElementById('map');
     const options = {
       // @ts-ignore

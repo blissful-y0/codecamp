@@ -7,9 +7,10 @@ export default function withAuth(Component) {
     const router = useRouter();
     const {accessToken} = useContext(AppContext);
 
+    // if (!accessToken && !localStorage.getItem('refreshToken'))
+
     useEffect(() => {
-      if (!accessToken && !localStorage.getItem('refreshToken'))
-        router.push('/board');
+      if (!accessToken) router.push('/board');
     }, []);
     if (!accessToken) return <></>;
     return <Component {...props} />; // 컴포넌트 리턴

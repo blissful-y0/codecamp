@@ -28,6 +28,12 @@ export function UsedBoardWrite() {
     formState: {errors},
   } = useForm<IFormInput>();
   const {accessToken} = useContext(AppContext);
+  const [data, setData] = useState({
+    boardAddress: {
+      address: '서울특별시 구로구 구로동 197-21',
+      zipcode: '',
+    },
+  });
 
   useEffect(() => {
     if (!accessToken && !localStorage.getItem('refreshToken'))
@@ -57,8 +63,6 @@ export function UsedBoardWrite() {
           })
         )
       );
-
-      console.log(uploadfile);
 
       let data = {
         name: value.name,
@@ -100,6 +104,8 @@ export function UsedBoardWrite() {
         setContext={setContext}
         uploadedFileArr={uploadedFileArr}
         setUploadedFileArr={setUploadedFileArr}
+        setData={setData}
+        data={data}
       />
     </>
   );

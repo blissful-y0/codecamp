@@ -40,12 +40,11 @@ export default function WriteUI({
   context,
   uploadedFileArr,
   setUploadedFileArr,
+  setData,
+  data,
 }) {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen((prev) => !prev);
-  const [data, setData] = useState({
-    address: '서울특별시 구로구 구로동 197-21',
-  });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -101,14 +100,14 @@ export default function WriteUI({
             <Label>거래위치</Label>
           </LabelWrapper>
           <LocationWrapper>
-            <MapAPI address={data.address} />
+            <MapAPI address={data.boardAddress.address} />
             <GPSAddressWrapper>
               <GetLocationButton onClick={handleClose}>
                 주소 입력하기
               </GetLocationButton>
               <Label style={{marginTop: '15px'}}>주소</Label>
               <Input
-                value={data.address}
+                value={data.boardAddress.address}
                 readOnly={true}
                 style={{marginBottom: '5px'}}
               />
