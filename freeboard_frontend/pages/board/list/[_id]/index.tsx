@@ -12,14 +12,21 @@ function BoardReadPage({data}) {
         <meta
           property="og:title"
           content={
-            data?.title ? data?.title : '덕질은 보호 받아야 한다! : 2차 마켓'
+            data?.fetchBoard.title
+              ? data?.fetchBoard.title
+              : '덕질은 보호 받아야 한다! : 2차 마켓'
           }
         />
-        <meta property="og:image" content={data?.image ? data?.image : ''} />
+        <meta
+          property="og:image"
+          content={data?.fetchBoard.image ? data?.fetchBoard.image : ''}
+        />
         <meta
           property="og:description"
           content={
-            data?.contents ? data?.contents : '다양한 중고 물품들을 거래하세요!'
+            data?.fetchBoard.contents
+              ? data?.fetchBoard.contents
+              : '다양한 중고 물품들을 거래하세요!'
           }
         />
       </Head>
@@ -39,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      data: result.fetchBoard,
+      data: result,
     },
   };
 };
