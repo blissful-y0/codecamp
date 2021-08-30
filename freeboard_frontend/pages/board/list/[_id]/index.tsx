@@ -37,7 +37,7 @@ function BoardReadPage({data}) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const result = await request(
-    'https://backend.codebootcamp.co.kr/graphql05',
+    'https://backend02.codebootcamp.co.kr/graphql',
     FETCH_BOARD,
     {
       boardId: context.params._id,

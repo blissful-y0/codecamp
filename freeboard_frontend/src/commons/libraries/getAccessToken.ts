@@ -13,7 +13,7 @@ export async function getAccessToken({
   if (accessToken) return;
 
   const response = await axios.post(
-    'https://.codebootcamp.co.kr/graphql05',
+    'https://backend02.codebootcamp.co.kr/graphql',
     {
       query: `mutation restoreAccessToken {
       restoreAccessToken {
