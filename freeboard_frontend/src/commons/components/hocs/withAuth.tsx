@@ -10,7 +10,7 @@ export default function withAuth(Component) {
     // if (!accessToken && !localStorage.getItem('refreshToken'))
 
     useEffect(() => {
-      if (!accessToken) router.push('/board');
+      if (!accessToken) router.push('/login');
     }, []);
     if (!accessToken) return <></>;
     return <Component {...props} />; // 컴포넌트 리턴
