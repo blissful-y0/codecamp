@@ -33,7 +33,7 @@ export function MyPage() {
 
   useEffect(() => {
     if (!accessToken && !localStorage.getItem('refreshToken'))
-      router.push('/board');
+      router.push('/login');
   }, []);
   if (!accessToken) return <></>;
   if (loading) return <></>;

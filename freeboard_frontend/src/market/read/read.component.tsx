@@ -12,7 +12,7 @@ export function ReadUI({}) {
 
   useEffect(() => {
     if (!accessToken && !localStorage.getItem('refreshToken'))
-      router.push('/board');
+      router.push('/login');
   });
   if (!accessToken) return <></>;
 
@@ -26,7 +26,7 @@ export function ReadUI({}) {
     },
   });
   if (loading) return <></>;
-  if (error) return router.push('/board');
+  if (error) return router.push('/login');
 
   console.log(fetcheditem.fetchUseditem.images);
 

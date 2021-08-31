@@ -18,7 +18,7 @@ export function UsedBoardWrite() {
   const [context, setContext] = useState('');
 
   useEffect(() => {
-    if (!accessToken) router.push('/board');
+    if (!accessToken) router.push('/login');
   });
   if (!accessToken) return <></>;
 

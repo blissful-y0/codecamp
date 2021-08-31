@@ -37,7 +37,7 @@ export function UsedBoardWrite() {
 
   useEffect(() => {
     if (!accessToken && !localStorage.getItem('refreshToken'))
-      router.push('/board');
+      router.push('/login');
   });
   if (!accessToken) return <></>;
 
