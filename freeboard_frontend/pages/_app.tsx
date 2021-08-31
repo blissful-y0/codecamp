@@ -68,7 +68,7 @@ function MyApp({Component, pageProps}) {
         accessToken,
         setUserInfo,
       });
-      if (!newAccessToken) router.push('/');
+      if (!newAccessToken) router.push('/login');
     };
     restoreAccessToken();
   }, []);
