@@ -13,6 +13,7 @@ import {useState, useContext} from 'react';
 import LoginModal from './login/index';
 import SignInModal from './signin/index';
 import {AppContext} from '../../../../../pages/_app';
+import Link from 'next/link';
 
 export default function Header() {
   const router = useRouter();
@@ -38,7 +39,9 @@ export default function Header() {
   return (
     <>
       <TitleWrapper>
-        <Logo src="/logo.png" />
+        <Link href="/board">
+          <Logo src="/logo.png" />
+        </Link>
         <LoginSignInWrapper>
           {accessToken === '' ? (
             <>
